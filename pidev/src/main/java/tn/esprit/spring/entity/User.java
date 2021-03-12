@@ -284,11 +284,11 @@ public class User  implements Serializable  {
 	}
 	
 
-	public Set<Leave> getLeave() {
+	public Set<LeaveTest> getLeave() {
 		return Leave;
 	}
 
-	public void setLeave(Set<Leave> leave) {
+	public void setLeave(Set<LeaveTest> leave) {
 		Leave = leave;
 	}
 
@@ -304,8 +304,8 @@ public class User  implements Serializable  {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="User")
 	private Set<Payment> Payment;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="User")
-	private Set<Leave> Leave;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<LeaveTest> Leave;
 	
 	@OneToOne
 	private Accounting Accounting;
@@ -315,7 +315,7 @@ public class User  implements Serializable  {
 			boolean shifting, String email, String password, String confirm_password, int verified_account, int random,
 			int work_hours, int extra_hours, float salary, Date hiring_date,
 			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment,
-			Set<tn.esprit.spring.entity.Leave> leave, tn.esprit.spring.entity.Accounting accounting) {
+			Set<tn.esprit.spring.entity.LeaveTest> leave, tn.esprit.spring.entity.Accounting accounting) {
 		super();
 		User_ID = user_ID;
 		First_name = first_name;

@@ -82,6 +82,9 @@ public class Leave implements Serializable {
 					+ ", End_Date=" + End_Date + ", Leave_Duration=" + Leave_Duration + ", Leave_reason=" + Leave_reason
 					+ "]";
 		}
+
+		@ManyToOne
+		User User;
 		
 		public Leave(int leave_ID, tn.esprit.spring.entity.Type_Leave type_Leave, Date start_Date, Date end_Date,
 				int leave_Duration, tn.esprit.spring.entity.Leave_reason leave_reason,
@@ -102,8 +105,6 @@ public class Leave implements Serializable {
 			User = user;
 		}
 
-		@ManyToOne
-		User User;
 
 		
 		

@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class ReclamationSinistre implements Serializable  {
 	
-	@Id
+	@Id // id rec
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	 @Column( name = "id")
 	private int numReclamation ; // Clé primaire

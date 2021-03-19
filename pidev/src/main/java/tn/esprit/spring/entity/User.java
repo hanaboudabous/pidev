@@ -24,6 +24,8 @@ public class User  implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	
+	
 	private int User_ID;
 	private String First_name;
 	private String Last_name;

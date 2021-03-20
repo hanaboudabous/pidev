@@ -20,6 +20,7 @@ public class ReclamationSinistreService {
       public List<ReclamationSinistre> ReclamationSinistreList(){
 		
 		return repos.findAll() ;
+
 		
 	}
       

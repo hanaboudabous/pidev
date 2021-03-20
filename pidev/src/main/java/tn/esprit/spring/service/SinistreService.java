@@ -20,7 +20,7 @@ public class SinistreService {
 		
 	}
       public void addSinistre(Sinistre sin,int id){
-  		
+  		 
  	
     	  
 		repos.save(sin);

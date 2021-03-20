@@ -42,7 +42,7 @@ public class Contrat implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date date_fin ;
 	
-	
+	//ggh
 	private float primeCommerciale ;
 	
 	

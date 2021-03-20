@@ -108,6 +108,9 @@ public class DemandeContrat implements Serializable {
 	public String getAdresse() {
 		return adresse;
 	}
+	
+	/// hello !!!
+	/// hi
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;

@@ -14,14 +14,16 @@ public class Reinsurance implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
-	@Id
+	 
+    @Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)	
+    
 	private int Reinsurance_ID;
 	private String mode;
 	private String type;
 	private float Quota_Share;
 	private float Priority;
-	private float Range;
+	private float Rangee;
 	private float Aggregate;
 	@Temporal (TemporalType.DATE)
 	private Date Begin_Date;
@@ -33,13 +35,13 @@ public class Reinsurance implements Serializable {
 	@OneToOne
 	Claim claim;*/
 	public Reinsurance(int reinsurance_ID, String mode, String type, float quota_Share, float priority,
-			float range, float aggregate, Date begin_Date, Date end_Date) {
+			float rangee, float aggregate, Date begin_Date, Date end_Date) {
 		Reinsurance_ID = reinsurance_ID;
 		this.mode = mode;
 		this.type = type;
 		Quota_Share = quota_Share;
 		Priority = priority;
-		Range = range;
+		Rangee = rangee;
 		Aggregate = aggregate;
 		Begin_Date = begin_Date;
 		End_Date = end_Date;
@@ -74,11 +76,11 @@ public class Reinsurance implements Serializable {
 	public void setPriority(float priority) {
 		Priority = priority;
 	}
-	public float getRange() {
-		return Range;
+	public float getRangee() {
+		return Rangee;
 	}
-	public void setRange(float range) {
-		Range = range;
+	public void setRangee(float rangee) {
+		Rangee = rangee;
 	}
 	public float getAggregate() {
 		return Aggregate;
@@ -101,7 +103,7 @@ public class Reinsurance implements Serializable {
 	@Override
 	public String toString() {
 		return "Reinsurance_contract [Reinsurance_ID=" + Reinsurance_ID + ", mode=" + mode + ", type=" + type
-				+ ", Quota_Share=" + Quota_Share + ", Priority=" + Priority + ", Range=" + Range + ", Aggregate="
+				+ ", Quota_Share=" + Quota_Share + ", Priority=" + Priority + ", Rangee=" + Rangee + ", Aggregate="
 				+ Aggregate + ", Begin_Date=" + Begin_Date + ", End_Date=" + End_Date + "]";
 	}
 

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import tn.esprit.spring.entity.Payment;
+import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.PaymentRepository;
+import tn.esprit.spring.repository.UserRepository;
 
 
 @Service
@@ -12,7 +14,9 @@ public class PaymentServiceImpl implements IPaymentService{
 
 
 	@Autowired
-	PaymentRepository paymentRepository;
+	PaymentRepository paymentRepository;	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Override
 	public int addPayment(Payment payment) {
@@ -30,13 +34,13 @@ public class PaymentServiceImpl implements IPaymentService{
 
 	}
 
-	/*public void affecterPaymentToUser(int Payment_ID, int User_ID) {
+	public void affecterPaymentToUser(int Payment_ID, int User_ID) {
 		User user = userRepository.findById(User_ID).get();
 		Payment payment =paymentRepository.findById(Payment_ID).get();
-		if (ObjectUtils.isEmpty(user) && !ObjectUtils.isEmpty(payment))
-			user.setPayment(payment);
+		if (!ObjectUtils.isEmpty(user) && !ObjectUtils.isEmpty(payment))
+			payment.setUser(user);
 		userRepository.save(user);
-	}*/
+	}
 
 	@Override
 	public void deleteById(int Payment_ID) {

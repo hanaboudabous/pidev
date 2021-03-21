@@ -45,8 +45,7 @@ public class User  implements Serializable  {
 	private String Confirm_password;
 	private int Verified_account;
 	private int random;
-	private int Work_hours;
-	private float Salary;
+
 	@Temporal (TemporalType.DATE)
 	private Date Hiring_date;
 	@Enumerated(EnumType.STRING)
@@ -196,21 +195,7 @@ public class User  implements Serializable  {
 		this.random = random;
 	}
 
-	public int getWork_hours() {
-		return Work_hours;
-	}
-
-	public void setWork_hours(int work_hours) {
-		Work_hours = work_hours;
-	}
-
-	public float getSalary() {
-		return Salary;
-	}
-
-	public void setSalary(float salary) {
-		Salary = salary;
-	}
+	
 
 	public Date getHiring_date() {
 		return Hiring_date;
@@ -243,7 +228,7 @@ public class User  implements Serializable  {
 	public User(int user_ID, String first_name, String last_name, int number, long cIN, String geographical_area,
 			int motorisation, Date birth_date, String address, int postal_code, String job, String family_situation,
 			boolean shifting, String email, String password, String confirm_password, int verified_account, int random,
-			int work_hours,float salary, Date hiring_date,
+			Date hiring_date,
 			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment) {
 		super();
 		User_ID = user_ID;
@@ -264,8 +249,6 @@ public class User  implements Serializable  {
 		Confirm_password = confirm_password;
 		Verified_account = verified_account;
 		this.random = random;
-		Work_hours = work_hours;
-		Salary = salary;
 		Hiring_date = hiring_date;
 		Role_User = role_User;
 		Payment = payment;
@@ -301,11 +284,13 @@ public class User  implements Serializable  {
 	
 	@OneToOne
 	private Accounting Accounting;
+	
+	@OneToOne
+	private EmployeeSalary EmployeeSalary;
 
 	public User(int user_ID, String first_name, String last_name, int number, long cIN, String geographical_area,
 			int motorisation, Date birth_date, String address, int postal_code, String job, String family_situation,
-			boolean shifting, String email, String password, String confirm_password, int verified_account, int random,
-			int work_hours,  float salary, Date hiring_date,
+			boolean shifting, String email, String password, String confirm_password, int verified_account, int random,Date hiring_date,
 			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment,
 			Set<tn.esprit.spring.entity.LeaveTest> leave, tn.esprit.spring.entity.Accounting accounting) {
 		super();
@@ -327,13 +312,19 @@ public class User  implements Serializable  {
 		Confirm_password = confirm_password;
 		Verified_account = verified_account;
 		this.random = random;
-		Work_hours = work_hours;
-		Salary = salary;
 		Hiring_date = hiring_date;
 		Role_User = role_User;
 		Payment = payment;
 		Leave = leave;
 		Accounting = accounting;
+	}
+
+	public EmployeeSalary getEmployeeSalary() {
+		return EmployeeSalary;
+	}
+
+	public void setEmployeeSalary(EmployeeSalary employeeSalary) {
+		EmployeeSalary = employeeSalary;
 	} 
 	
 

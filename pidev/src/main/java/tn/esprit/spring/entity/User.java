@@ -285,8 +285,6 @@ public class User  implements Serializable  {
 	@OneToOne
 	private Accounting Accounting;
 	
-	@OneToOne
-	private EmployeeSalary EmployeeSalary;
 
 	public User(int user_ID, String first_name, String last_name, int number, long cIN, String geographical_area,
 			int motorisation, Date birth_date, String address, int postal_code, String job, String family_situation,
@@ -319,13 +317,17 @@ public class User  implements Serializable  {
 		Accounting = accounting;
 	}
 
+
+	@OneToOne(mappedBy="user")
+	private EmployeeSalary employeeSalary;
+
 	public EmployeeSalary getEmployeeSalary() {
-		return EmployeeSalary;
+		return employeeSalary;
 	}
 
 	public void setEmployeeSalary(EmployeeSalary employeeSalary) {
-		EmployeeSalary = employeeSalary;
-	} 
+		this.employeeSalary = employeeSalary;
+	}
 	
 
 }

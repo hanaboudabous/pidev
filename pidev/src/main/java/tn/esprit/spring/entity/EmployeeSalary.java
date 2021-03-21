@@ -2,11 +2,12 @@ package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
+@Entity
 public class EmployeeSalary  implements Serializable  {
 	/**
 	 * 
@@ -79,14 +80,16 @@ public class EmployeeSalary  implements Serializable  {
 			super();
 		}
 		
-		@OneToOne(mappedBy="EmployeeSalary")
-		private User User;
+		@OneToOne
+		private User user;
+		
 		public User getUser() {
-			return User;
+			return user;
 		}
 		public void setUser(User user) {
-			User = user;
-		} 
+			this.user = user;
+		}
+		
 		
 		
 }

@@ -53,5 +53,23 @@ public class EmployeeSalaryServiceImpl  implements IEmployeeSalaryService{
 		employeeSalary.setUser(user);
 		userRepository.save(user);
 	}
+	//Salary
 
+	public static float Salary (int Work_hours)
+	{
+	float Salary;
+	if (Work_hours < 160)
+	{
+		Salary = Work_hours * 15;
+	}
+	else if (Work_hours < 200)
+	{
+		Salary = 160 * 15 + (Work_hours - 160) * 20;
+	}
+	else
+	{
+		Salary = (160 * 15) + (40 * 20) + ((Work_hours - 200)*25);
+	}
+	return Salary;
+	}
 }

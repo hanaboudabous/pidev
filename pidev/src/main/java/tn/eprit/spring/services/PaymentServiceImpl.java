@@ -48,23 +48,5 @@ public class PaymentServiceImpl implements IPaymentService{
 		paymentRepository.deleteById(Payment_ID );
 	}
 
-	//Salary
 
-	public static double Salary (int Work_hours)
-	{
-	double Salary;
-	if (Work_hours < 160)
-	{
-		Salary = Work_hours * 15;
-	}
-	else if (Work_hours < 200)
-	{
-		Salary = 160 * 15 + (Work_hours - 160) * 20;
-	}
-	else
-	{
-		Salary = (160 * 15) + (40 * 20) + ((Work_hours - 200)*25);
-	}
-	return Salary;
-	}
 }

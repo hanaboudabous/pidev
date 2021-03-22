@@ -1,13 +1,14 @@
-package tn.eprit.spring.services;
-/*
+package tn.esprit.spring.service;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Pidev.entity.ReclamationSinistre;
-import Pidev.entity.Sinistre;
-import Pidev.repository.ISinistreRepos;
+import tn.esprit.spring.entity.ReclamationSinistre;
+import tn.esprit.spring.entity.Sinistre;
+import tn.esprit.spring.repository.ISinistreRepos;
 
 @Service
 public class SinistreService {
@@ -20,7 +21,7 @@ public class SinistreService {
 		
 	}
       public void addSinistre(Sinistre sin,int id){
-  		 
+  		
  	
     	  
 		repos.save(sin);
@@ -33,4 +34,3 @@ public class SinistreService {
  	}
 
 }
-*/

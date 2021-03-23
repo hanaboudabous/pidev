@@ -1,13 +1,14 @@
-package tn.eprit.spring.services;
+package tn.esprit.spring.service;
 
-/*import java.util.List;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Pidev.entity.Contrat;
-import Pidev.entity.ReclamationSinistre;
-import Pidev.repository.IReclamationSinistreRepos;
+import tn.esprit.spring.entity.Contrat;
+import tn.esprit.spring.entity.ReclamationSinistre;
+import tn.esprit.spring.repository.IReclamationSinistreRepos;
 
 
 
@@ -20,7 +21,6 @@ public class ReclamationSinistreService {
       public List<ReclamationSinistre> ReclamationSinistreList(){
 		
 		return repos.findAll() ;
-
 		
 	}
       
@@ -41,4 +41,3 @@ public class ReclamationSinistreService {
  	
 
 }
-*/

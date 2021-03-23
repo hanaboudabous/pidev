@@ -3,7 +3,7 @@ package tn.eprit.spring.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.LeaveTest;
@@ -32,7 +32,7 @@ public class LeaveTestServiceImpl implements ILeaveTestService{
 	@Override
 	public void deleteByLeaveId(int leave_id)
 	{
-		leaveTestRepository.deleteById(leave_id);
+		leaveTestRepository.deleteById((long) leave_id);
 	}
 	
 	@Override

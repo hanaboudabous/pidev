@@ -85,6 +85,12 @@ public class LeaveTest implements Serializable{
 
 	@ManyToOne
 	User user;
+	public LeaveTest(Type_Leave type_leave, Leave_reason leave_reason, int leave_Duration) {
+		super();
+		this.type_leave = type_leave;
+		this.leave_reason = leave_reason;
+		Leave_Duration = leave_Duration;
+	}
 	public User getUser() {
 		return user;
 	}

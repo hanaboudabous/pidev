@@ -7,6 +7,6 @@ import tn.esprit.spring.entity.LeaveTest;
 
 
 @Repository
-public interface LeaveTestRepository extends CrudRepository<LeaveTest, Integer> {
+public interface LeaveTestRepository extends CrudRepository<LeaveTest,Long> {
 
 }

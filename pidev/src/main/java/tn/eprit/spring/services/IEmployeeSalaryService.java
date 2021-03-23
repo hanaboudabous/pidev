@@ -14,4 +14,6 @@ public interface IEmployeeSalaryService {
 
 	EmployeeSalary updateLeave(EmployeeSalary S);
 
+	//List<?> stat();
+
 }

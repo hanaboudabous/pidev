@@ -50,26 +50,33 @@ public class EmployeeSalaryServiceImpl  implements IEmployeeSalaryService{
 		User user = userRepository.findById(User_ID).get();
 		EmployeeSalary employeeSalary =employeeSalaryRepository.findById(Salary_ID).get();
 		if (!ObjectUtils.isEmpty(employeeSalary) && !ObjectUtils.isEmpty(user))
-		employeeSalary.setUser(user);
+			employeeSalary.setUser(user);
 		userRepository.save(user);
 	}
 	//Salary
 
 	public static float Salary (int Work_hours)
 	{
-	float Salary;
-	if (Work_hours < 160)
-	{
-		Salary = Work_hours * 15;
+		float Salary;
+		if (Work_hours < 160)
+		{
+			Salary = Work_hours * 15;
+		}
+		else if (Work_hours < 200)
+		{
+			Salary = 160 * 15 + (Work_hours - 160) * 20;
+		}
+		else
+		{
+			Salary = (160 * 15) + (40 * 20) + ((Work_hours - 200)*25);
+		}
+		return Salary;
 	}
-	else if (Work_hours < 200)
-	{
-		Salary = 160 * 15 + (Work_hours - 160) * 20;
-	}
-	else
-	{
-		Salary = (160 * 15) + (40 * 20) + ((Work_hours - 200)*25);
-	}
-	return Salary;
-	}
+	//@Override
+	//public List<?> stat()
+	//{
+	//	return employeeSalaryRepository.listworkhours();
+	//}
+
 }
+

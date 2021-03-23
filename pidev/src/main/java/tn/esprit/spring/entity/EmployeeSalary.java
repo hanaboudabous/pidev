@@ -76,6 +76,15 @@ public class EmployeeSalary  implements Serializable  {
 			Extra_hours = extra_hours;
 			this.salary = salary;
 		}
+		
+		public EmployeeSalary(int month, int year, int work_hours, int extra_hours, float salary) {
+			super();
+			Month = month;
+			Year = year;
+			Work_hours = work_hours;
+			Extra_hours = extra_hours;
+			this.salary = salary;
+		}
 		public EmployeeSalary() {
 			super();
 		}

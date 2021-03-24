@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,8 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-@Entity
+import tn.esprit.spring.entity.Status;
 
+@Entity
 public class User  implements Serializable  {
 
 	/**
@@ -24,33 +26,47 @@ public class User  implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	
-	
+
+
 	private int User_ID;
 	private String First_name;
 	private String Last_name;
+	@Column(name="number",unique=true,length=8)
 	private int Number;
+	@Column(name="cin",unique=true,length=8)
 	private long CIN;
-	private String Geographical_area;
+	@Enumerated(EnumType.STRING)
+	Geographical_area Geographical_area;
 	private int Motorisation;
 	@Temporal (TemporalType.DATE)
+	@Column(name="Birth_date")
 	private Date Birth_date;
 	private String Address;
+	@Column(name="Postal_code",length=4)
 	private int Postal_code;
 	private String Job;
-	private String Family_situation;
-	private boolean shifting;
+	@Enumerated(EnumType.STRING)
+	Status Status;
+	private int shifting;
+	@Column(name="email",unique=true)
 	private String Email;
 	private String Password;
 	private String Confirm_password;
 	private int Verified_account;
 	private int random;
-
 	@Temporal (TemporalType.DATE)
 	private Date Hiring_date;
 	@Enumerated(EnumType.STRING)
 	Role_User Role_User;
-	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="User")
+	private Set<Payment> Payment;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+	private Set<LeaveTest> Leave;
+	@OneToOne
+	private Accounting Accounting;
+	@OneToOne(mappedBy="user")
+	private EmployeeSalary employeeSalary;
+
 	public int getUser_ID() {
 		return User_ID;
 	}
@@ -91,13 +107,7 @@ public class User  implements Serializable  {
 		CIN = cIN;
 	}
 
-	public String getGeographical_area() {
-		return Geographical_area;
-	}
 
-	public void setGeographical_area(String geographical_area) {
-		Geographical_area = geographical_area;
-	}
 
 	public int getMotorisation() {
 		return Motorisation;
@@ -137,22 +147,6 @@ public class User  implements Serializable  {
 
 	public void setJob(String job) {
 		Job = job;
-	}
-
-	public String getFamily_situation() {
-		return Family_situation;
-	}
-
-	public void setFamily_situation(String family_situation) {
-		Family_situation = family_situation;
-	}
-
-	public boolean isShifting() {
-		return shifting;
-	}
-
-	public void setShifting(boolean shifting) {
-		this.shifting = shifting;
 	}
 
 	public String getEmail() {
@@ -195,7 +189,7 @@ public class User  implements Serializable  {
 		this.random = random;
 	}
 
-	
+
 
 	public Date getHiring_date() {
 		return Hiring_date;
@@ -225,40 +219,6 @@ public class User  implements Serializable  {
 		return serialVersionUID;
 	}
 
-	public User(int user_ID, String first_name, String last_name, int number, long cIN, String geographical_area,
-			int motorisation, Date birth_date, String address, int postal_code, String job, String family_situation,
-			boolean shifting, String email, String password, String confirm_password, int verified_account, int random,
-			Date hiring_date,
-			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment) {
-		super();
-		User_ID = user_ID;
-		First_name = first_name;
-		Last_name = last_name;
-		Number = number;
-		CIN = cIN;
-		Geographical_area = geographical_area;
-		Motorisation = motorisation;
-		Birth_date = birth_date;
-		Address = address;
-		Postal_code = postal_code;
-		Job = job;
-		Family_situation = family_situation;
-		this.shifting = shifting;
-		Email = email;
-		Password = password;
-		Confirm_password = confirm_password;
-		Verified_account = verified_account;
-		this.random = random;
-		Hiring_date = hiring_date;
-		Role_User = role_User;
-		Payment = payment;
-	}
-
-	public User() {
-		super();
-	}
-	
-
 	public Set<LeaveTest> getLeave() {
 		return Leave;
 	}
@@ -275,22 +235,44 @@ public class User  implements Serializable  {
 		Accounting = accounting;
 	}
 
+	public EmployeeSalary getEmployeeSalary() {
+		return employeeSalary;
+	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="User")
-	private Set<Payment> Payment;
+	public void setEmployeeSalary(EmployeeSalary employeeSalary) {
+		this.employeeSalary = employeeSalary;
+	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<LeaveTest> Leave;
-	
-	@OneToOne
-	private Accounting Accounting;
-	
+	public Geographical_area getGeographical_area() {
+		return Geographical_area;
+	}
 
-	public User(int user_ID, String first_name, String last_name, int number, long cIN, String geographical_area,
-			int motorisation, Date birth_date, String address, int postal_code, String job, String family_situation,
-			boolean shifting, String email, String password, String confirm_password, int verified_account, int random,Date hiring_date,
-			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment,
-			Set<tn.esprit.spring.entity.LeaveTest> leave, tn.esprit.spring.entity.Accounting accounting) {
+	public void setGeographical_area(Geographical_area geographical_area) {
+		Geographical_area = geographical_area;
+	}
+
+	public Status getStatus() {
+		return Status;
+	}
+
+	public void setStatus(Status status) {
+		Status = status;
+	}
+
+	public int getShifting() {
+		return shifting;
+	}
+
+	public void setShifting(int shifting) {
+		this.shifting = shifting;
+	}
+
+
+	public User(int user_ID, String first_name, String last_name, int number, long cIN,
+			Geographical_area geographical_area, int motorisation, Date birth_date, String address, int postal_code,
+			String job, tn.esprit.spring.entity.Status status, int shifting, String email, String password,
+			String confirm_password, int verified_account, int random, Date hiring_date,
+			tn.esprit.spring.entity.Role_User role_User,tn.esprit.spring.entity.Accounting accounting) {
 		super();
 		User_ID = user_ID;
 		First_name = first_name;
@@ -303,7 +285,7 @@ public class User  implements Serializable  {
 		Address = address;
 		Postal_code = postal_code;
 		Job = job;
-		Family_situation = family_situation;
+		Status = status;
 		this.shifting = shifting;
 		Email = email;
 		Password = password;
@@ -312,22 +294,40 @@ public class User  implements Serializable  {
 		this.random = random;
 		Hiring_date = hiring_date;
 		Role_User = role_User;
-		Payment = payment;
-		Leave = leave;
+
+	}
+
+	public User(String first_name, String last_name, int number, long cIN,
+			Geographical_area geographical_area, int motorisation, Date birth_date, String address, int postal_code,
+			String job, tn.esprit.spring.entity.Status status, int shifting, String email, String password,
+			String confirm_password, int verified_account, int random, Date hiring_date,
+			tn.esprit.spring.entity.Role_User role_User,tn.esprit.spring.entity.Accounting accounting) {
+		super();
+		First_name = first_name;
+		Last_name = last_name;
+		Number = number;
+		CIN = cIN;
+		Geographical_area = geographical_area;
+		Motorisation = motorisation;
+		Birth_date = birth_date;
+		Address = address;
+		Postal_code = postal_code;
+		Job = job;
+		Status = status;
+		this.shifting = shifting;
+		Email = email;
+		Password = password;
+		Confirm_password = confirm_password;
+		Verified_account = verified_account;
+		this.random = random;
+		Hiring_date = hiring_date;
+		Role_User = role_User;
+
 		Accounting = accounting;
+
 	}
 
-
-	@OneToOne(mappedBy="user")
-	private EmployeeSalary employeeSalary;
-
-	public EmployeeSalary getEmployeeSalary() {
-		return employeeSalary;
+	public User() {
+		super();
 	}
-
-	public void setEmployeeSalary(EmployeeSalary employeeSalary) {
-		this.employeeSalary = employeeSalary;
-	}
-	
-
 }

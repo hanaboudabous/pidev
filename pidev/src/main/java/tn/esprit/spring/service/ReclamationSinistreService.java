@@ -27,9 +27,9 @@ public class ReclamationSinistreService {
       
      
       public void addReclamationSinistre(ReclamationSinistre rec,int id){
-    	  Contrat d = contrats.findById(id).get();
+    	  /*Contrat d = contrats.findById(id).get();
   		  rec.setContrats(d);
- 		  repos.save(rec);
+ 		  repos.save(rec);*/
  		
  	}
 

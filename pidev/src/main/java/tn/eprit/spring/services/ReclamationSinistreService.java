@@ -1,4 +1,4 @@
-package tn.esprit.spring.service;
+/*package tn.eprit.spring.services;
 
 
 import java.util.List;
@@ -27,8 +27,8 @@ public class ReclamationSinistreService {
       
      
       public void addReclamationSinistre(ReclamationSinistre rec,int id){
-    	  Contrat d = contrats.findById(id).get();
-  		  rec.setContrats(d);
+    	//  Contrat d = contrats.findById(id).get();
+  		// rec.setContrats(d);
  		  repos.save(rec);
  		
  	}
@@ -41,3 +41,4 @@ public class ReclamationSinistreService {
  	
 
 }
+*/

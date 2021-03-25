@@ -1,6 +1,7 @@
 package tn.eprit.spring.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import tn.esprit.spring.entity.Payment;
@@ -8,13 +9,12 @@ import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.PaymentRepository;
 import tn.esprit.spring.repository.UserRepository;
 
-
 @Service
 public class PaymentServiceImpl implements IPaymentService{
 
 
 	@Autowired
-	PaymentRepository paymentRepository;	
+	private PaymentRepository paymentRepository;	
 	@Autowired
 	UserRepository userRepository;
 	

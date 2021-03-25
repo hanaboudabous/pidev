@@ -26,7 +26,7 @@ public class LeaveTest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int leave_id;
+	private Long leave_id;
 	@Enumerated(EnumType.STRING)
 	Type_Leave type_leave;
 	@Enumerated(EnumType.STRING)
@@ -36,10 +36,10 @@ public class LeaveTest implements Serializable{
 	private Date Start_date;
 	@Temporal(TemporalType.DATE)
 	private Date End_date;
-	public int getLeave_id() {
+	public Long getLeave_id() {
 		return leave_id;
 	}
-	public void setLeave_id(int leave_id) {
+	public void setLeave_id(Long leave_id) {
 		this.leave_id = leave_id;
 	}
 	public Type_Leave getType_leave() {
@@ -66,13 +66,16 @@ public class LeaveTest implements Serializable{
 	public void setStart_date(Date start_date) {
 		Start_date = start_date;
 	}
+	public LeaveTest() {
+		super();
+	}
 	public Date getEnd_date() {
 		return End_date;
 	}
 	public void setEnd_date(Date end_date) {
 		End_date = end_date;
 	}
-	public LeaveTest(int leave_id, Type_Leave type_leave, Leave_reason leave_reason, int leave_Duration,
+	public LeaveTest(Long leave_id, Type_Leave type_leave, Leave_reason leave_reason, int leave_Duration,
 			Date start_date, Date end_date) {
 		super();
 		this.leave_id = leave_id;
@@ -81,6 +84,12 @@ public class LeaveTest implements Serializable{
 		Leave_Duration = leave_Duration;
 		Start_date = start_date;
 		End_date = end_date;
+	}
+
+	public LeaveTest(int leave_Duration, Date start_date) {
+		super();
+		Leave_Duration = leave_Duration;
+		Start_date = start_date;
 	}
 
 	@ManyToOne
@@ -97,6 +106,8 @@ public class LeaveTest implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+
 	
 	
 }

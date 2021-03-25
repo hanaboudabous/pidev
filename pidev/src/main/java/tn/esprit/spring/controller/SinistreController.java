@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+/*package tn.esprit.spring.controller;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import tn.eprit.spring.services.SinistreService;
 import tn.esprit.spring.entity.ReclamationSinistre;
 import tn.esprit.spring.entity.Sinistre;
-import tn.esprit.spring.service.SinistreService;
 
 @Controller(value = "sinistreController")
 public class SinistreController {
@@ -51,3 +51,4 @@ public class SinistreController {
 
 
 }
+*/

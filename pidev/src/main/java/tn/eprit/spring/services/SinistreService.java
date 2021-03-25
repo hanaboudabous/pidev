@@ -1,4 +1,4 @@
-package tn.esprit.spring.service;
+/*package tn.eprit.spring.services;
 
 
 import java.util.List;
@@ -34,3 +34,4 @@ public class SinistreService {
  	}
 
 }
+*/

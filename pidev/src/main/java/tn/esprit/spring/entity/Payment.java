@@ -101,12 +101,6 @@ public class Payment implements Serializable {
 	
 
 
-		
-
-
-
-
-
 		public Payment(tn.esprit.spring.entity.Type_Payment type_Payment, float payment_Amount) {
 			super();
 			Type_Payment = type_Payment;

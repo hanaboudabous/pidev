@@ -1,4 +1,4 @@
-package Pidev.entity;
+package tn.esprit.spring.entity;
 
 public enum Prime {
 	

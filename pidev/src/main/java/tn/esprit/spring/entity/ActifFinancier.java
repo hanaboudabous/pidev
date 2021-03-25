@@ -1,5 +1,5 @@
-package Pidev.entity;
 
+package tn.esprit.spring.entity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -39,14 +39,14 @@ public class ActifFinancier  implements Serializable {
 	
 	private int accepte_rachat ;
 	
-	@Enumerated(EnumType.STRING)
+	/*@Enumerated(EnumType.STRING)
 	private Fond nom_fond ;
 	
 	private String etat ; // resilié ou en cours
 	
 
 	
-
+*/
 	public int getId() {
 		return id;
 	}
@@ -134,7 +134,7 @@ public class ActifFinancier  implements Serializable {
 
 
 
-
+/*
 	public Fond getNom_fond() {
 		return nom_fond;
 	}
@@ -159,7 +159,7 @@ public class ActifFinancier  implements Serializable {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
-
+*/
 
 
 

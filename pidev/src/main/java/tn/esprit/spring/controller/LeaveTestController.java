@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.eprit.spring.services.LeaveTestServiceImpl;
 import tn.esprit.spring.entity.LeaveTest;
+import tn.esprit.spring.services.LeaveTestServiceImpl;
 @RestController
 public class LeaveTestController {
 

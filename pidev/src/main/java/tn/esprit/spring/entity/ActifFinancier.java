@@ -1,5 +1,5 @@
-
 package tn.esprit.spring.entity;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -39,14 +39,16 @@ public class ActifFinancier  implements Serializable {
 	
 	private int accepte_rachat ;
 	
+
 	/*@Enumerated(EnumType.STRING)
 	private Fond nom_fond ;
+=======
+/*	@Enumerated(EnumType.STRING)
+	private Fond nom_fond ;*/
 	
 	private String etat ; // resilié ou en cours
 	
 
-	
-*/
 	public int getId() {
 		return id;
 	}
@@ -134,8 +136,13 @@ public class ActifFinancier  implements Serializable {
 
 
 
+
 /*
 	public Fond getNom_fond() {
+=======
+
+	/*public Fond getNom_fond() {
+>>>>>>> branch 'master' of https://github.com/hanaboudabous/pidev.git
 		return nom_fond;
 	}
 
@@ -144,7 +151,7 @@ public class ActifFinancier  implements Serializable {
 
 	public void setNom_fond(Fond nom_fond) {
 		this.nom_fond = nom_fond;
-	}
+	}*/
 
 
 
@@ -159,7 +166,7 @@ public class ActifFinancier  implements Serializable {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
-*/
+
 
 
 

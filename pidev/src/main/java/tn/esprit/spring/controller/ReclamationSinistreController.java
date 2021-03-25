@@ -19,10 +19,6 @@ import tn.eprit.spring.services.ReclamationSinistreService;
 import tn.esprit.spring.entity.ReclamationSinistre;
 
 
-
-
-
-
 @Controller(value = "reclamationsinistreController") // Name of the bean in Spring IoC
 public class ReclamationSinistreController {
 	
@@ -56,4 +52,5 @@ public class ReclamationSinistreController {
 
 	    
 	   
-}*/
+}
+*/

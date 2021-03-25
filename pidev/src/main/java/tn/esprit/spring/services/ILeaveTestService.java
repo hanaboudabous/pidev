@@ -1,4 +1,4 @@
-package tn.eprit.spring.services;
+package tn.esprit.spring.services;
 
 import java.util.List;
 

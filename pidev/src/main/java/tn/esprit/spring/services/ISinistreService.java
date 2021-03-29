@@ -19,4 +19,4 @@ public interface ISinistreService {
 	public void deleteSinistre(int Id)
 
 }
-    
+      

@@ -19,5 +19,6 @@ public interface IReclamationSinistreService {
 	public void deleteReclamationSinistre(int Id)
 
 
-
+ 
 }
+  

@@ -1,4 +1,4 @@
-/*package tn.esprit.spring.controller;
+package tn.esprit.spring.controller;
 
 import java.util.List;
 
@@ -24,33 +24,42 @@ public class ReclamationSinistreController {
 	
 	@Autowired
 	ReclamationSinistreService serv ;
-	
+
 	@GetMapping("/reclamationsinistres")
 	@ResponseBody
 	public List<ReclamationSinistre> getReclamationSinsitres(){
 		List<ReclamationSinistre> list = serv.ReclamationSinistreList();
-		 return list;
-		
-	}
-	
-	
+		return list;
 
-	@RequestMapping("/addrec")
-	@PostMapping
-	public ResponseEntity<ReclamationSinistre> insertReclamationSinsitre(@RequestBody ReclamationSinistre rec){
-		 serv.addReclamationSinistre(rec,1); 
-		  return new ResponseEntity<ReclamationSinistre>(HttpStatus.OK);
 	}
-	
-	
-	
-	    @DeleteMapping("/removerec/{rec-id}")
-	    @PostMapping
-		public void removeReclamationSinistre(@PathVariable("rec-id") int Id){
+
+
+
+	@PostMapping("/addrec")
+	@ResponseBody
+	public ResponseEntity<ReclamationSinistre> insertReclamationSinsitre(@RequestBody ReclamationSinistre rec){
+		serv.addReclamationSinistre(rec,1); 
+		return new ResponseEntity<ReclamationSinistre>(HttpStatus.OK);
+	}
+
+
+
+	@DeleteMapping("/removerec/{rec-id}")
+	@ResponseBody
+	public void removeReclamationSinistre(@PathVariable("rec-id") int Id){
 		serv.deleteReclamationSinistre(Id);
+	}
+
+
+	@PutMapping("/updaterec")
+	@ResponseBody
+	public ResponseEntity<ReclamationSinistre> updateReclamationSinsitre(@RequestBody ReclamationSinistre rec){
+		serv.updateReclamationSinistre(rec);
+		return new ResponseEntity<ReclamationSinistre>(HttpStatus.OK);
+	}
+
 	}
 
 	    
 	   
 }
-*/

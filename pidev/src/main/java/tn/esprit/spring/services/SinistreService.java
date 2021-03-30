@@ -21,9 +21,7 @@ public class SinistreService {
 		
 	}
       public void addSinistre(Sinistre sin,int id){
-  		
- 	
-    	  
+  	 
 		repos.save(sin);
  		
  	}
@@ -32,5 +30,10 @@ public class SinistreService {
  		repos.deleteById(Id);
  		
  	}
+ 	
+ 	public Sinistre updateSinistre(Sinistre sin) {
+ 		Sinistre sinadded = repos.save(sin);
+		return sinadded;
+	}
 
 }

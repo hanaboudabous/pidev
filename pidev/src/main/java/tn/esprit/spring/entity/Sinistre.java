@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Sinistre  implements Serializable{
 	
@@ -32,7 +34,7 @@ public class Sinistre  implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateReglement ;
 	
-
+	@JsonIgnore
 	@OneToOne
 	private ReclamationSinistre reclamationSinitre;
 

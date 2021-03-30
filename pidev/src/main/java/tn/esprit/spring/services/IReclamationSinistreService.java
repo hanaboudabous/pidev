@@ -14,10 +14,10 @@ import tn.esprit.spring.repository.IReclamationSinistreRepos;
 public interface IReclamationSinistreService {
 
 
-	public List<ReclamationSinistre> ReclamationSinistreList()
-	public void addReclamationSinistre(ReclamationSinistre rec,int id)
-	public void deleteReclamationSinistre(int Id)
-	public ReclamationSinistre updateReclamationSinistre(ReclamationSinistre rec)
+	public List<ReclamationSinistre> ReclamationSinistreList();
+	public void addReclamationSinistre(ReclamationSinistre rec,int id);
+	public void deleteReclamationSinistre(int Id);
+	public ReclamationSinistre updateReclamationSinistre(ReclamationSinistre rec);
 
 
  

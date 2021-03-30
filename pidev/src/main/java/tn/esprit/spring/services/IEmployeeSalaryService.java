@@ -6,14 +6,9 @@ import tn.esprit.spring.entity.EmployeeSalary;
 
 public interface IEmployeeSalaryService {
 
-	int addSalary(EmployeeSalary employeeSalary);
-
-	List<EmployeeSalary> getAllSalaries();
-
-	void deleteBySalaryId(int salary_Id);
-
-	EmployeeSalary updateLeave(EmployeeSalary S);
-
-	//List<?> stat();
-
+	List<EmployeeSalary> retrieveAllSalaries();
+	EmployeeSalary addSalary(EmployeeSalary s) ;
+	void deleteSalary(String id);
+	EmployeeSalary updateSalary(EmployeeSalary s);
+	EmployeeSalary retrieveSalary(String id) ;
 }

@@ -26,7 +26,7 @@ public class PidevApplicationTests  {
 	
 	@Test
 	public void contextLoads1(){
-		ps.getAllPayment();
+	//	ps.getAllPayment();
 		
 	}
 

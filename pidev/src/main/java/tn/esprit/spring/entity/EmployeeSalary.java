@@ -65,7 +65,7 @@ public class EmployeeSalary  implements Serializable  {
 		@Override
 		public String toString() {
 			return "EmployeeSalary [Salary_ID=" + Salary_ID + ", Month=" + Month + ", Year=" + Year + ", Work_hours="
-					+ Work_hours + ", Extra_hours=" + Extra_hours + ", salary=" + salary + "]";
+					+ Work_hours + ", Extra_hours=" + Extra_hours + ", salary=" + salary + ", user=" + user + "]";
 		}
 		public EmployeeSalary(int salary_ID, int month, int year, int work_hours, int extra_hours, float salary) {
 			super();
@@ -98,7 +98,15 @@ public class EmployeeSalary  implements Serializable  {
 		public void setUser(User user) {
 			this.user = user;
 		}
-		
-		
+		public EmployeeSalary(int month, int year, int work_hours, int extra_hours, float salary, User user) {
+			super();
+			Month = month;
+			Year = year;
+			Work_hours = work_hours;
+			Extra_hours = extra_hours;
+			this.salary = salary;
+			this.user = user;
+		}
+
 		
 }

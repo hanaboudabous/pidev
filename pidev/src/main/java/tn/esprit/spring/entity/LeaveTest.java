@@ -1,9 +1,9 @@
 package tn.esprit.spring.entity;
 
+
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.stereotype.Component;
 
 @Entity
 
@@ -26,21 +25,21 @@ public class LeaveTest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long leave_id;
+	private int Leave_ID;
 	@Enumerated(EnumType.STRING)
-	Type_Leave type_leave;
+	private Type_Leave type_leave;
 	@Enumerated(EnumType.STRING)
-	Leave_reason leave_reason;
+	private Leave_reason leave_reason;
 	private int Leave_Duration;
 	@Temporal(TemporalType.DATE)
 	private Date Start_date;
 	@Temporal(TemporalType.DATE)
 	private Date End_date;
-	public Long getLeave_id() {
-		return leave_id;
+	public int getLeave_id() {
+		return Leave_ID;
 	}
-	public void setLeave_id(Long leave_id) {
-		this.leave_id = leave_id;
+	public void setLeave_id(int leave_id) {
+		this.Leave_ID = leave_id;
 	}
 	public Type_Leave getType_leave() {
 		return type_leave;
@@ -75,10 +74,10 @@ public class LeaveTest implements Serializable{
 	public void setEnd_date(Date end_date) {
 		End_date = end_date;
 	}
-	public LeaveTest(Long leave_id, Type_Leave type_leave, Leave_reason leave_reason, int leave_Duration,
+	public LeaveTest(int leave_id, Type_Leave type_leave, Leave_reason leave_reason, int leave_Duration,
 			Date start_date, Date end_date) {
 		super();
-		this.leave_id = leave_id;
+		this.Leave_ID = leave_id;
 		this.type_leave = type_leave;
 		this.leave_reason = leave_reason;
 		Leave_Duration = leave_Duration;
@@ -86,6 +85,12 @@ public class LeaveTest implements Serializable{
 		End_date = end_date;
 	}
 
+	@Override
+	public String toString() {
+		return "LeaveTest [Leave_ID=" + Leave_ID + ", type_leave=" + type_leave + ", leave_reason=" + leave_reason
+				+ ", Leave_Duration=" + Leave_Duration + ", Start_date=" + Start_date + ", End_date=" + End_date
+				+ ", user=" + user + "]";
+	}
 	public LeaveTest(int leave_Duration, Date start_date) {
 		super();
 		Leave_Duration = leave_Duration;
@@ -106,8 +111,25 @@ public class LeaveTest implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public LeaveTest(Type_Leave type_leave, Leave_reason leave_reason, int leave_Duration, Date start_date,
+			Date end_date) {
+		super();
+		this.type_leave = type_leave;
+		this.leave_reason = leave_reason;
+		Leave_Duration = leave_Duration;
+		Start_date = start_date;
+		End_date = end_date;
+	}
+
+	public void info(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 	
 	
 }
+

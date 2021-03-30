@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 @Entity
 
 public class Accounting  implements Serializable {
-
+/*
 	/**
 	 * 
 	 */
@@ -68,27 +68,12 @@ public class Accounting  implements Serializable {
 			BCR = bCR;
 		}
 		
-		
-		public User getUser() {
-			return User;
-		}
-		public void setUser(User user) {
-			User = user;
-		}
 
 
-		public Accounting(int accounting_ID, float actifs, float passifs, float sCR, float bCR,
-				tn.esprit.spring.entity.User user) {
-			super();
-			Accounting_ID = accounting_ID;
-			Actifs = actifs;
-			Passifs = passifs;
-			SCR = sCR;
-			BCR = bCR;
-			User = user;
-		}
+
+	
 
 
-		@OneToOne(mappedBy="Accounting")
-		private User User; 
+		/*@OneToOne(mappedBy="Accounting")
+		private User User; */
 }

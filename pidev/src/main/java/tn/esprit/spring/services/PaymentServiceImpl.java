@@ -1,52 +1,65 @@
 package tn.esprit.spring.services;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 import tn.esprit.spring.entity.Payment;
-import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.Type_Payment;
 import tn.esprit.spring.repository.PaymentRepository;
-import tn.esprit.spring.repository.UserRepository;
+
 
 @Service
 public class PaymentServiceImpl implements IPaymentService{
+		@Autowired
+		PaymentRepository paymentRepository;
+		private static final Logger l = LogManager.getLogger(PaymentServiceImpl.class);
 
+		public List<Payment> retrieveAllPayments() {
+			List<Payment> payments = (List<Payment>) paymentRepository.findAll();
+			for(Payment payment : payments)
+			{
+				l.info("payment ++ :"+payment);
+			}
+			return payments;
+			
+		}
 
-	@Autowired
-	private PaymentRepository paymentRepository;	
-	@Autowired
-	UserRepository userRepository;
-	
-	@Override
-	public int addPayment(Payment payment) {
-		return paymentRepository.save(payment).getPayment_ID();
-	}
+		public Payment addPayment(Payment p) {
+			Payment paymentSaved = null;
+			paymentSaved=paymentRepository.save(p);
+			return paymentSaved;
+			
+		}
 
-	@Override
-	public List<Payment> getAllPayment() {
-		return(List<Payment>) (paymentRepository.findAll());
-	}
-	@Override
-	public Payment updatePayment(Payment p) {
+		public void deletePayment(String id) {
+			paymentRepository.deleteById(Integer.parseInt(id));
+			
+		}
 
-		return paymentRepository.save(p);
+		public Payment updatePayment(Payment p) {
+			Payment paymentAdded = paymentRepository.save(p);
+			return paymentAdded;
+		}
 
-	}
-
-	public void affecterPaymentToUser(int Payment_ID, int User_ID) {
-		User user = userRepository.findById(User_ID).get();
-		Payment payment =paymentRepository.findById(Payment_ID).get();
-		if (!ObjectUtils.isEmpty(user) && !ObjectUtils.isEmpty(payment))
-			payment.setUser(user);
-		userRepository.save(user);
-	}
-
-	@Override
-	public void deleteById(int Payment_ID) {
-
-		paymentRepository.deleteById(Payment_ID );
-	}
-
+		public Payment retrievePayment(String id) {
+		
+			l.info("in retrievePayment id= "+id);
+			Payment p = paymentRepository.findById(Integer.parseInt(id)).orElse(null);
+			l.info("Payment returned : "+p);
+			return p;
+			
+		}
+		
+		public List<Payment> retrievePaymentByType(Type_Payment type)
+		{
+			List<Payment> payments = (List<Payment>) paymentRepository.retrievePaymentByType(type);
+			for(Payment payment : payments)
+			{
+				l.info("payment ++ :"+payment);
+			}
+			return payments;	
+		}
 
 }

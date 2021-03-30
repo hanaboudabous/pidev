@@ -1,82 +1,65 @@
 package tn.esprit.spring.services;
-
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
-
 import tn.esprit.spring.entity.EmployeeSalary;
-import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.EmployeeSalaryRepository;
-import tn.esprit.spring.repository.UserRepository;
 
-@Service
-public class EmployeeSalaryServiceImpl  implements IEmployeeSalaryService{
-
-	@Autowired
-	EmployeeSalaryRepository employeeSalaryRepository;
-	@Autowired
-	UserRepository userRepository;
-
-
-	@Override
-	public int addSalary (EmployeeSalary employeeSalary)
-	{
-
-		return employeeSalaryRepository.save(employeeSalary).getSalary_ID();
-	}
-
-	@Override
-	public List<EmployeeSalary> getAllSalaries()
-	{
-		return (List<EmployeeSalary>) (employeeSalaryRepository.findAll());
-	}
-
-	@Override
-	public void deleteBySalaryId(int salary_Id)
-	{
-		employeeSalaryRepository.deleteById(salary_Id);
-	}
-
-	@Override
-	public EmployeeSalary updateLeave (EmployeeSalary S)
-	{
-		return employeeSalaryRepository.save(S);
-
-	}
-
-	public void affecterSalaryToUser(int Salary_ID, int User_ID) {
-		User user = userRepository.findById(User_ID).get();
-		EmployeeSalary employeeSalary =employeeSalaryRepository.findById(Salary_ID).get();
-		if (!ObjectUtils.isEmpty(employeeSalary) && !ObjectUtils.isEmpty(user))
-			employeeSalary.setUser(user);
-		userRepository.save(user);
-	}
-	//Salary
-
-	public static float Salary (int Work_hours)
-	{
-		float Salary;
-		if (Work_hours < 160)
-		{
-			Salary = Work_hours * 15;
+	
+	@Service
+	public class EmployeeSalaryServiceImpl implements IEmployeeSalaryService{
+		@Autowired
+		EmployeeSalaryRepository salaryRepository;
+		private static final Logger l = LogManager.getLogger(EmployeeSalaryServiceImpl.class);
+	
+		public List<EmployeeSalary> retrieveAllSalaries() {
+			List<EmployeeSalary> salaries = (List<EmployeeSalary>) salaryRepository.findAll();
+			for(EmployeeSalary salary : salaries)
+			{
+				l.info("salary ++ :"+salary);
+			}
+			return salaries;
+	
 		}
-		else if (Work_hours < 200)
-		{
-			Salary = 160 * 15 + (Work_hours - 160) * 20;
+	
+		public EmployeeSalary addSalary(EmployeeSalary s) {
+			EmployeeSalary employeeSalarySaved = null;
+			employeeSalarySaved=salaryRepository.save(s);
+			return employeeSalarySaved;
+	
 		}
-		else
-		{
-			Salary = (160 * 15) + (40 * 20) + ((Work_hours - 200)*25);
+	
+		public void deleteSalary(String id) {
+			salaryRepository.deleteById(Integer.parseInt(id));
+	
 		}
-		return Salary;
+	
+		public EmployeeSalary updateSalary(EmployeeSalary s) {
+			EmployeeSalary employeeSalaryAdded = salaryRepository.save(s);
+			return employeeSalaryAdded;
+		}
+	
+		public EmployeeSalary retrieveSalary(String id) {
+	
+			l.info("in retrieveSalary id= "+id);
+			EmployeeSalary s = salaryRepository.findById(Integer.parseInt(id)).orElse(null);
+			l.info("Salary returned : " +s);
+			return s;
+	
+		}
+	
+		/*public List<EmployeeSalary> retrieveSalaryByWorkhours(Work_hours wk)
+		{
+			List<EmployeeSalary> salaries = (List<EmployeeSalary>) salaryRepository.retrieveSalaryByWorkhours(wk);
+			for(EmployeeSalary salary : salaries)
+			{
+				l.info("salary ++ :"+salary);
+			}
+			return salaries;	
+		}
+	*/
 	}
-	//@Override
-	//public List<?> stat()
-	//{
-	//	return employeeSalaryRepository.listworkhours();
-	//}
-
-}
-
+	

@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import tn.esprit.spring.entity.Status;
+import tn.esprit.spring.entity.Geographical_area;
 
 @Entity
 public class User  implements Serializable  {
@@ -52,6 +53,7 @@ public class User  implements Serializable  {
 	private String Email;
 	private String Password;
 	private String Confirm_password;
+	@Column(columnDefinition = "integer default 0")
 	private int Verified_account;
 	private int random;
 	@Temporal (TemporalType.DATE)

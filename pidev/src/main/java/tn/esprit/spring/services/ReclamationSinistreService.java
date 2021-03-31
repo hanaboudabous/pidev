@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.ReclamationSinistre;
 import tn.esprit.spring.repository.IReclamationSinistreRepos;
-
+import tn.esprit.spring.repository.IContratRepo;
 
 
 
@@ -17,6 +17,10 @@ import tn.esprit.spring.repository.IReclamationSinistreRepos;
 public class ReclamationSinistreService {
 	@Autowired
 	IReclamationSinistreRepos repos ;
+	
+	@Autowired
+	IContratRepo contrat;
+	
 	
       public List<ReclamationSinistre> ReclamationSinistreList(){
 		
@@ -27,17 +31,23 @@ public class ReclamationSinistreService {
       
      
       public void addReclamationSinistre(ReclamationSinistre rec,int id){
-    	  /*Contrat d = contrats.findById(id).get();
+    	  Contrat d = contrat.findById(id).get();
   		  rec.setContrats(d);
- 		  repos.save(rec);*/
+ 		  repos.save(rec);
  		
  	}
-
+      
+    
  	public void deleteReclamationSinistre(int Id){
  		repos.deleteById(Id);
  		
  	}
  	
+ 	
+	public ReclamationSinistre updateReclamationSinistre(ReclamationSinistre rec) {
+		ReclamationSinistre recadded = repos.save(rec);
+		return recadded;
+	}
  	
 
 }

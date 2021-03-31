@@ -17,6 +17,7 @@ public interface ISinistreService {
 	public List<Sinistre> SinistreList();
 	public void addSinistre(Sinistre sin,int id);
 	public void deleteSinistre(int Id);
+	public Sinistre updateSinistre(Sinistre sin);
 
 }
       

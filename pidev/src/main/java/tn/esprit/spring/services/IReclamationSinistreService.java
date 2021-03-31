@@ -1,4 +1,4 @@
-package tn.esprit.spring.services;
+/*package tn.esprit.spring.services;
 
 
 import java.util.List;
@@ -18,7 +18,10 @@ public interface IReclamationSinistreService {
 	public void addReclamationSinistre(ReclamationSinistre rec,int id);
 	public void deleteReclamationSinistre(int Id);
 
+	public ReclamationSinistre updateReclamationSinistre(ReclamationSinistre rec);
+
+
 
  
-}    
+}    */
   

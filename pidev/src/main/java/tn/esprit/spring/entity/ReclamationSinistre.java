@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ReclamationSinistre implements Serializable  {
 	
@@ -39,10 +41,10 @@ public class ReclamationSinistre implements Serializable  {
 	
 	 
 	 private int traiteReclamation ;
-	
+	 @JsonIgnore
 	@ManyToOne
 	private Contrat contrats;
-				 
+	 @JsonIgnore		 
 	@OneToOne(cascade = CascadeType.ALL,mappedBy="reclamationSinitre")
 	private Sinistre sinistre ;
 

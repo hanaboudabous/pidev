@@ -1,4 +1,5 @@
-package Pidev.entity;
+package tn.esprit.spring.entity;
+
 
 import java.io.Serializable;
 

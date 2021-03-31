@@ -45,21 +45,30 @@ public class PaymentRestController {
 	
 	@PostMapping("/addPayment")
 	@ResponseBody
-	public Payment addPayment(@RequestBody Payment p) {
+	public String addPayment(@RequestBody Payment p) {
 	Payment payment = paymentService.addPayment(p);
-	return payment;
+	return "Payment successfully added: /n " +p;
+	
+	
 	}
 	
 	@DeleteMapping("/removePayment/{paymentId}")
 	@ResponseBody
-	public void removePayment(@PathVariable("paymentId") String paymentId) {
+	public String removePayment(@PathVariable("paymentId") String paymentId) {
 		paymentService.deletePayment(paymentId);
+		return "Payment successfully deleted and its Id= " +paymentId;
 	}
 	
 	@PutMapping("/updatePayment")
 	@ResponseBody
 	public Payment updatePayment(@RequestBody Payment payment) {
 	return paymentService.updatePayment(payment);
+	}
+	
+	@PutMapping("/affecterPaymentToUser/{Payment_ID}/{User_ID}")
+	@ResponseBody
+	public void affecterPaymentToUser(@PathVariable("Payment_ID") int idp,@PathVariable("User_ID") int id) {
+		paymentService.affecterPaymentToUser(idp, id);
 	}
 	
 }

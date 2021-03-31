@@ -35,6 +35,8 @@ public class LeaveTest implements Serializable{
 	private Date Start_date;
 	@Temporal(TemporalType.DATE)
 	private Date End_date;
+	
+	
 	public int getLeave_id() {
 		return Leave_ID;
 	}

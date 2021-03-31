@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entity.LeaveTest;
+import tn.esprit.spring.entity.Leave_reason;
 import tn.esprit.spring.entity.Type_Leave;
 import tn.esprit.spring.services.ILeaveTestService;
 
-@Controller
+@RestController
 public class LeaveTestRestController {
 	@Autowired
 	ILeaveTestService leaveTestService;
@@ -40,6 +42,12 @@ public class LeaveTestRestController {
 	@ResponseBody
 	public List<LeaveTest> retrieveLeaveByType(@PathVariable("type") Type_Leave type) {
 		return leaveTestService.retrieveLeaveByType(type);
+	}
+	
+	@GetMapping("/retrieveLeaveReason/{reason}")
+	@ResponseBody
+	public List<LeaveTest> retrieveLeaveByReason(@PathVariable("reason") Leave_reason reason) {
+		return leaveTestService.retrieveLeaveByReason(reason);
 	}
 
 

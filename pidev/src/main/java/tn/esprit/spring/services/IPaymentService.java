@@ -13,5 +13,6 @@ public interface IPaymentService {
 	Payment updatePayment(Payment p);
 	Payment retrievePayment(String id);
 	List<Payment> retrievePaymentByType(Type_Payment type);
+	void affecterPaymentToUser(int idp, int id);
 	
 }

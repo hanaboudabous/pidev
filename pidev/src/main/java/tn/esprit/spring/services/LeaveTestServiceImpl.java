@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import tn.esprit.spring.entity.LeaveTest;
+import tn.esprit.spring.entity.Leave_reason;
 import tn.esprit.spring.entity.Payment;
 import tn.esprit.spring.entity.Type_Leave;
 import tn.esprit.spring.entity.Type_Payment;
@@ -65,6 +66,15 @@ public class LeaveTestServiceImpl implements ILeaveTestService{
 			public List<LeaveTest> retrieveLeaveByType(Type_Leave type)
 			{
 				List<LeaveTest> leaves = (List<LeaveTest>) leaveTestRepository.retrieveLeaveByType(type);
+				for(LeaveTest leave : leaves)
+				{
+					l.info("leave ++ :"+leave);
+				}
+				return leaves;	
+			}
+			public List<LeaveTest> retrieveLeaveByReason(Leave_reason reason)
+			{
+				List<LeaveTest> leaves = (List<LeaveTest>) leaveTestRepository.retrieveLeaveByReason(reason);
 				for(LeaveTest leave : leaves)
 				{
 					l.info("leave ++ :"+leave);

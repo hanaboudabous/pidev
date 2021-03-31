@@ -17,11 +17,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.Nullable;
 
 import tn.esprit.spring.entity.Payment;
 
+
+import tn.esprit.spring.entity.Status;
+import tn.esprit.spring.entity.Geographical_area;
 
 
 @Entity
@@ -59,8 +63,10 @@ public class User {
 	private String Email;
 	private String Password;
 	private String Confirm_password;
-	private int Verified_account;	
 	//@Value("${User.random:random.ints(999999, 111111, 999999)}")
+
+	@Column(columnDefinition = "integer default 0")
+	private int Verified_account;
 	private int random;
 
 	@Temporal (TemporalType.DATE)

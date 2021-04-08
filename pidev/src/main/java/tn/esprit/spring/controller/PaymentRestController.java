@@ -1,6 +1,12 @@
 package tn.esprit.spring.controller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +18,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lowagie.text.DocumentException;
+
 import tn.esprit.spring.entity.Payment;
 import tn.esprit.spring.entity.Type_Payment;
 import tn.esprit.spring.services.IPaymentService;
+import tn.esprit.spring.services.PaymentPdf;
 
 @Controller
 public class PaymentRestController {
+	
 	@Autowired
 	IPaymentService paymentService;
 	
@@ -63,6 +73,24 @@ public class PaymentRestController {
 	@ResponseBody
 	public Payment updatePayment(@RequestBody Payment payment) {
 	return paymentService.updatePayment(payment);
+	}
+	
+	
+	@GetMapping("/pdf")
+	public void PaymentPdf(HttpServletResponse response) throws DocumentException, IOException {
+	    response.setContentType("application/pdf");
+	    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	    String currentDateTime = dateFormatter.format(new Date());
+	     
+	    String headerKey = "Content-Disposition";
+	    String headerValue = "attachment; filename=payments" + currentDateTime + ".pdf";
+	    response.setHeader(headerKey, headerValue);
+	     
+	    List<Payment> listPayment = paymentService.retrieveAllPayments();
+	     
+	    PaymentPdf exporter = new PaymentPdf(listPayment);
+	    exporter.export(response);
+	     
 	}
 	
 	@PutMapping("/affecterPaymentToUser/{Payment_ID}/{User_ID}")

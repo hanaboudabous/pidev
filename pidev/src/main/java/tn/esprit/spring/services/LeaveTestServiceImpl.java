@@ -91,6 +91,12 @@ public class LeaveTestServiceImpl implements ILeaveTestService{
 			userRepository.save(user);
 
 			}
+			
+			 public int duration()
+			    {
+			    	return leaveTestRepository.duration();
+			    	
+			    }
 
 	}
 

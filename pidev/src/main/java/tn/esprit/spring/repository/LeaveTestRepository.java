@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.spring.entity.LeaveTest;
 import tn.esprit.spring.entity.Leave_reason;
@@ -21,4 +22,8 @@ public interface LeaveTestRepository extends CrudRepository<LeaveTest,Integer>{
 	
 	@Query("SELECT l FROM LeaveTest l WHERE l.leave_reason= ?1")
 	List<LeaveTest> retrieveLeaveByReason(Leave_reason reason);
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE leave_test set leave_duration=datediff(end_date,start_date)",nativeQuery=true)
+    public int duration();
 }

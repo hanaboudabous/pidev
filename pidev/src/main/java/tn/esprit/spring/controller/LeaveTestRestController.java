@@ -54,8 +54,17 @@ public class LeaveTestRestController {
 	@PostMapping("/addLeave")
 	@ResponseBody
 	public LeaveTest addLeave(@RequestBody LeaveTest l) {
+
+		if(l.getEnd_date().compareTo(l.getStart_date())<0)
+		{
+			return addLeave(null);
+		}
+		else
+		{
 		LeaveTest leave = leaveTestService.addLeave(l);
+		leaveTestService.duration();		
 		return leave;
+		}
 	}
 
 	@DeleteMapping("/removeLeave/{leaveId}")
@@ -66,14 +75,21 @@ public class LeaveTestRestController {
 
 	@PutMapping("/updateLeave")
 	@ResponseBody
-	public LeaveTest updateLeave(@RequestBody LeaveTest leave) {
-		return leaveTestService.updateLeave(leave);
+	public LeaveTest updateLeave(@RequestBody LeaveTest l) {
+		LeaveTest leave = leaveTestService.updateLeave(l);
+		leaveTestService.duration();
+		return leave;
 	}
 
 	@PutMapping("/affecterUserToLeave/{Leave_ID}/{User_ID}")
 	@ResponseBody
 	public void affecterUserToLeave(@PathVariable("Leave_ID") int idl,@PathVariable("User_ID") int id) {
 		 leaveTestService.affecterUserALeave(idl, id);
+	}
+	@PostMapping("/duration")
+	@ResponseBody
+	public int duration(@RequestBody LeaveTest l) {
+		return leaveTestService.duration(); 
 	}
 
 }

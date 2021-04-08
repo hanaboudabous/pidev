@@ -54,7 +54,7 @@ public class UserController {
 	String crypt=passcrypt.encode(pwd);
 	u.setPassword(crypt);
 	User user = userService.addUser(u);
-	notificationService.sendEmailVerify(u);
+	//notificationService.sendEmailVerify(u);
 	return user;
 	}
 	

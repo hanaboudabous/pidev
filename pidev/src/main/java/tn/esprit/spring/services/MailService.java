@@ -309,15 +309,15 @@ public class MailService {
 		
 		helper.setText(htmlMsg, true);
 		helper.addInline("linkedin",
-                new File("C:/wamp/www/images/linkedin2x.png"));
+                new File("C:/wamp6464/www/images/linkedin2x.png"));
 		helper.addInline("facebook",
-                new File("C:/wamp/www/images/facebook2x.png"));
+                new File("C:/wamp6464/www/images/facebook2x.png"));
 		helper.addInline("twitter",
-                new File("C:/wamp/www/images/twitter2x.png"));
+                new File("C:/wamp6464/www/images/twitter2x.png"));
 		helper.addInline("instagram",
-                new File("C:/wamp/www/images/instagram2x.png"));
+                new File("C:/wamp6464/www/images/instagram2x.png"));
 		helper.addInline("lift",
-                new File("C:/wamp/www/images/micro-lifttt.png"));
+                new File("C:/wamp6464/www/images/micro-lifttt.png"));
  
         
 		helper.setTo(user.getEmail());
@@ -581,15 +581,15 @@ public class MailService {
 		
 		helper.setText(htmlMsg, true);
 		helper.addInline("linkedin",
-                new File("C:/wamp/www/images/linkedin2x.png"));
+                new File("C:/wamp6464/www/images/linkedin2x.png"));
 		helper.addInline("facebook",
-                new File("C:/wamp/www/images/facebook2x.png"));
+                new File("C:/wamp64/www/images/facebook2x.png"));
 		helper.addInline("twitter",
-                new File("C:/wamp/www/images/twitter2x.png"));
+                new File("C:/wamp64/www/images/twitter2x.png"));
 		helper.addInline("instagram",
-                new File("C:/wamp/www/images/instagram2x.png"));
+                new File("C:/wamp64/www/images/instagram2x.png"));
 		helper.addInline("lift",
-                new File("C:/wamp/www/images/micro-lifttt.png"));
+                new File("C:/wamp64/www/images/micro-lifttt.png"));
  
         
 		helper.setTo("mohamedamine.chourou@esprit.tn");

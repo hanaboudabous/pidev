@@ -11,4 +11,8 @@ public interface IEmployeeSalaryService {
 	void deleteSalary(String id);
 	EmployeeSalary updateSalary(EmployeeSalary s);
 	EmployeeSalary retrieveSalary(String id) ;
+	List<?> fichedepaie(int User_ID);
+	public int salary();
+	void affecterSalaryToUser(int idp, int id);
+
 }

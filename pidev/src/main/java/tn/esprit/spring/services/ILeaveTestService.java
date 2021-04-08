@@ -15,6 +15,7 @@ public interface ILeaveTestService {
 	List<LeaveTest> retrieveLeaveByType(Type_Leave type);
 	List<LeaveTest> retrieveLeaveByReason(Leave_reason reason);
 	void affecterUserALeave(int idu, int id);
+	public int duration();
 	
 	
 	

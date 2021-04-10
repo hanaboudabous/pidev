@@ -1,5 +1,5 @@
-/*
 package tn.esprit.spring.services;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +12,11 @@ import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.DemandeContrat;
 import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.entity.Type_sante;
-import tn.esprit.spring.repository.*;
-
+import tn.esprit.spring.repository.IContratRepo;
+import tn.esprit.spring.repository.IData_santeRepo;
+import tn.esprit.spring.repository.IDemandeContratRepo;
+import tn.esprit.spring.repository.Taux_InteretRepo;
+import tn.esprit.spring.repository.Type_santeRepo;
 
 @Service
 public class ContratService {
@@ -24,8 +27,8 @@ public class ContratService {
 	
 	@Autowired
 	IDemandeContratRepo demandeContrat ;
-	@Autowired
-	DataService dataService ;
+	/*@Autowired
+	//DataService dataService ;
 	
 	
 	@Autowired
@@ -35,7 +38,7 @@ public class ContratService {
 	Type_santeRepo type_santeRepo ;
 	
 	@Autowired
-	IData_santeRepo data_santeRepo ;
+	IData_santeRepo data_santeRepo ;*/
 		
 	
 	@Transactional
@@ -80,8 +83,7 @@ public class ContratService {
 		Date currentUtilDate2 = new Date();
 		currentUtilDate2.setYear(a);
 		String name_contrat = d.getNomContrat();
-
-	/*	if(  /* d.getSalaire()*/ /* (2000 * 10)   == d.getCapitalAssure()){
+		if(  /* d.getSalaire()*/  (2000 * 10)   == d.getCapitalAssure()){
 			// scenario : si il va refusé la demande 
 			//demandeContrat.deleteById(id);
 			String s = "votre demande est annulé , votre salaire ne peut pas supporter votre demande de capital assuré " ;
@@ -437,4 +439,3 @@ public class ContratService {
 		}
 
 }
-*/

@@ -55,8 +55,16 @@ public class Contrat implements Serializable {
 	
 	private int acceptation ; // contat accepte par le client ou pas encore
 	private int scoring ; // bonus malus
-	
+	private int reassure ;
 
+
+	public int getReassure() {
+		return reassure;
+	}
+
+	public void setReassure(int reassure) {
+		this.reassure = reassure;
+	}
 
 	// pour la confirmation : si le client n accepte pas le contrat , contrat se supprime de la table
 	@JsonIgnore

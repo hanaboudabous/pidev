@@ -1,5 +1,7 @@
 package tn.esprit.spring.services;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,15 +9,18 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.entity.Contrat;
+import tn.esprit.spring.entity.DemandeContrat;
 import tn.esprit.spring.entity.Reinsurance_contract;
 import tn.esprit.spring.repository.ReinsuranceContractRepository;
 import tn.esprit.spring.services.IReinsuranceCService;
-import tn.esprit.spring.services.UserService;
+
 
 @Service
 public class ReinsuranceContractService implements IReinsuranceCService {
 	@Autowired
 	ReinsuranceContractRepository reinsuranceRepository;
+
 	private static final Logger l = LogManager.getLogger(UserService.class);
 	
 	public List<Reinsurance_contract> retrieveRe_cs() {
@@ -45,5 +50,50 @@ public class ReinsuranceContractService implements IReinsuranceCService {
 		l.info("user returned : "+r);
 		return r;
 	}
+	@Override
+	public void addReinCont() {
+		List<DemandeContrat> reins = (List<DemandeContrat>) reinsuranceRepository.retrieveDemandeContrat();
+		List<Reinsurance_contract> reinsu = (List<Reinsurance_contract>) reinsuranceRepository.findAll();
+		List<Contrat> contrats = (List<Contrat>) reinsuranceRepository.Contratnonreassure();
+       int i= reinsu.size();
+       int j=reins.size();
+    	  for( Contrat contrat : contrats)
+    	  {
+    		  if (i/j<=0.5)
+    	       {
+
+    			  Reinsurance_contract r= null;
+    			  r.setPrimeCommerciale((float) (contrat.getPrimeCommerciale()*0.7));
+    			  r.setPrimePure((float) (contrat.getPrimePure()*0.7));
+    			  r.setRemboursement((float) (contrat.getDemandeContrat().getCapitalAssure()*0.7));
+    			  reinsuranceRepository.save(r);
+
+    	       }
+    	  }
+       }
+	@Override
+	public void ReffReinCont() {
+		List<Reinsurance_contract> reinsu = (List<Reinsurance_contract>) reinsuranceRepository.findAll();
+		Date currentUtilDate = new Date();
+
+		for(Reinsurance_contract rein : reinsu)
+		{
+			if(rein.getContrat().getDate_fin().compareTo(currentUtilDate)<0)
+			{
+				rein.setPrimeCommerciale((float) (rein.getContrat().getPrimeCommerciale()*0.7));
+				rein.setPrimePure((float) (rein.getContrat().getPrimePure()*0.7));
+				rein.setRemboursement((float) (rein.getContrat().getDemandeContrat().getCapitalAssure()*0.7));
+			}
+			else {
+				reinsuranceRepository.delete(rein);		
+			}
+		}
+		
+	}
+
+		
+
 }
+
+
 

@@ -6,12 +6,12 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
 import tn.esprit.spring.entity.User;
 
 @Service
@@ -309,15 +309,15 @@ public class MailService {
 		
 		helper.setText(htmlMsg, true);
 		helper.addInline("linkedin",
-                new File("C:/wamp6464/www/images/linkedin2x.png"));
+                new File("C:/wamp/www/images/linkedin2x.png"));
 		helper.addInline("facebook",
-                new File("C:/wamp6464/www/images/facebook2x.png"));
+                new File("C:/wamp/www/images/facebook2x.png"));
 		helper.addInline("twitter",
-                new File("C:/wamp6464/www/images/twitter2x.png"));
+                new File("C:/wamp/www/images/twitter2x.png"));
 		helper.addInline("instagram",
-                new File("C:/wamp6464/www/images/instagram2x.png"));
+                new File("C:/wamp/www/images/instagram2x.png"));
 		helper.addInline("lift",
-                new File("C:/wamp6464/www/images/micro-lifttt.png"));
+                new File("C:/wamp/www/images/micro-lifttt.png"));
  
         
 		helper.setTo(user.getEmail());
@@ -510,7 +510,7 @@ public class MailService {
 +"</div>"
 +"</div>"
 +"<div align='center' class='button-container' style='padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;'>"
-+"<a href='http://localhost:8082/Pidev1/servlet/verifie-user/"+user.getUser_ID()+"' target='_blank' style='-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #d2913b; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width: auto; width: auto; border-top: 1px solid #8a3b8f; border-right: 1px solid #8a3b8f; border-bottom: 1px solid #8a3b8f; border-left: 1px solid #8a3b8f; padding-top: 5px; padding-bottom: 5px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;'><span style='padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:undefined;'><span style='font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;'>Verify</span></span></div>"
++"<a href='http://localhost:8081/pidev/servlet/verifie-user/"+user.getUser_ID()+"' target='_blank' style='-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #d2913b; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width: auto; width: auto; border-top: 1px solid #8a3b8f; border-right: 1px solid #8a3b8f; border-bottom: 1px solid #8a3b8f; border-left: 1px solid #8a3b8f; padding-top: 5px; padding-bottom: 5px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;'><span style='padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:undefined;'><span style='font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;'>Verify</span></span></div>"
 +"<div style='color:#393d47;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;'>"
 +"<div class='txtTinyMce-wrapper' style='font-size: 12px; line-height: 1.2; color: #393d47; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 14px;'>"
 +"<p style='font-size: 12px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 14px; margin: 0;'> </p>"
@@ -581,15 +581,15 @@ public class MailService {
 		
 		helper.setText(htmlMsg, true);
 		helper.addInline("linkedin",
-                new File("C:/wamp6464/www/images/linkedin2x.png"));
+                new File("C:/wamp/www/images/linkedin2x.png"));
 		helper.addInline("facebook",
-                new File("C:/wamp64/www/images/facebook2x.png"));
+                new File("C:/wamp/www/images/facebook2x.png"));
 		helper.addInline("twitter",
-                new File("C:/wamp64/www/images/twitter2x.png"));
+                new File("C:/wamp/www/images/twitter2x.png"));
 		helper.addInline("instagram",
-                new File("C:/wamp64/www/images/instagram2x.png"));
+                new File("C:/wamp/www/images/instagram2x.png"));
 		helper.addInline("lift",
-                new File("C:/wamp64/www/images/micro-lifttt.png"));
+                new File("C:/wamp/www/images/micro-lifttt.png"));
  
         
 		helper.setTo("mohamedamine.chourou@esprit.tn");
@@ -598,4 +598,3 @@ public class MailService {
 	}
 
 }
-

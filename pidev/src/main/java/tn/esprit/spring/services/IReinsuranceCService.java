@@ -2,6 +2,8 @@ package tn.esprit.spring.services;
 
 import java.util.List;
 
+import tn.esprit.spring.entity.Contrat;
+import tn.esprit.spring.entity.DemandeContrat;
 import tn.esprit.spring.entity.Reinsurance_contract;
 
 public interface IReinsuranceCService {
@@ -10,4 +12,7 @@ public interface IReinsuranceCService {
 	 void deleteRe_s(String id);
 	 Reinsurance_contract updateRe_s(Reinsurance_contract u);
 	 Reinsurance_contract retrieveRe_s(String id);
+	 void addReinCont();
+	 void ReffReinCont();
+
 }

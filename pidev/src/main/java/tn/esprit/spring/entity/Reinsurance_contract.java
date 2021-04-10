@@ -11,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import tn.esprit.spring.entity.Contrat;
+
 @Entity
 public class Reinsurance_contract {
 	private static final long serialVersionUID = 1L;
@@ -18,17 +19,11 @@ public class Reinsurance_contract {
     @Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)	
     
+    //Quote-part = 70%
 	private int Reinsurance_ID;
-	private String mode;
-	private String type;
-	private float Quota_Share;
-	private float Priority;
-	private float Rangee;
-	private float Aggregate;
-	@Temporal (TemporalType.DATE)
-	private Date Begin_Date;
-	@Temporal (TemporalType.DATE)
-	private Date End_Date;
+	private float primeCommerciale;
+	private float PrimePure;
+	private float Remboursement;
 	@OneToOne
 	private Contrat Contrat ;
 	public int getReinsurance_ID() {
@@ -37,53 +32,20 @@ public class Reinsurance_contract {
 	public void setReinsurance_ID(int reinsurance_ID) {
 		Reinsurance_ID = reinsurance_ID;
 	}
-	public String getMode() {
-		return mode;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-	public void setMode(String mode) {
-		this.mode = mode;
+	public float getPrimeCommerciale() {
+		return primeCommerciale;
 	}
-	public String getType() {
-		return type;
+	public void setPrimeCommerciale(float primeCommerciale) {
+		this.primeCommerciale = primeCommerciale;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public float getPrimePure() {
+		return PrimePure;
 	}
-	public float getQuota_Share() {
-		return Quota_Share;
-	}
-	public void setQuota_Share(float quota_Share) {
-		Quota_Share = quota_Share;
-	}
-	public float getPriority() {
-		return Priority;
-	}
-	public void setPriority(float priority) {
-		Priority = priority;
-	}
-	public float getRangee() {
-		return Rangee;
-	}
-	public void setRangee(float rangee) {
-		Rangee = rangee;
-	}
-	public float getAggregate() {
-		return Aggregate;
-	}
-	public void setAggregate(float aggregate) {
-		Aggregate = aggregate;
-	}
-	public Date getBegin_Date() {
-		return Begin_Date;
-	}
-	public void setBegin_Date(Date begin_Date) {
-		Begin_Date = begin_Date;
-	}
-	public Date getEnd_Date() {
-		return End_Date;
-	}
-	public void setEnd_Date(Date end_Date) {
-		End_Date = end_Date;
+	public void setPrimePure(float primePure) {
+		PrimePure = primePure;
 	}
 	public Contrat getContrat() {
 		return Contrat;
@@ -91,42 +53,41 @@ public class Reinsurance_contract {
 	public void setContrat(Contrat contrat) {
 		Contrat = contrat;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	
+	public float getRemboursement() {
+		return Remboursement;
 	}
+	public void setRemboursement(float remboursement) {
+		Remboursement = remboursement;
+	}
+
 	@Override
 	public String toString() {
-		return "Reinsurance_contract [Reinsurance_ID=" + Reinsurance_ID + ", mode=" + mode + ", type=" + type
-				+ ", Quota_Share=" + Quota_Share + ", Priority=" + Priority + ", Rangee=" + Rangee + ", Aggregate="
-				+ Aggregate + ", Begin_Date=" + Begin_Date + ", End_Date=" + End_Date + ", Contrat=" + Contrat + "]";
+		return "Reinsurance_contract [Reinsurance_ID=" + Reinsurance_ID + ", primeCommerciale=" + primeCommerciale
+				+ ", PrimePure=" + PrimePure + ", Remboursement=" + Remboursement + ", Contrat=" + Contrat + "]";
 	}
-	public Reinsurance_contract(int reinsurance_ID, String mode, String type, float quota_Share, float priority,
-			float rangee, float aggregate, Date begin_Date, Date end_Date, tn.esprit.spring.entity.Contrat contrat) {
+
+	public Reinsurance_contract(int reinsurance_ID, float primeCommerciale, float primePure, float remboursement,
+			tn.esprit.spring.entity.Contrat contrat) {
 		super();
 		Reinsurance_ID = reinsurance_ID;
-		this.mode = mode;
-		this.type = type;
-		Quota_Share = quota_Share;
-		Priority = priority;
-		Rangee = rangee;
-		Aggregate = aggregate;
-		Begin_Date = begin_Date;
-		End_Date = end_Date;
+		this.primeCommerciale = primeCommerciale;
+		PrimePure = primePure;
+		Remboursement = remboursement;
 		Contrat = contrat;
 	}
-	public Reinsurance_contract(String mode, String type, float quota_Share, float priority,
-			float rangee, float aggregate, Date begin_Date, Date end_Date, tn.esprit.spring.entity.Contrat contrat) {
+	public Reinsurance_contract(float primeCommerciale, float primePure, float remboursement,
+			tn.esprit.spring.entity.Contrat contrat) {
 		super();
-		this.mode = mode;
-		this.type = type;
-		Quota_Share = quota_Share;
-		Priority = priority;
-		Rangee = rangee;
-		Aggregate = aggregate;
-		Begin_Date = begin_Date;
-		End_Date = end_Date;
+		this.primeCommerciale = primeCommerciale;
+		PrimePure = primePure;
+		Remboursement = remboursement;
 		Contrat = contrat;
 	}
-	public Reinsurance_contract()
-	{}
+	public Reinsurance_contract() {
+	}
+
+
+	
 }
+

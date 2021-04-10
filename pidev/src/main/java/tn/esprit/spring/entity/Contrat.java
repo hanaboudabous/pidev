@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import Pidev.entity.Cagnotte;
+
 
 
 
@@ -73,6 +75,11 @@ public class Contrat implements Serializable {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="contrats")
 	private Set<ReclamationSinistre> reclamationSinistres;
+	
+
+	@JsonIgnore
+	 @OneToOne(cascade = CascadeType.ALL,mappedBy="contrat")
+	 private Cagnotte cagnotte ;
 
 	public int getNumContrat() {
 		return NumContrat;

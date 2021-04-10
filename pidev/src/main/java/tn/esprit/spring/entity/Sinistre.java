@@ -1,6 +1,5 @@
 package tn.esprit.spring.entity;
 
-import java.io.Serializable;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,26 +18,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Sinistre  implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column( name = "id")
-	private int idSinitre ; // ClÃ© primaire
+	 @Column( name = "id")
+	private int idSinitre ; // Clé primaire
 	
 	private float capitalRembourse ;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateReglement ;
 	
+/************************************************************************/
 	@JsonIgnore
 	@OneToOne
-	private ReclamationSinistre reclamationSinitre;
+	private ReclamationSinistre reclamationSinistre;
+/*************************************************************************/
 
-
+	
+	/* Getters & Setters*/
 	public int getIdSinitre() {
 		return idSinitre;
 	}
@@ -70,14 +67,41 @@ public class Sinistre  implements Serializable{
 
 
 	public ReclamationSinistre getReclamationSinitre() {
-		return reclamationSinitre;
+		return reclamationSinistre;
 	}
 
 
-	public void setReclamationSinitre(ReclamationSinistre reclamationSinitre) {
-		this.reclamationSinitre = reclamationSinitre;
+	public void setReclamationSinitre(ReclamationSinistre reclamationSinistre) {
+		this.reclamationSinistre = reclamationSinistre;
 	}
+
+	/* Constructeurs*/
+	
+	public Sinistre(int idSinitre, float capitalRembourse, Date dateReglement,
+			ReclamationSinistre reclamationSinistre) {
+		super();
+		this.idSinitre = idSinitre;
+		this.capitalRembourse = capitalRembourse;
+		this.dateReglement = dateReglement;
+		this.reclamationSinistre = reclamationSinistre;
+	}
+
+
+	public Sinistre(float capitalRembourse, Date dateReglement, ReclamationSinistre reclamationSinistre) {
+		super();
+		this.capitalRembourse = capitalRembourse;
+		this.dateReglement = dateReglement;
+		this.reclamationSinistre = reclamationSinistre;
+	}
+
+
+	public Sinistre() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 
 }
+

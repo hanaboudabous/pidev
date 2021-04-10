@@ -1,12 +1,14 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,15 +17,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ReclamationSinistre implements Serializable  {
 	
-	@Id // id rec
+	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	 @Column( name = "id")
-	private int numReclamation ; // ClÃ© primaire
+	private int numReclamation ; // Clé primaire
 	
 	private String descriptionReclamation ;
 	
@@ -39,15 +42,28 @@ public class ReclamationSinistre implements Serializable  {
 	
 	private float frais ; // flous eli 5alashom lil clinique
 	
+	 // 0 ou 1 
+	private int rachattotal;
+	
+
+	private int rachatpartiel;
+	private int deces;
+	
+	private int maladie;
+	
 	 
 	 private int traiteReclamation ;
-	 @JsonIgnore
+	/*******************************************************************/
+	@JsonIgnore
 	@ManyToOne
 	private Contrat contrats;
-	 @JsonIgnore		 
-	@OneToOne(cascade = CascadeType.ALL,mappedBy="reclamationSinitre")
+	
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.REMOVE,mappedBy="reclamationSinistre")
 	private Sinistre sinistre ;
-
+/***********************************************************************/
+	
+	/* Getters & Setters*/
 	public int getNumReclamation() {
 		return numReclamation;
 	}
@@ -111,7 +127,7 @@ public class ReclamationSinistre implements Serializable  {
 	public void setTraiteReclamation(int traiteReclamation) {
 		this.traiteReclamation = traiteReclamation;
 	}
-
+	//@JsonBackReference
 	public Contrat getContrats() {
 		return contrats;
 	}
@@ -127,5 +143,86 @@ public class ReclamationSinistre implements Serializable  {
 	public void setSinistre(Sinistre sinistre) {
 		this.sinistre = sinistre;
 	}
+	public int getRachattotal() {
+		return rachattotal;
+	}
+
+	public void setRachattotal(int rachattotal) {
+		this.rachattotal = rachattotal;
+	}
+
+	public int getRachatpartiel() {
+		return rachatpartiel;
+	}
+
+	public void setRachatpartiel(int rachatpartiel) {
+		this.rachatpartiel = rachatpartiel;
+	}
+
+	public int getDeces() {
+		return deces;
+	}
+
+	public void setDeces(int deces) {
+		this.deces = deces;
+	}
+
+	public int getMaladie() {
+		return maladie;
+	}
+
+	public void setMaladie(int maladie) {
+		this.maladie = maladie;
+	}
+
+	
+	/* Constructeurs*/
+	
+	public ReclamationSinistre(int numReclamation, String descriptionReclamation, Date dateOccurence,
+			Date dateReclamation, String typeReclamation, String document, float frais, int rachattotal,
+			int rachatpartiel, int deces, int maladie, int traiteReclamation, Contrat contrats, Sinistre sinistre) {
+		super();
+		this.numReclamation = numReclamation;
+		this.descriptionReclamation = descriptionReclamation;
+		this.dateOccurence = dateOccurence;
+		this.dateReclamation = dateReclamation;
+		this.typeReclamation = typeReclamation;
+		this.document = document;
+		this.frais = frais;
+		this.rachattotal = rachattotal;
+		this.rachatpartiel = rachatpartiel;
+		this.deces = deces;
+		this.maladie = maladie;
+		this.traiteReclamation = traiteReclamation;
+		this.contrats = contrats;
+		this.sinistre = sinistre;
+	}
+
+	public ReclamationSinistre(String descriptionReclamation, Date dateOccurence, Date dateReclamation,
+			String typeReclamation, String document, float frais, int rachattotal, int rachatpartiel, int deces,
+			int maladie, int traiteReclamation, Contrat contrats, Sinistre sinistre) {
+		super();
+		this.descriptionReclamation = descriptionReclamation;
+		this.dateOccurence = dateOccurence;
+		this.dateReclamation = dateReclamation;
+		this.typeReclamation = typeReclamation;
+		this.document = document;
+		this.frais = frais;
+		this.rachattotal = rachattotal;
+		this.rachatpartiel = rachatpartiel;
+		this.deces = deces;
+		this.maladie = maladie;
+		this.traiteReclamation = traiteReclamation;
+		this.contrats = contrats;
+		this.sinistre = sinistre;
+	}
+
+	public ReclamationSinistre() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 
 }

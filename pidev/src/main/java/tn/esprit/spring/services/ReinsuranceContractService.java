@@ -21,10 +21,10 @@ public class ReinsuranceContractService implements IReinsuranceCService {
 	@Autowired
 	ReinsuranceContractRepository reinsuranceRepository;
 
-	private static final Logger l = LogManager.getLogger(UserService.class);
+	private static final Logger l = LogManager.getLogger(ReinsuranceContractService.class);
 	
 	public List<Reinsurance_contract> retrieveRe_cs() {
-		List<Reinsurance_contract> reins = (List<Reinsurance_contract>) reinsuranceRepository.findAll();
+		List<Reinsurance_contract> reins =  (List<Reinsurance_contract>) reinsuranceRepository.findAll();
 		for(Reinsurance_contract rein : reins)
 		{
 			l.info("user ++ :"+rein);
@@ -45,9 +45,7 @@ public class ReinsuranceContractService implements IReinsuranceCService {
 		return reinAdded;
 	}
 	public Reinsurance_contract retrieveRe_s(String id) {
-		l.info("in retrieveRein id= "+id);
 		Reinsurance_contract r = reinsuranceRepository.findById(Integer.parseInt(id)).orElse(null);
-		l.info("user returned : "+r);
 		return r;
 	}
 	@Override
@@ -59,13 +57,14 @@ public class ReinsuranceContractService implements IReinsuranceCService {
        int j=reins.size();
     	  for( Contrat contrat : contrats)
     	  {
-    		  if (i/j<=0.5)
+    		  if (i/j<0.5)
     	       {
 
     			  Reinsurance_contract r= null;
     			  r.setPrimeCommerciale((float) (contrat.getPrimeCommerciale()*0.7));
     			  r.setPrimePure((float) (contrat.getPrimePure()*0.7));
     			  r.setRemboursement((float) (contrat.getDemandeContrat().getCapitalAssure()*0.7));
+    			  reinsuranceRepository.updatecont(contrat.getNumContrat());
     			  reinsuranceRepository.save(r);
 
     	       }

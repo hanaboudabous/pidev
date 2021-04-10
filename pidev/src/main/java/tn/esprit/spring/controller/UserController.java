@@ -90,13 +90,13 @@ public class UserController {
 	
 	@GetMapping("/login/{d1}/{d2}")
 	@ResponseBody
-	public void login(@PathVariable("d1") String email,@PathVariable("d2") String password)  {
+	public String login(@PathVariable("d1") String email,@PathVariable("d2") String password)  {
 	if(userService.login(email, password))
 	{
-		System.out.println("user logged in");
+		return "user logged in";
 	}
 	else{
-		System.out.println("erreur");
+		return "erreur";
 	}
 	}
 	

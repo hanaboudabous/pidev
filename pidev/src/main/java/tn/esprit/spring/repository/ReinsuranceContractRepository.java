@@ -2,10 +2,12 @@ package tn.esprit.spring.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.DataFondEURO;
@@ -24,4 +26,8 @@ public interface ReinsuranceContractRepository extends CrudRepository<Reinsuranc
 	Contrat ContratavecSinistre(int id);
 	@Query(value = "SELECT * FROM reinsurance_contract WHERE contrat_id= :c", nativeQuery = true)
 	public List<Reinsurance_contract> findReinByCont(@Param("c") int c );
+	@Modifying
+	@Transactional
+	@Query("update Contrat c set c.reassure=1 where c.NumContrat = ?1")
+	void updatecont(Integer id);
 }

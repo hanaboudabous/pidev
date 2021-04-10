@@ -31,7 +31,7 @@ public class ReinsuranceContractController {
 	
 	@GetMapping("/retrieve-rein/{user-id}")
 	@ResponseBody
-	public Reinsurance_contract retrieveUser(@PathVariable("user-id") String Id) {
+	public Reinsurance_contract retrieveRein(@PathVariable("user-id") String Id) {
 	return reinService.retrieveRe_s(Id);
 	}
 		

@@ -1,7 +1,10 @@
 package tn.esprit.spring.services;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import tn.esprit.spring.entity.User;
 import tn.esprit.spring.entity.Role_User;
@@ -16,6 +19,12 @@ public interface IUserService {
 	 List<User> retrieveUsersByRole(Role_User role);
 	 void verifie_account(String id);
 	 List<User> retrieveUsersByDate(String d1,String d2) throws ParseException;
-	 boolean login(String email,String password);
+	 User login(String email,String password);
 	 User getcode(String email);
+	 User getRandom(String random);
+	 void upMdp(String random,String mdp);
+	 void upRandom(Integer random,String random1);
+	 List<Object> getUserbydate();
+	 List<Object> getUserbyarea();
+	 void uploadFile(MultipartFile file)throws IllegalStateException, IOException;
 }

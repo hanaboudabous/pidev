@@ -26,10 +26,28 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 	@Query("SELECT u FROM User u WHERE u.Hiring_date between ?1 and ?2")
 	List<User> retrieveUsersByDate(Date d1,Date d2);
 	
-	@Query("SELECT u FROM User u WHERE u.Email= ?1 and u.Password= ?2")
+	@Query("SELECT u FROM User u WHERE u.Email=?1 AND u.Password=?2")
 	User login(String email,String password);
 	
 	@Query("SELECT u FROM User u WHERE u.Email= ?1")
 	User getcode(String email);
+	
+	@Query("SELECT u FROM User u WHERE u.random= ?1")
+	User getRandom(Integer random);
+	
+	@Query("SELECT COUNT(u),u.Hiring_date FROM User u GROUP BY u.Hiring_date")
+	 List<Object> getUserbydate();
+	@Query("SELECT COUNT(u),u.Geographical_area FROM User u GROUP BY u.Geographical_area")
+	 List<Object> getUserbyarea();
+	
+	@Modifying
+	@Transactional
+	@Query("update User u set u.Password=?2 where u.random = ?1")
+	void upMdp(Integer random,String mdp);
+	
+	@Modifying
+	@Transactional
+	@Query("update User u set u.random=?1 where u.random = ?2")
+	void upRandom(Integer random,Integer random1);
 
 }

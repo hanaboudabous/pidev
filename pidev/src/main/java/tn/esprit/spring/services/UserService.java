@@ -1,5 +1,7 @@
 package tn.esprit.spring.services;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.UserRepository;
@@ -86,18 +89,25 @@ public class UserService implements IUserService {
 		return users;	
 	}
 	
-	public boolean login(String email,String password)
+	public User login(String email,String password)
 	{
 		User u=userRepository.login(email, password);
-		if(u.getVerified_account()==1)
-		{
-			return true;
-		}
-		else {
-			return false;
-		}
+		System.out.println(u);
+        return u;
 		
 	}
+	
+	 public List<Object> getUserbydate()
+	 {
+		 List<Object> u =userRepository.getUserbydate();
+		 return u;
+	 }
+	 public List<Object> getUserbyarea()
+	 {
+		 List<Object> u =userRepository.getUserbyarea();
+		 return u; 
+	 }
+
 	
 	public User getcode(String email)
 	{
@@ -111,5 +121,32 @@ public class UserService implements IUserService {
 		
 		
 	}
+	public User getRandom(String random)
+	{
+		User u=userRepository.getRandom(Integer.parseInt(random));
+		if(u!=null)
+		{
+       return u;}
+		else{
+			return null;
+		}
+		
+		
+	}
+	public void upMdp(String random,String mdp)
+	{
+		userRepository.upMdp(Integer.parseInt(random), mdp);
 
+	}
+	public void upRandom(Integer random,String random1)
+	{
+		userRepository.upRandom(random, Integer.parseInt(random1));
+
+	}
+	
+	public void uploadFile(MultipartFile file) throws IllegalStateException, IOException
+	{
+    file.transferTo(new File("C:\\wamp\\www\\images\\"+file.getOriginalFilename()));
+
+	}
 }

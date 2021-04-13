@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.esprit.spring.entity.Role_User;
 import tn.esprit.spring.entity.User;
+import tn.esprit.spring.security.SecurityConfig;
 import tn.esprit.spring.services.IUserService;
 import tn.esprit.spring.services.MailService;
 
@@ -32,16 +33,17 @@ public class UserController {
 	
 	@Autowired
 	BCryptPasswordEncoder passcrypt;
+
 	
 	
-	@GetMapping("/users")
+	@GetMapping("/register/users")
 	@ResponseBody
 	public List<User> getUsers() {
 	List<User> list = userService.retrieveAllUsers();
 	return list;
 	}
 	
-	@GetMapping("/retrieve-user/{user-id}")
+	@GetMapping("/register/retrieve-user/{user-id}")
 	@ResponseBody
 	public User retrieveUser(@PathVariable("user-id") String Id) {
 	return userService.retrieveUser(Id);
@@ -58,37 +60,37 @@ public class UserController {
 	return user;
 	}
 	
-	@DeleteMapping("/remove-user/{user-id}")
+	@DeleteMapping("/register/remove-user/{user-id}")
 	@ResponseBody
 	public void removeUser(@PathVariable("user-id") String userId) {
 	userService.deleteUser(userId);
 	}
 	
-	@PutMapping("/modify-user")
+	@PutMapping("/register/modify-user")
 	@ResponseBody
 	public User modifyUser(@RequestBody User user) {
 	return userService.updateUser(user);
 	}
 	
-	@GetMapping("/retrieve-userR/{role}")
+	@GetMapping("/register/retrieve-userR/{role}")
 	@ResponseBody
 	public List<User> retrieveUserByRole(@PathVariable("role") Role_User role) {
 	return userService.retrieveUsersByRole(role);
 	}
 	
-	@GetMapping("/verifie-user/{user-id}")
+	@GetMapping("/register/verifie-user/{user-id}")
 	@ResponseBody
 	public void verifieUser(@PathVariable("user-id") String Id) {
 	userService.verifie_account(Id);
 	}
 	
-	@GetMapping("/retrieve-userbydate/{d1}/{d2}")
+	@GetMapping("/register/retrieve-userbydate/{d1}/{d2}")
 	@ResponseBody
 	public List<User> retrieveUsersByDate(@PathVariable("d1") String d1,@PathVariable("d2") String d2) throws ParseException {
 	return userService.retrieveUsersByDate(d1, d2);
 	}
 	
-	@GetMapping("/login/{d1}/{d2}")
+	@GetMapping("/register/login/{d1}/{d2}")
 	@ResponseBody
 	public String login(@PathVariable("d1") String email,@PathVariable("d2") String password)  {
 	if(userService.login(email, password))
@@ -100,7 +102,7 @@ public class UserController {
 	}
 	}
 	
-	@GetMapping("/sendmail/{d1}")
+	@GetMapping("/register/sendmail/{d1}")
 	@ResponseBody
 	public void sendmail(@PathVariable("d1") String email) throws MessagingException  {
 

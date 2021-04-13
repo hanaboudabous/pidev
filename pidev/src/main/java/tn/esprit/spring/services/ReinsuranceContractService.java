@@ -63,7 +63,6 @@ public class ReinsuranceContractService implements IReinsuranceCService {
     			  Reinsurance_contract r= null;
     			  r.setPrimeCommerciale((float) (contrat.getPrimeCommerciale()*0.7));
     			  r.setPrimePure((float) (contrat.getPrimePure()*0.7));
-    			  r.setRemboursement((float) (contrat.getDemandeContrat().getCapitalAssure()*0.7));
     			  reinsuranceRepository.updatecont(contrat.getNumContrat());
     			  reinsuranceRepository.save(r);
 
@@ -81,7 +80,6 @@ public class ReinsuranceContractService implements IReinsuranceCService {
 			{
 				rein.setPrimeCommerciale((float) (rein.getContrat().getPrimeCommerciale()*0.7));
 				rein.setPrimePure((float) (rein.getContrat().getPrimePure()*0.7));
-				rein.setRemboursement((float) (rein.getContrat().getDemandeContrat().getCapitalAssure()*0.7));
 			}
 			else {
 				reinsuranceRepository.delete(rein);		

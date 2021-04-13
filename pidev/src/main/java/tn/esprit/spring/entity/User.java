@@ -1,6 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -20,6 +21,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import tn.esprit.spring.entity.Payment;
 
@@ -29,7 +32,7 @@ import tn.esprit.spring.entity.Geographical_area;
 
 
 @Entity
-public class User {
+public class User  {
 
 	/**
 	 * 
@@ -207,6 +210,15 @@ public class User {
 				+ Password + ", Confirm_password=" + Confirm_password + ", Verified_account=" + Verified_account
 				+ ", random=" + random + ", Hiring_date=" + Hiring_date + ", Role_User=" + Role_User + "]";
 	}
+	public User(User user)
+	{
+		this.User_ID = user.getUser_ID();
+		this.First_name =user.getFirst_name();
+		this.Last_name = user.getLast_name();
+		this.Email = user.getEmail();
+		this.Password = user.getPassword();
+		this.Role_User = user.getRole_User();	
+	}
 	public User(int user_ID, String first_name, String last_name, int number, long cIN,
 			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
 			String address, int postal_code, String job,tn.esprit.spring.entity.Status status, int shifting,
@@ -298,6 +310,7 @@ public class User {
 	public void setPayment(Set<Payment> payment) {
 		Payment = payment;
 	}
+
 
 
 }

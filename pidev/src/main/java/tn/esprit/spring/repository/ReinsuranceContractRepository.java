@@ -20,7 +20,7 @@ import tn.esprit.spring.entity.User;
 public interface ReinsuranceContractRepository extends CrudRepository<Reinsurance_contract,Integer> {
 	@Query("SELECT d FROM DemandeContrat d WHERE d.accepte=1 AND d.capitalOuRente=1")
 	List<DemandeContrat> retrieveDemandeContrat();
-	@Query("SELECT c FROM Contrat c WHERE c.reassure=0")
+	@Query("SELECT c FROM Contrat c WHERE c.reassure=0 ORDER BY c.primeCommerciale DESC")
 	List<Contrat> Contratnonreassure();
 	@Query("SELECT c FROM Contrat c WHERE c.NumContrat= ?1")
 	Contrat ContratavecSinistre(int id);

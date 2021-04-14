@@ -38,6 +38,7 @@ public class UserController {
 	
 	@Autowired
 	BCryptPasswordEncoder passcrypt;
+	String im;
 
 	
 	
@@ -74,6 +75,7 @@ public class UserController {
 	String pwd=u.getPassword();
 	Random rand = new Random();
 	String crypt=passcrypt.encode(pwd);
+	u.setImage(im);
 	u.setPassword(crypt);
 	u.setRandom(rand.nextInt(9999999)+1111111);
 	User user = userService.addUser(u);
@@ -86,6 +88,7 @@ public class UserController {
 	{
 		
 	userService.uploadFile(file);
+	im=file.getOriginalFilename();
 		
 	} 
 	

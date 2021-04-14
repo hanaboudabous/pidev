@@ -35,11 +35,10 @@ public class ReinsuranceContractController {
 	return reinService.retrieveRe_s(Id);
 	}
 		
-	@PostMapping("/add-rein")
+	@GetMapping("/add-rein")
 	@ResponseBody
-	public Reinsurance_contract addRein(@RequestBody Reinsurance_contract  u){
-		Reinsurance_contract user = reinService.addRe_s(u);
-	return user;
+	public String addRein(){
+	return reinService.addReinCont();
 	}
 	
 	@DeleteMapping("/remove-rein/{user-id}")

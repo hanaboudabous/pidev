@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import Pidev.entity.Cagnotte;
+import tn.esprit.spring.entity.Cagnotte;
 
 
 

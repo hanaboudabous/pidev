@@ -1,10 +1,9 @@
-<<<<<<< HEAD
+
 package tn.esprit.spring.services;
 
-=======
-/*import java.text.DateFormat;
+/*
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
->>>>>>> branch 'master' of https://github.com/hanaboudabous/pidev.git
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
+
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.DemandeContrat;
 import tn.esprit.spring.entity.Prime;
@@ -23,22 +22,21 @@ import tn.esprit.spring.repository.IData_santeRepo;
 import tn.esprit.spring.repository.IDemandeContratRepo;
 import tn.esprit.spring.repository.Taux_InteretRepo;
 import tn.esprit.spring.repository.Type_santeRepo;
-=======
-import Pidev.entity.Contrat;
-import Pidev.entity.DemandeContrat;
-import Pidev.entity.Prime;
-import Pidev.entity.Type_sante;
-import Pidev.repository.IContratRepo;
-import Pidev.repository.IData_santeRepo;
-import Pidev.repository.IDemandeContratRepo;
-import Pidev.repository.Taux_InteretRepo;
+import tn.esprit.spring.entity.Contrat;
+import tn.esprit.spring.entity.DemandeContrat;
+import tn.esprit.spring.entity.Prime;
+import tn.esprit.spring.entity.Type_sante;
+import tn.esprit.spring.repository.IContratRepo;
+//import tn.esprit.spring.repository.IData_santeRepo;
+import tn.esprit.spring.repository.IDemandeContratRepo;
+/*import Pidev.repository.Taux_InteretRepo;
 import Pidev.repository.Type_santeRepo;
 import Pidev.service.DataService;
->>>>>>> branch 'master' of https://github.com/hanaboudabous/pidev.git
-
+>>>>>>> branch 'master' of https://github.com/hanaboudabous/pidev.git*/
+/*
 @Service
 public class ContratService {
-	
+	/*
 	
 	@Autowired
 	IContratRepo contrat ;
@@ -58,7 +56,7 @@ public class ContratService {
 	IData_santeRepo data_santeRepo ;*/
 		
 	
-	
+	/*
 	@Transactional
 	public List<Contrat> afficheContrat(){
 		return contrat.findAll();
@@ -70,10 +68,10 @@ public class ContratService {
 		contrat.deleteById(idContrat);
 	}
 	
-	String sante = "Santé" ;
-	String CapitalDiffere = "Capital différé";
-	String renteViagere = "Rente viagére";
-	String vieEntiere = "Vie entiére";
+	String sante = "Santï¿½" ;
+	String CapitalDiffere = "Capital diffï¿½rï¿½";
+	String renteViagere = "Rente viagï¿½re";
+	String vieEntiere = "Vie entiï¿½re";
 	Prime primeUnique = Prime.Prime_Unique ;
 	Prime primePeriodique =  Prime.Prime_Periodique;
 	
@@ -81,7 +79,7 @@ public class ContratService {
 	@Transactional
 	public void calculeContrat(int id){
 		DemandeContrat d = demandeContrat.findById(id).get();
-		//double interet = 0.01*taux_Interet.findFirstByOrderByIdDesc().getTauxInteret();   /// le dernier interet  publié par la bct
+		//double interet = 0.01*taux_Interet.findFirstByOrderByIdDesc().getTauxInteret();   /// le dernier interet  publiï¿½ par la bct
 		double interet = 0.002; /// 0.2 %
 		String sexe = d.getUsers().getSexe(); // hethi lazem nbadalha , njibha m table user mta3 chirou !... badaltha
 		int age = age(d.getUsers().getBirth_date()) ; // hethi njibha mil user men 3and chirou zeda !!! .. kif kif
@@ -99,10 +97,10 @@ public class ContratService {
 <<<<<<< HEAD
 			// scenario : si il va refusÃ© la demande 
 =======
-			// scenario : si il va refusé la demande 
+			// scenario : si il va refusï¿½ la demande 
 >>>>>>> branch 'master' of https://github.com/hanaboudabous/pidev.git
 			//demandeContrat.deleteById(id);
-	/*		String s = "votre demande est annulé , votre salaire ne peut pas supporter votre demande de capital assuré " ;
+	/*		String s = "votre demande est annulï¿½ , votre salaire ne peut pas supporter votre demande de capital assurï¿½ " ;
 			d.setCause(s);
 			d.setTraite(1);
 			demandeContrat.save(d);
@@ -119,7 +117,7 @@ public class ContratService {
 			//////////////////////////////////////////// capital differe ////////////////////////////////////////////////////////
 			if(d.getNomContrat().equals(CapitalDiffere)){  // choix du contrat
 				if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
-						if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculé les primes
+						if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculï¿½ les primes
 //	public double calculePUCapital_vieCapital(float capital ,int age , int annee, double interet , String sexe){
 							double calculePUCapital_viePrime = dataService.calculePUCapital_vieCapital(d.getCapitalAssure(),age ,d.getNombreAnnee(),interet , sexe );
 							c.setRemboursement(d.getCapitalAssure());
@@ -150,15 +148,15 @@ public class ContratService {
 			//////////////////////////////////////////// rente  Viagere /////////////////////////////////////////////
 			else if(d.getNomContrat().equals(renteViagere)){ 
 				if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
-					if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculé les primes
-//	public double calculePURenteillimteRente(float rente,int age ,  double interet , String sexe){ // à terme échue)						
+					if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculï¿½ les primes
+//	public double calculePURenteillimteRente(float rente,int age ,  double interet , String sexe){ // ï¿½ terme ï¿½chue)						
 						double calculePURenteillimtePrime = dataService.calculePURenteillimteRente(d.getCapitalAssure(),age ,interet , sexe );
 						double calculePURenteillimtePrimeCommerciale =  calculePURenteillimtePrime + calculePURenteillimtePrime*frais ;
 						c.setRemboursement(d.getCapitalAssure());
 						c.setPrimePure((float) calculePURenteillimtePrime);
 						c.setPrimeCommerciale((float) calculePURenteillimtePrimeCommerciale);	}
 					else{
-	//	public double calculePURenteillimtePrime(float prime,int age ,  double interet , String sexe){ // à terme échue)
+	//	public double calculePURenteillimtePrime(float prime,int age ,  double interet , String sexe){ // ï¿½ terme ï¿½chue)
 						float primeP = (float) (d.getVal_prime()-d.getVal_prime()*frais) ;
 						double calculePURenteillimteRente = dataService.calculePURenteillimtePrime(primeP,age,interet , sexe );
 						c.setPrimeCommerciale(d.getVal_prime());
@@ -166,7 +164,7 @@ public class ContratService {
 						c.setRemboursement((float) calculePURenteillimteRente); }
 			}
 			else if (d.getChoixPrime().equals(primePeriodique)){
-//		public double calculePPRente( float rente, float prime ,int age , int annee, double interet , String sexe ){// a terme d’avance
+//		public double calculePPRente( float rente, float prime ,int age , int annee, double interet , String sexe ){// a terme dï¿½avance
 					if(d.getCapitalAssure() != 0){
 						double calculePPRentePrime = dataService.calculePPRente( d.getCapitalAssure()  , 0 , age ,  d.getNombreAnnee(),  interet ,  sexe);
 						double primeCommerciale = calculePPRentePrime +calculePPRentePrime*frais ;
@@ -184,7 +182,7 @@ public class ContratService {
 //////////////////////////////////////////// Vie entiere /////////////////////////////////////////////
 			else if(d.getNomContrat().equals(vieEntiere)){  // choix du contrat
 				if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
-					if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculé les primes
+					if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculï¿½ les primes
 // 	public double calculePUVieEntiereCapital(float capital,int age ,  double interet ,String sexe){
 							double calculePUVieEntierePrime = dataService.calculePUVieEntiereCapital(d.getCapitalAssure(),age ,interet , sexe );
 							c.setRemboursement(d.getCapitalAssure());
@@ -199,7 +197,7 @@ public class ContratService {
 							c.setRemboursement((float) calculePUVieEntiereCapital); }
 				}
 				else if (d.getChoixPrime().equals(primePeriodique)){
-//		public double calculePPVieEntiere(float prime ,float capital ,int age , int annee, double interet , String sexe ){// a terme d’avance
+//		public double calculePPVieEntiere(float prime ,float capital ,int age , int annee, double interet , String sexe ){// a terme dï¿½avance
 						if(d.getCapitalAssure() != 0){
 							double calculePPVieEntierePrime = dataService.calculePPVieEntiere(0, d.getCapitalAssure()   , age ,  d.getNombreAnnee(),  interet ,  sexe);
 							double primeCommerciale = calculePPVieEntierePrime +calculePPVieEntierePrime*frais ;
@@ -432,7 +430,7 @@ public class ContratService {
 	
 		
 		
-		// liste des contrats proposés pour le client ... hethom yetl3ou 3and l client w houa mb3d yaccepti wela la ..
+		// liste des contrats proposï¿½s pour le client ... hethom yetl3ou 3and l client w houa mb3d yaccepti wela la ..
 		@Transactional
 		public List<Contrat> ProposeContrat(int idUser){	
 			return contrat.ProposeContrat(idUser);

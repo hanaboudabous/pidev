@@ -49,25 +49,36 @@ public class ReinsuranceContractService implements IReinsuranceCService {
 		return r;
 	}
 	@Override
-	public void addReinCont() {
+	public String addReinCont() {
 		List<DemandeContrat> reins = (List<DemandeContrat>) reinsuranceRepository.retrieveDemandeContrat();
 		List<Reinsurance_contract> reinsu = (List<Reinsurance_contract>) reinsuranceRepository.findAll();
 		List<Contrat> contrats = (List<Contrat>) reinsuranceRepository.Contratnonreassure();
-       int i= reinsu.size();
-       int j=reins.size();
+       float i= reinsu.size();
+       System.out.println(i);
+       float j=reins.size();
+       int ii=0;
+       if((i/j)<0.5){
     	  for( Contrat contrat : contrats)
     	  {
-    		  if (i/j<0.5)
+    		  if ((i/j)<0.5)
     	       {
-
-    			  Reinsurance_contract r= null;
+                  i++;
+                  System.out.println(i+"       1");
+    			  Reinsurance_contract r= new Reinsurance_contract();
     			  r.setPrimeCommerciale((float) (contrat.getPrimeCommerciale()*0.7));
     			  r.setPrimePure((float) (contrat.getPrimePure()*0.7));
+    			  r.setContrat(contrat);
     			  reinsuranceRepository.updatecont(contrat.getNumContrat());
     			  reinsuranceRepository.save(r);
+    			  ii++;  
+    	        }
 
-    	       }
     	  }
+    	  return ii+" contrat(s) ont ete ajoute";
+       }
+       else {
+    	   return "annule";
+       }
        }
 	@Override
 	public void ReffReinCont() {

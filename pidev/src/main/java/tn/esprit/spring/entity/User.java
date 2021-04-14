@@ -61,15 +61,20 @@ public class User  {
 	private String Job;
 	@Enumerated(EnumType.STRING)
 	Status Status;
+	@Enumerated(EnumType.STRING)
+	Gender Gender;
 	private int shifting;
 	@Column(name="email",unique=true)
 	private String Email;
 	private String Password;
 	private String Confirm_password;
+	private String Image;
 	//@Value("${User.random:random.ints(999999, 111111, 999999)}")
 
 	@Column(columnDefinition = "integer default 0")
 	private int Verified_account;
+	@Column(columnDefinition = "integer default 0")
+	private int Scoring;
 	private int random;
 
 	@Temporal (TemporalType.DATE)
@@ -78,6 +83,24 @@ public class User  {
 	Role_User Role_User;
 	
 	
+	public Gender getGender() {
+		return Gender;
+	}
+	public void setGender(Gender gender) {
+		Gender = gender;
+	}
+	public String getImage() {
+		return Image;
+	}
+	public void setImage(String image) {
+		Image = image;
+	}
+	public int getScoring() {
+		return Scoring;
+	}
+	public void setScoring(int scoring) {
+		Scoring = scoring;
+	}
 	public int getUser_ID() {
 		return User_ID;
 	}
@@ -201,14 +224,82 @@ public class User  {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+
 	@Override
 	public String toString() {
 		return "User [User_ID=" + User_ID + ", First_name=" + First_name + ", Last_name=" + Last_name + ", Number="
 				+ Number + ", CIN=" + CIN + ", Geographical_area=" + Geographical_area + ", Motorisation="
 				+ Motorisation + ", Birth_date=" + Birth_date + ", Address=" + Address + ", Postal_code=" + Postal_code
-				+ ", Job=" + Job + ", Status=" + Status + ", shifting=" + shifting + ", Email=" + Email + ", Password="
-				+ Password + ", Confirm_password=" + Confirm_password + ", Verified_account=" + Verified_account
-				+ ", random=" + random + ", Hiring_date=" + Hiring_date + ", Role_User=" + Role_User + "]";
+				+ ", Job=" + Job + ", Status=" + Status + ", Gender=" + Gender + ", shifting=" + shifting + ", Email="
+				+ Email + ", Password=" + Password + ", Confirm_password=" + Confirm_password + ", Image=" + Image
+				+ ", Verified_account=" + Verified_account + ", Scoring=" + Scoring + ", random=" + random
+				+ ", Hiring_date=" + Hiring_date + ", Role_User=" + Role_User + ", Payment=" + Payment + "]";
+	}
+	
+	public User(int user_ID, String first_name, String last_name, int number, long cIN,
+			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
+			String address, int postal_code, String job, tn.esprit.spring.entity.Status status,
+			tn.esprit.spring.entity.Gender gender, int shifting, String email, String password, String confirm_password,
+			String image, int verified_account, int scoring, int random, Date hiring_date,
+			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment) {
+		super();
+		User_ID = user_ID;
+		First_name = first_name;
+		Last_name = last_name;
+		Number = number;
+		CIN = cIN;
+		Geographical_area = geographical_area;
+		Motorisation = motorisation;
+		Birth_date = birth_date;
+		Address = address;
+		Postal_code = postal_code;
+		Job = job;
+		Status = status;
+		Gender = gender;
+		this.shifting = shifting;
+		Email = email;
+		Password = password;
+		Confirm_password = confirm_password;
+		Image = image;
+		Verified_account = verified_account;
+		Scoring = scoring;
+		this.random = random;
+		Hiring_date = hiring_date;
+		Role_User = role_User;
+		Payment = payment;
+	}
+	public User(String first_name, String last_name, int number, long cIN,
+			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
+			String address, int postal_code, String job, tn.esprit.spring.entity.Status status,
+			tn.esprit.spring.entity.Gender gender, int shifting, String email, String password, String confirm_password,
+			String image, int verified_account, int scoring, int random, Date hiring_date,
+			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment) {
+		super();
+	
+		First_name = first_name;
+		Last_name = last_name;
+		Number = number;
+		CIN = cIN;
+		Geographical_area = geographical_area;
+		Motorisation = motorisation;
+		Birth_date = birth_date;
+		Address = address;
+		Postal_code = postal_code;
+		Job = job;
+		Status = status;
+		Gender = gender;
+		this.shifting = shifting;
+		Email = email;
+		Password = password;
+		Confirm_password = confirm_password;
+		Image = image;
+		Verified_account = verified_account;
+		Scoring = scoring;
+		this.random = random;
+		Hiring_date = hiring_date;
+		Role_User = role_User;
+		Payment = payment;
 	}
 	public User(User user)
 	{

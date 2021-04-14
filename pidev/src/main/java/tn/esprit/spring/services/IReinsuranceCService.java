@@ -12,7 +12,7 @@ public interface IReinsuranceCService {
 	 void deleteRe_s(String id);
 	 Reinsurance_contract updateRe_s(Reinsurance_contract u);
 	 Reinsurance_contract retrieveRe_s(String id);
-	 void addReinCont();
+	 String addReinCont();
 	 void ReffReinCont();
 
 }

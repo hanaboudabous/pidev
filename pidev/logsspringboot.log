@@ -5500,3 +5500,36 @@ Caused by: java.io.FileNotFoundException: class path resource [org/springframewo
 2021-04-14 18:43:13.486  INFO 33416 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path '/pidev'
 2021-04-14 18:43:14.456  INFO 33416 --- [restartedMain] tn.esprit.spring.PidevApplication        : Started PidevApplication in 4.822 seconds (JVM running for 91.294)
 2021-04-14 18:43:14.460  INFO 33416 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-04-14 19:51:18.886  INFO 33416 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-04-14 19:51:19.514  INFO 33416 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-14 19:51:19.518  INFO 33416 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-14 19:51:19.519  INFO 33416 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2021-04-14 19:51:19.525  INFO 33416 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2021-04-14 20:43:27.569  INFO 11444 --- [restartedMain] tn.esprit.spring.PidevApplication        : Starting PidevApplication using Java 1.8.0_211 on DESKTOP-O32RMJL with PID 11444 (C:\Products\git\pidev\pidev\target\classes started by wadie in C:\Products\git\pidev\pidev)
+2021-04-14 20:43:27.573  INFO 11444 --- [restartedMain] tn.esprit.spring.PidevApplication        : No active profile set, falling back to default profiles: default
+2021-04-14 20:43:27.633  INFO 11444 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\wadie\.m2\repository\javax\mail\mail\1.4\mail-1.4.jar referenced one or more files that do not exist: file:/C:/Users/wadie/.m2/repository/javax/mail/mail/1.4/activation.jar
+2021-04-14 20:43:27.634  INFO 11444 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-04-14 20:43:27.634  INFO 11444 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-04-14 20:43:29.453  INFO 11444 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-14 20:43:29.682  INFO 11444 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 212 ms. Found 13 JPA repository interfaces.
+2021-04-14 20:43:30.953  INFO 11444 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2021-04-14 20:43:30.971  INFO 11444 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-14 20:43:30.971  INFO 11444 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-04-14 20:43:31.161  INFO 11444 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/pidev]  : Initializing Spring embedded WebApplicationContext
+2021-04-14 20:43:31.162  INFO 11444 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3527 ms
+2021-04-14 20:43:31.640  INFO 11444 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-14 20:43:31.740  INFO 11444 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.28.Final
+2021-04-14 20:43:31.923  INFO 11444 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-04-14 20:43:32.067  INFO 11444 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-14 20:43:32.326  INFO 11444 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-14 20:43:32.345  INFO 11444 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-04-14 20:43:33.216  INFO 11444 --- [restartedMain] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: tn.esprit.spring.entity.Reinsurance (class must be instantiated by Interceptor)
+2021-04-14 20:43:33.257  INFO 11444 --- [restartedMain] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: tn.esprit.spring.entity.Accounting (class must be instantiated by Interceptor)
+2021-04-14 20:43:35.429  INFO 11444 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-14 20:43:35.440  INFO 11444 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-14 20:43:35.478  INFO 11444 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-14 20:43:37.389  WARN 11444 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-14 20:43:39.192  INFO 11444 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@658f042a, org.springframework.security.web.context.SecurityContextPersistenceFilter@51994960, org.springframework.security.web.header.HeaderWriterFilter@220d6ee2, org.springframework.security.web.authentication.logout.LogoutFilter@1c4ef1aa, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7f09b339, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@68b09942, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@594d65b6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40608952, org.springframework.security.web.session.SessionManagementFilter@4cb3359a, org.springframework.security.web.access.ExceptionTranslationFilter@182264d1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5a0d09a2]
+2021-04-14 20:43:39.437  INFO 11444 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-14 20:43:41.642  INFO 11444 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path '/pidev'
+2021-04-14 20:43:43.702  INFO 11444 --- [restartedMain] tn.esprit.spring.PidevApplication        : Started PidevApplication in 16.565 seconds (JVM running for 17.997)

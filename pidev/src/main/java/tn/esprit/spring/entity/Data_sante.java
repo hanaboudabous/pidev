@@ -22,7 +22,7 @@ public class Data_sante   implements Serializable{
 	 @Column( name = "id")
 	private int id ; // Clé primaire
 	
-	private double age ;
+	private double age ;  
 	private String sexe_Type ;
 	private float  consultations_Visites ;
 	private float frais_Pharmaceutiques ;
@@ -39,7 +39,7 @@ public class Data_sante   implements Serializable{
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(int id) {     
 		this.id = id;
 	}
 	public double getAge() {

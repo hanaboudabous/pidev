@@ -1,9 +1,8 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
-
-import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +16,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class DemandeContrat implements Serializable {
 	
@@ -28,23 +25,17 @@ public class DemandeContrat implements Serializable {
 	private int numDemande; // Clé primaire
 	
 	
-	private String adresse ;
-	
-	private String profession ;
-	
-	private long cin ;
+
 
 	@Temporal(TemporalType.DATE)
 	private Date dateDemande;
 	
-	private String ville ;
 	
 	// Assurance_Credit , Assurance_Epargne , Assurance_Sante , Assurance_Capital_differe
 	//  assurance : cas vie : capital différe , rente viagére
 	//              cas déces : vie entiére
 	//  santé 
-	private float salaire ;
-	
+
 	private int nombreAnnee ;
 	
 	// des question pour distinction du type de contrat
@@ -53,14 +44,48 @@ public class DemandeContrat implements Serializable {
 	
 	private int vie ;
 	
-	private int capitalOuRente ;
-	
 	private int sante ;
 		
 	// question pour la tarification
-	 private float capitalAssure ;
-	 private int fumeur ;
+	private float capitalAssure ;
+	private int capitalOuRente ;
+
+	
+	 @Enumerated(EnumType.STRING)
+	 private Prime choixPrime ;
+	 private float val_prime;
+
+	 //beneficiaire
+	 private String beneficiaire ;
+
+	 private int CinBeneficiaire ;
 	 
+	 public int getCinBeneficiaire() {
+		return CinBeneficiaire;
+	}
+
+	public void setCinBeneficiaire(int cinBeneficiaire) {
+		CinBeneficiaire = cinBeneficiaire;
+	}
+
+	public String getBeneficiaire() {
+		return beneficiaire;
+	}
+
+	public void setBeneficiaire(String beneficiaire) {
+		this.beneficiaire = beneficiaire;
+	}
+
+	public Type_sante getType_sante() {
+		return type_sante;
+	}
+
+	public void setType_sante(Type_sante type_sante) {
+		this.type_sante = type_sante;
+	}
+
+	// autre question 
+	 private int fumeur ; 
 	 private int alcool ; // oui ou nn
 	 private int sportif ;  // sportif ou non
 	 private int maladie; // maladie chronique
@@ -72,16 +97,28 @@ public class DemandeContrat implements Serializable {
 	 private String nomContrat ;
 	 private String typeContrat;
 	 
-	 
-	 @ManyToOne
-	 private User users;
+	 // cause de rejet
+	 private String cause ;
+	 public String getCause() {
+		return cause;
+	}
+
+	public void setCause(String cause) {
+		this.cause = cause;
+	}
+
+	@ManyToOne
+	private User users;
+	
 	// @JsonIgnore			 
 	 @OneToOne(cascade = CascadeType.ALL,mappedBy="demandeContrat")
 	 private Contrat contrat ;
 
 	 
-	 
-	 
+	 @OneToOne(cascade = CascadeType.ALL,mappedBy="demandeContrat")
+	 private Type_sante type_sante ;
+
+	     
 	public String getNomContrat() {
 		return nomContrat;
 	}
@@ -106,32 +143,7 @@ public class DemandeContrat implements Serializable {
 		this.numDemande = numDemande;
 	}
 
-	public String getAdresse() {
-		return adresse;
-	}
 	
-	/// hello !!!
-	/// hi
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	public String getProfession() {
-		return profession;
-	}
-
-	public void setProfession(String profession) {
-		this.profession = profession;
-	}
-
-	public long getCin() {
-		return cin;
-	}
-
-	public void setCin(long cin) {
-		this.cin = cin;
-	}
 
 	public Date getDateDemande() {
 		return dateDemande;
@@ -141,21 +153,7 @@ public class DemandeContrat implements Serializable {
 		this.dateDemande = dateDemande;
 	}
 
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	public float getSalaire() {
-		return salaire;
-	}
-
-	public void setSalaire(float salaire) {
-		this.salaire = salaire;
-	}
+	
 
 	public int getNombreAnnee() {
 		return nombreAnnee;
@@ -269,17 +267,14 @@ public class DemandeContrat implements Serializable {
 		this.contrat = contrat;
 	}
 
-	public DemandeContrat(int numDemande, String adresse, String profession, long cin, Date dateDemande, String ville,
-			float salaire, int nombreAnnee, int deces, int vie, int capitalOuRente, int sante, float capitalAssure,
+	public DemandeContrat(int numDemande,  Date dateDemande, 
+	 int nombreAnnee, int deces, int vie, int capitalOuRente, int sante, float capitalAssure,
 			int fumeur, int alcool, int sportif, int maladie, int accepte, int traite, User users, Contrat contrat) {
 		super();
 		this.numDemande = numDemande;
-		this.adresse = adresse;
-		this.profession = profession;
-		this.cin = cin;
+
 		this.dateDemande = dateDemande;
-		this.ville = ville;
-		this.salaire = salaire;
+	
 		this.nombreAnnee = nombreAnnee;
 		this.deces = deces;
 		this.vie = vie;
@@ -295,17 +290,14 @@ public class DemandeContrat implements Serializable {
 		this.users = users;
 		this.contrat = contrat;
 	}
-	public DemandeContrat( String adresse, String profession, long cin, Date dateDemande, String ville,
-			float salaire, int nombreAnnee, int deces, int vie, int capitalOuRente, int sante, float capitalAssure,
+	public DemandeContrat(  Date dateDemande,
+		 int nombreAnnee, int deces, int vie, int capitalOuRente, int sante, float capitalAssure,
 			int fumeur, int alcool, int sportif, int maladie, int accepte, int traite, User users) {
 		super();
 		
-		this.adresse = adresse;
-		this.profession = profession;
-		this.cin = cin;
+	
 		this.dateDemande = dateDemande;
-		this.ville = ville;
-		this.salaire = salaire;
+	
 		this.nombreAnnee = nombreAnnee;
 		this.deces = deces;
 		this.vie = vie;
@@ -322,17 +314,14 @@ public class DemandeContrat implements Serializable {
 		
 	}
 	
-	public DemandeContrat( String adresse, String profession, long cin, Date dateDemande, String ville,
-			float salaire, int nombreAnnee, int deces, int vie, int capitalOuRente, int sante, float capitalAssure,
+	public DemandeContrat( Date dateDemande, 
+			 int nombreAnnee, int deces, int vie, int capitalOuRente, int sante, float capitalAssure,
 			int fumeur, int alcool, int sportif, int maladie, int accepte, int traite) {
 		super();
 		
-		this.adresse = adresse;
-		this.profession = profession;
-		this.cin = cin;
+	
 		this.dateDemande = dateDemande;
-		this.ville = ville;
-		this.salaire = salaire;
+
 		this.nombreAnnee = nombreAnnee;
 		this.deces = deces;
 		this.vie = vie;
@@ -352,5 +341,26 @@ public class DemandeContrat implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+
+	public Prime getChoixPrime() {
+		return choixPrime;
+	}
+
+	public void setChoixPrime(Prime choixPrime) {
+		this.choixPrime = choixPrime;
+	}
+
+	public float getVal_prime() {
+		return val_prime;
+	}
+
+	public void setVal_prime(float val_prime) {
+		this.val_prime = val_prime;
+	}
+
+	
+	
 
 }

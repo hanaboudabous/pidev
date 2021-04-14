@@ -1,5 +1,4 @@
 package tn.esprit.spring.entity;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,7 +25,7 @@ public class ReclamationSinistre implements Serializable  {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	 @Column( name = "id")
-	private int numReclamation ; // Clé primaire
+	private int numReclamation ; // ClÃ© primaire
 	
 	private String descriptionReclamation ;
 	

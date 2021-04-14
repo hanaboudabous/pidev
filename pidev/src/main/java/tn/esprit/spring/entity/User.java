@@ -1,7 +1,5 @@
 package tn.esprit.spring.entity;
 
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,21 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.lang.Nullable;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import tn.esprit.spring.entity.Payment;
-
-
-import tn.esprit.spring.entity.Status;
-import tn.esprit.spring.entity.Geographical_area;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -82,7 +69,8 @@ public class User  {
 	@Enumerated(EnumType.STRING)
 	Role_User Role_User;
 	
-	
+	private String sexe ;
+
 	public Gender getGender() {
 		return Gender;
 	}
@@ -403,5 +391,19 @@ public class User  {
 	}
 
 
+/**********************************************************/
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="userActif")
+	private Set<ActifFinancier> actifFinancier;
 
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+	private Set<DemandeContrat> demandeContrats;
+
+
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="userss")
+	private Set<Contribution> contributions;
+
+	
 }

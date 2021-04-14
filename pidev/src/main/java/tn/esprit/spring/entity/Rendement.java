@@ -1,8 +1,6 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
-
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,8 +20,15 @@ public class Rendement implements Serializable {
 	
 	private int annee ;
 	private double rendement ;
+	private double rendementBTA ;
 	public int getId() {
 		return id;
+	}
+	public double getRendementBTA() {
+		return rendementBTA;
+	}
+	public void setRendementBTA(double rendementBTA) {
+		this.rendementBTA = rendementBTA;
 	}
 	public void setId(int id) {
 		this.id = id;

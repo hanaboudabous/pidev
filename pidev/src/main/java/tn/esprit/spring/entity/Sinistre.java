@@ -1,6 +1,5 @@
 package tn.esprit.spring.entity;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,7 +20,7 @@ public class Sinistre  implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	 @Column( name = "id")
-	private int idSinitre ; // Clé primaire
+	private int idSinitre ; // ClÃ© primaire
 	
 	private float capitalRembourse ;
 	
@@ -104,4 +103,3 @@ public class Sinistre  implements Serializable{
 	
 
 }
-

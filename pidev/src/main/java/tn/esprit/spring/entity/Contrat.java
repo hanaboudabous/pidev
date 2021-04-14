@@ -1,7 +1,6 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -21,8 +20,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import tn.esprit.spring.entity.Cagnotte;
 
 
 
@@ -49,17 +46,6 @@ public class Contrat implements Serializable {
 	private float primeCommerciale ;
 	
 	
-	private float primePure ;
-	
-	private float plafond ;
-	
-	private String etat ; // resilié ou en cours
-	
-	private int acceptation ; // contat accepte par le client ou pas encore
-	private int scoring ; // bonus malus
-	private int reassure ;
-
-
 	public int getReassure() {
 		return reassure;
 	}
@@ -68,22 +54,44 @@ public class Contrat implements Serializable {
 		this.reassure = reassure;
 	}
 
+	private float primePure ;
+	
+	private int reassure ; /// chirou
+	private String etat ; // resilié ou en cours
+	
+	private int acceptation ; // contat accepte par le client ou pas encore
+
+	private float remboursement;
+
 	// pour la confirmation : si le client n accepte pas le contrat , contrat se supprime de la table
 	@JsonIgnore
 	@OneToOne
 	private DemandeContrat demandeContrat ;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="contrats")
 	private Set<ReclamationSinistre> reclamationSinistres;
 	
-
+	
+/***********************************************************************/
+	
 	@JsonIgnore
 	 @OneToOne(cascade = CascadeType.ALL,mappedBy="contrat")
 	 private Cagnotte cagnotte ;
+	
+/***********************************************************************************/
 
 	public int getNumContrat() {
 		return NumContrat;
 	}
+
+	public Cagnotte getCagnotte() {
+	return cagnotte;
+}
+
+public void setCagnotte(Cagnotte cagnotte) {
+	this.cagnotte = cagnotte;
+}
 
 	public void setNumContrat(int numContrat) {
 		NumContrat = numContrat;
@@ -121,13 +129,7 @@ public class Contrat implements Serializable {
 		this.primePure = primePure;
 	}
 
-	public float getPlafond() {
-		return plafond;
-	}
-
-	public void setPlafond(float plafond) {
-		this.plafond = plafond;
-	}
+	
 
 	public String getEtat() {
 		return etat;
@@ -137,13 +139,6 @@ public class Contrat implements Serializable {
 		this.etat = etat;
 	}
 
-	public int getScoring() {
-		return scoring;
-	}
-
-	public void setScoring(int scoring) {
-		this.scoring = scoring;
-	}
 
 	public DemandeContrat getDemandeContrat() {
 		return demandeContrat;
@@ -170,6 +165,14 @@ public class Contrat implements Serializable {
 			this.acceptation = acceptation;
 		}
 // getters and setters
+
+		public float getRemboursement() {
+			return remboursement;
+		}
+
+		public void setRemboursement(float remboursement) {
+			this.remboursement = remboursement;
+		}
 	
 
 	

@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 import tn.esprit.spring.entity.Cagnotte;
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.Contribution;
-import tn.esprit.spring.entityUser;
 import tn.esprit.spring.repository.ICagnotteRepo;
 import tn.esprit.spring.repository.IContributionRepo;
-import tn.esprit.spring.repository.IUserRepo;
 
 /*
 

@@ -39,14 +39,39 @@ public class ActifFinancier  implements Serializable {
 	
 	private int accepte_rachat ;
 	
+	private Date date_actuel ;
+	
+	 public Date getDate_actuel() {
+		return date_actuel;
+	}
 
-	/*@Enumerated(EnumType.STRING)
-	private Fond nom_fond ;
-=======
-/*	@Enumerated(EnumType.STRING)
-	private Fond nom_fond ;*/
+	public void setDate_actuel(Date date_actuel) {
+		this.date_actuel = date_actuel;
+	}
+
+
+
+
+	@Enumerated(EnumType.STRING)
+	 private Prime choixPrime ;
+	
+	public Prime getChoixPrime() {
+		return choixPrime;
+	}
+
+	public void setChoixPrime(Prime choixPrime) {
+		this.choixPrime = choixPrime;
+	}
+
+
+
+
+	@Enumerated(EnumType.STRING)
+	private Fond nomFond ;
 	
 	private String etat ; // resilié ou en cours
+	
+
 	
 
 	public int getId() {
@@ -136,25 +161,13 @@ public class ActifFinancier  implements Serializable {
 
 
 
-
-/*
-	public Fond getNom_fond() {
-=======
-
-	/*public Fond getNom_fond() {
->>>>>>> branch 'master' of https://github.com/hanaboudabous/pidev.git
-		return nom_fond;
+	public Fond getNomFond() {
+		return nomFond;
 	}
 
-
-
-
-	public void setNom_fond(Fond nom_fond) {
-		this.nom_fond = nom_fond;
-	}*/
-
-
-
+	public void setNomFond(Fond nomFond) {
+		this.nomFond = nomFond;
+	}
 
 	public String getEtat() {
 		return etat;
@@ -170,21 +183,19 @@ public class ActifFinancier  implements Serializable {
 
 
 
-	public User getUsers() {
-		return users;
-	}
-
-
-
-
-	public void setUsers(User users) {
-		this.users = users;
-	}
-
-
 
 
 	@ManyToOne
-	 private User users;
+	 private User userActif;
+
+	public User getUserActif() {
+		return userActif;
+	}
+
+	public void setUserActif(User userActif) {
+		this.userActif = userActif;
+	}
+
+
 	
 }

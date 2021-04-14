@@ -55,7 +55,7 @@ public class Contrat implements Serializable {
 	}
 
 	private float primePure ;
-	
+	@Column(columnDefinition = "integer default 0")
 	private int reassure ; /// chirou
 	private String etat ; // resilié ou en cours
 	

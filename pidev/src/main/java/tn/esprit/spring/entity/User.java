@@ -48,8 +48,8 @@ public class User  {
 	private String Job;
 	@Enumerated(EnumType.STRING)
 	Status Status;
-	@Enumerated(EnumType.STRING)
-	Gender Gender;
+
+	private String sexe;
 	private int shifting;
 	@Column(name="email",unique=true)
 	private String Email;
@@ -69,13 +69,14 @@ public class User  {
 	@Enumerated(EnumType.STRING)
 	Role_User Role_User;
 	
-	private String sexe ;
 
-	public Gender getGender() {
-		return Gender;
+
+
+	public String getSexe() {
+		return sexe;
 	}
-	public void setGender(Gender gender) {
-		Gender = gender;
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
 	}
 	public String getImage() {
 		return Image;
@@ -214,23 +215,27 @@ public class User  {
 	}
 	
 
+
+	
+	
 	@Override
 	public String toString() {
 		return "User [User_ID=" + User_ID + ", First_name=" + First_name + ", Last_name=" + Last_name + ", Number="
 				+ Number + ", CIN=" + CIN + ", Geographical_area=" + Geographical_area + ", Motorisation="
 				+ Motorisation + ", Birth_date=" + Birth_date + ", Address=" + Address + ", Postal_code=" + Postal_code
-				+ ", Job=" + Job + ", Status=" + Status + ", Gender=" + Gender + ", shifting=" + shifting + ", Email="
+				+ ", Job=" + Job + ", Status=" + Status + ", sexe=" + sexe + ", shifting=" + shifting + ", Email="
 				+ Email + ", Password=" + Password + ", Confirm_password=" + Confirm_password + ", Image=" + Image
 				+ ", Verified_account=" + Verified_account + ", Scoring=" + Scoring + ", random=" + random
-				+ ", Hiring_date=" + Hiring_date + ", Role_User=" + Role_User + ", Payment=" + Payment + "]";
+				+ ", Hiring_date=" + Hiring_date + ", Role_User=" + Role_User + ", Payment=" + Payment
+				+ ", actifFinancier=" + actifFinancier + ", demandeContrats=" + demandeContrats + ", contributions="
+				+ contributions + "]";
 	}
 	
 	public User(int user_ID, String first_name, String last_name, int number, long cIN,
 			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
-			String address, int postal_code, String job, tn.esprit.spring.entity.Status status,
-			tn.esprit.spring.entity.Gender gender, int shifting, String email, String password, String confirm_password,
-			String image, int verified_account, int scoring, int random, Date hiring_date,
-			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment) {
+			String address, int postal_code, String job, tn.esprit.spring.entity.Status status, String sexe,
+			int shifting, String email, String password, String confirm_password, String image, int verified_account,
+			int scoring, int random, Date hiring_date, tn.esprit.spring.entity.Role_User role_User) {
 		super();
 		User_ID = user_ID;
 		First_name = first_name;
@@ -244,7 +249,7 @@ public class User  {
 		Postal_code = postal_code;
 		Job = job;
 		Status = status;
-		Gender = gender;
+		this.sexe = sexe;
 		this.shifting = shifting;
 		Email = email;
 		Password = password;
@@ -255,16 +260,14 @@ public class User  {
 		this.random = random;
 		Hiring_date = hiring_date;
 		Role_User = role_User;
-		Payment = payment;
 	}
 	public User(String first_name, String last_name, int number, long cIN,
 			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
-			String address, int postal_code, String job, tn.esprit.spring.entity.Status status,
-			tn.esprit.spring.entity.Gender gender, int shifting, String email, String password, String confirm_password,
-			String image, int verified_account, int scoring, int random, Date hiring_date,
-			tn.esprit.spring.entity.Role_User role_User, Set<tn.esprit.spring.entity.Payment> payment) {
+			String address, int postal_code, String job, tn.esprit.spring.entity.Status status, String sexe,
+			int shifting, String email, String password, String confirm_password, String image, int verified_account,
+			int scoring, int random, Date hiring_date, tn.esprit.spring.entity.Role_User role_User) {
 		super();
-	
+
 		First_name = first_name;
 		Last_name = last_name;
 		Number = number;
@@ -276,7 +279,7 @@ public class User  {
 		Postal_code = postal_code;
 		Job = job;
 		Status = status;
-		Gender = gender;
+		this.sexe = sexe;
 		this.shifting = shifting;
 		Email = email;
 		Password = password;
@@ -287,7 +290,6 @@ public class User  {
 		this.random = random;
 		Hiring_date = hiring_date;
 		Role_User = role_User;
-		Payment = payment;
 	}
 	public User(User user)
 	{

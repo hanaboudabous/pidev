@@ -27,6 +27,7 @@ import tn.esprit.spring.entity.User;
 import tn.esprit.spring.security.SecurityConfig;
 import tn.esprit.spring.services.IUserService;
 import tn.esprit.spring.services.MailService;
+import tn.esprit.spring.services.MyUserDetailsService;
 
 @Controller
 public class UserController {
@@ -39,6 +40,7 @@ public class UserController {
 	@Autowired
 	BCryptPasswordEncoder passcrypt;
 	String im;
+
 
 	
 	

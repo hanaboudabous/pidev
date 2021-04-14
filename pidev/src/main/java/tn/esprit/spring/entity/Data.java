@@ -15,7 +15,7 @@ public class Data implements Serializable {
 
 	
 	
-	@Id
+	@Id                    
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	 @Column( name = "id")
 	private int id; // Clé primaire

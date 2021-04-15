@@ -14,6 +14,7 @@ import tn.esprit.spring.entity.DataFondEURO;
 import tn.esprit.spring.entity.DemandeContrat;
 import tn.esprit.spring.entity.Reinsurance_contract;
 import tn.esprit.spring.entity.Role_User;
+import tn.esprit.spring.entity.Sinistre;
 import tn.esprit.spring.entity.User;
 
 @Repository
@@ -24,6 +25,8 @@ public interface ReinsuranceContractRepository extends CrudRepository<Reinsuranc
 	List<Contrat> Contratnonreassure();
 	@Query("SELECT c FROM Contrat c WHERE c.NumContrat= ?1")
 	Contrat ContratavecSinistre(int id);
+	@Query("SELECT c FROM Sinistre c")
+	List<Sinistre> FindSinistres();
 	@Query(value = "SELECT * FROM reinsurance_contract WHERE contrat_id= :c", nativeQuery = true)
 	public List<Reinsurance_contract> findReinByCont(@Param("c") int c );
 	@Modifying

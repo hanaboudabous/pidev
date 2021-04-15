@@ -26,6 +26,15 @@ public class Reinsurance_contract {
 	private float Remboursement;
 	@OneToOne
 	private Contrat Contrat ;
+	@OneToOne
+	private User User ;
+	
+	public User getUser() {
+		return User;
+	}
+	public void setUser(User user) {
+		User = user;
+	}
 	public int getReinsurance_ID() {
 		return Reinsurance_ID;
 	}
@@ -61,28 +70,32 @@ public class Reinsurance_contract {
 		Remboursement = remboursement;
 	}
 
-	@Override
+    @Override
 	public String toString() {
 		return "Reinsurance_contract [Reinsurance_ID=" + Reinsurance_ID + ", primeCommerciale=" + primeCommerciale
-				+ ", PrimePure=" + PrimePure + ", Remboursement=" + Remboursement + ", Contrat=" + Contrat + "]";
+				+ ", PrimePure=" + PrimePure + ", Remboursement=" + Remboursement + ", Contrat=" + Contrat + ", User="
+				+ User + "]";
 	}
-
+    	
 	public Reinsurance_contract(int reinsurance_ID, float primeCommerciale, float primePure, float remboursement,
-			tn.esprit.spring.entity.Contrat contrat) {
+			tn.esprit.spring.entity.Contrat contrat, tn.esprit.spring.entity.User user) {
 		super();
 		Reinsurance_ID = reinsurance_ID;
 		this.primeCommerciale = primeCommerciale;
 		PrimePure = primePure;
 		Remboursement = remboursement;
 		Contrat = contrat;
+		User = user;
 	}
+	
 	public Reinsurance_contract(float primeCommerciale, float primePure, float remboursement,
-			tn.esprit.spring.entity.Contrat contrat) {
+			tn.esprit.spring.entity.Contrat contrat, tn.esprit.spring.entity.User user) {
 		super();
 		this.primeCommerciale = primeCommerciale;
 		PrimePure = primePure;
 		Remboursement = remboursement;
 		Contrat = contrat;
+		User = user;
 	}
 	public Reinsurance_contract() {
 	}

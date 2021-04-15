@@ -26,7 +26,7 @@ public class Contribution implements Serializable {
 	 private User userss;
 	 /************************************************************************/
 	
-	 private int nbtickets;
+	 private int nbtickets;   
 	 
 	 private float montant; // conversion des tickets en montant (*20)
 	 

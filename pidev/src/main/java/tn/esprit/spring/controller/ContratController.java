@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.services.ContratService;
+import tn.esprit.spring.services.UserService;
 
 
 @Scope(value = "session")
@@ -26,7 +28,8 @@ import tn.esprit.spring.services.ContratService;
 public class ContratController {
 
 	
-	
+	@Autowired
+	UserService userService;
 	@Autowired
 	ContratService contratService ;
 	
@@ -59,16 +62,16 @@ public class ContratController {
 			
 	}
 	
-	@GetMapping("/liste/propose/{idUser}")
+	@GetMapping("/liste/propose")
 	@ResponseBody
-	public List<Contrat> ProposeContratController(@PathVariable("idUser") int idUser){
-		List<Contrat> list = contratService.ProposeContrat(idUser);
+	public List<Contrat> ProposeContratController(Authentication auth){
+		List<Contrat> list = contratService.ProposeContrat(userService.getcode(auth.getName()).getUser_ID());
 		return list;			
 	}
 
 	@RequestMapping("/deleteC/{id}")
 	@PostMapping
-	public ResponseEntity<Contrat> deleteContratController(@PathVariable("id")  int id){
+	public ResponseEntity<Contrat> deleteContratController(@PathVariable("id") int    id){
 		
 		contratService.deleteContrat(id);
 		return new ResponseEntity<Contrat>(HttpStatus.OK);

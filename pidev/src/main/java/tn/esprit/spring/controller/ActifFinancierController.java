@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tn.esprit.spring.entity.ActifFinancier;
 import tn.esprit.spring.entity.Fond;
 import tn.esprit.spring.services.ActifFinancierService;
+import tn.esprit.spring.services.UserService;
 
 
 @Scope(value = "session")
@@ -32,13 +34,15 @@ public class ActifFinancierController {
 	ActifFinancierService actifFinancierService ;
 	
 	
+	@Autowired
+	UserService userService;
 
 	
-	@PostMapping("/addactif/{iduser}")
+	@PostMapping("/addactif")
 	@ResponseBody
-	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a , @PathVariable("iduser") int    iduser	){
+	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a ,Authentication auth	){
 		
-		actifFinancierService.addActifFinancier(a, iduser);
+		actifFinancierService.addActifFinancier(a, userService.getcode(auth.getName()).getUser_ID());
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);
 	}
 	
@@ -56,10 +60,10 @@ public class ActifFinancierController {
 	public List<ActifFinancier>listemontant_actuelFond(@PathVariable("fond") Fond    fond){
 		return actifFinancierService.listemontant_actuelFond(fond);
 	}
-	@GetMapping("/listeActifactuelparfondUser/{fond}/{id}")  /*** user  : all par fond  */
+	@GetMapping("/listeActifactuelparfondUser/{fond}")  /*** user  : all par fond  */
 	@ResponseBody
-	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,@PathVariable("id") int    iduser){
-		return actifFinancierService.listemontant_actuelFondparUser(fond,iduser);
+	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,Authentication auth){
+		return actifFinancierService.listemontant_actuelFondparUser(fond,userService.getcode(auth.getName()).getUser_ID());
 	}	
 	
 	@GetMapping("/change/{id}")

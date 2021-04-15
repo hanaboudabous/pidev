@@ -149,4 +149,9 @@ public class UserService implements IUserService {
     file.transferTo(new File("C:\\wamp\\www\\images\\"+file.getOriginalFilename()));
 
 	}
+	
+	/**********************************************************************/
+	public void del(int id){
+		userRepository.deleteById(id);
+	}
 }

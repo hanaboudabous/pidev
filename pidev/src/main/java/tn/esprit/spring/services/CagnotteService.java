@@ -16,7 +16,6 @@ import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.entity.Sinistre;
 import tn.esprit.spring.repository.ICagnotteRepo;
 import tn.esprit.spring.repository.IContratRepo;
-/*
 @Service
 public class CagnotteService {
 	@Autowired
@@ -32,9 +31,9 @@ public class CagnotteService {
         return cal.getTime();
     }
 	
-
-	public void entrerCagnotte(Cagnotte ca , int id){
-
+	/*AJOUT D'UN CONTRAT DANS LA CAGNOTTE*/
+	public void entrerCagnotte(int id){
+        Cagnotte ca= new Cagnotte();
 		Contrat c = contrat.findById(id).get();
 		Date currentDate = new Date();
 		int year=currentDate.getYear();
@@ -64,6 +63,8 @@ public class CagnotteService {
 
 	}
 	
+	
+/*Changement d'état D'un CONTRAT DE LA CAGNOTTE: de en cours --> suspendu*/
 	public void sortirCagnotte(){
 		List<Cagnotte> list=cag.findAll();
 		for(int i=0;i<list.size();i++){
@@ -87,7 +88,7 @@ public class CagnotteService {
 		
 
 	}
-
+	/*AFFICHER LES CONTRATS courants de la cagnotte*/
 	
 	@Transactional
 	public List<Cagnotte> afficheCagnotte(){
@@ -95,7 +96,7 @@ public class CagnotteService {
 		return cag.findAll();
 	}
 
-
+	/* somme  montantfinal de tous les contrats courants de la cagnotte*/
 	public float TotalMontantfinal(){
 		List<Cagnotte> list= afficheCagnotte();
 		float totapayer=0;
@@ -106,6 +107,7 @@ public class CagnotteService {
 		}
 		return totapayer;
 	}
+	/* somme  montantactuel de tous les contrats courants de la cagnotte*/
 	public float TotalMontantactuel(){
 		List<Cagnotte> list= afficheCagnotte();
 		float totactuel=0;
@@ -118,7 +120,7 @@ public class CagnotteService {
 	}
 	
 	
-	
+/*Affichage cagnottre pour utilisateurs*/	
 	public String affichageCagnotteAuUsers(){
 		float totapayer=TotalMontantfinal();
 		float totactuel=TotalMontantactuel();
@@ -136,4 +138,4 @@ public class CagnotteService {
 
 
 
-}*/
+}

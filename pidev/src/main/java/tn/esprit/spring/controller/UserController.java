@@ -105,6 +105,7 @@ public class UserController {
 	public User modifyUser(@RequestBody User user) {
 		String pwd=user.getPassword();
 		Random rand = new Random();
+		user.setImage(im);
 		String crypt=passcrypt.encode(pwd);
 		user.setPassword(crypt);
 		user.setRandom(rand.nextInt(9999999)+1111111);
@@ -160,7 +161,7 @@ public class UserController {
 	
 	@GetMapping("/register/sendmail/{d1}")
 	@ResponseBody
-	public void sendmail(@PathVariable("d1") String email) throws MessagingException  {
+	public String sendmail(@PathVariable("d1") String email) throws MessagingException  {
 
 	User u=userService.getcode(email);
     if(u!=null)
@@ -172,12 +173,12 @@ public class UserController {
     } catch (MailException mailException) {
 		System.out.println(mailException);
 	}
-    	System.out.println("User exist !!!");	
+    	return "success !"	;
 
     }
     else{
     	
-    	System.out.println("User doesnt exist !!!");	
+    	return "user doesnt exist !!"	;
     }
 	}
 }

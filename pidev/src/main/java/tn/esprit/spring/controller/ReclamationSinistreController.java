@@ -2,7 +2,9 @@ package tn.esprit.spring.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,47 +21,74 @@ import tn.esprit.spring.services.ReclamationSinistreService;
 import tn.esprit.spring.entity.ReclamationSinistre;
 
 
-@Controller(value = "reclamationsinistreController") // Name of the bean in Spring IoC
+@Scope(value = "session")
+
+@Controller(value = "ReclamationSinistreController") // Name of the bean in Spring IoC
+@RequestMapping("/ReclamationSinistre")
+
 public class ReclamationSinistreController {
 	
+	
 	@Autowired
-	ReclamationSinistreService serv ;
+	ReclamationSinistreService reclamationSinistreService ;
+	
+	
+	@RequestMapping("/add/{id}")
+	@PostMapping
+	public ResponseEntity<ReclamationSinistre> ajoutReclamationSinistreController(
+			@RequestBody ReclamationSinistre    dem 	,@PathVariable("id")  int id	){
+		
 
-	@GetMapping("/reclamationsinistres")
+		reclamationSinistreService.AjoutReclamationSelonType(dem ,id);
+		return new ResponseEntity<ReclamationSinistre>(HttpStatus.OK);
+	}
+	
+	
+	
+	
+	@GetMapping("/liste")
 	@ResponseBody
-	public List<ReclamationSinistre> getReclamationSinsitres(){
-		List<ReclamationSinistre> list = serv.ReclamationSinistreList();
+	public List<ReclamationSinistre> afficheReclamationSinistreController(){
+		List<ReclamationSinistre> list = reclamationSinistreService.afficheReclamationSinistre();
 		return list;
-
+			
 	}
+	
 
-
-
-	@PostMapping("/addrec")
-	@ResponseBody
-	public ResponseEntity<ReclamationSinistre> insertReclamationSinsitre(@RequestBody ReclamationSinistre rec){
-		serv.addReclamationSinistre(rec,1); 
+	@RequestMapping("/deleterec/{id}")
+	@PostMapping
+	public ResponseEntity<ReclamationSinistre> deleteReclamationSinistreController(@PathVariable("id")  int id){
+		
+		reclamationSinistreService.deleteReclamationSinistre(id);
 		return new ResponseEntity<ReclamationSinistre>(HttpStatus.OK);
 	}
-
-
-
-	@DeleteMapping("/removerec/{rec-id}")
+	
+	@GetMapping("/liste/nonTraite")
 	@ResponseBody
-	public void removeReclamationSinistre(@PathVariable("rec-id") int Id){
-		serv.deleteReclamationSinistre(Id);
+	public List<ReclamationSinistre> afficheRecNonTraiteController(){
+		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinNonTraite();
+		return list;		
 	}
-
-
-	@PutMapping("/updaterec")
+	@GetMapping("/liste/traite")
 	@ResponseBody
-	public ResponseEntity<ReclamationSinistre> updateReclamationSinsitre(@RequestBody ReclamationSinistre rec){
-		serv.updateReclamationSinistre(rec);
-		return new ResponseEntity<ReclamationSinistre>(HttpStatus.OK);
+	public List<ReclamationSinistre> afficheRecTraiteController(){
+		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinTraite();
+		return list;			
+	}
+	
+	
+	@GetMapping("/liste/nonTraite/{iduser}")
+	@ResponseBody
+	public List<ReclamationSinistre> afficheRecNonTraiteUserController(@PathVariable("iduser")  int iduser){
+		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinNonTraiteUser(iduser);
+		return list;		
+	}
+	
+	@GetMapping("/liste/traite/{iduser}")
+	@ResponseBody
+	public List<ReclamationSinistre> afficheRecTraiteUserController(@PathVariable("iduser")  int iduser){
+		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinTraiteUser(iduser);
+		return list;			
 	}
 
-	}
-
-	    
-	   
-
+}

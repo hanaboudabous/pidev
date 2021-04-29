@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import tn.esprit.spring.entity.User;
 import tn.esprit.spring.entity.DemandeContrat;
 
 
@@ -23,4 +24,5 @@ public interface IDemandeContratRepo  extends JpaRepository<DemandeContrat, Inte
 	public List<DemandeContrat> IafficheDemandeContratNonTraite();
 	
 	 List<DemandeContrat> findByTraite(int traite);
+	 List<DemandeContrat> findByUsers( User user);
 }

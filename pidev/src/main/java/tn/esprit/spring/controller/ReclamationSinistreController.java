@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.esprit.spring.services.ReclamationSinistreService;
+import tn.esprit.spring.services.UserService;
 import tn.esprit.spring.entity.ReclamationSinistre;
 
 
@@ -28,17 +30,18 @@ import tn.esprit.spring.entity.ReclamationSinistre;
 
 public class ReclamationSinistreController {
 	
-	
+
 	@Autowired
 	ReclamationSinistreService reclamationSinistreService ;
-	
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping("/add/{id}")
 	@PostMapping
 	public ResponseEntity<ReclamationSinistre> ajoutReclamationSinistreController(
-			@RequestBody ReclamationSinistre    dem 	,@PathVariable("id")  int id	){
+			@RequestBody ReclamationSinistre    dem 	,@PathVariable("id")  int id,Authentication auth		){
 		
-
+		 	
 		reclamationSinistreService.AjoutReclamationSelonType(dem ,id);
 		return new ResponseEntity<ReclamationSinistre>(HttpStatus.OK);
 	}
@@ -77,17 +80,17 @@ public class ReclamationSinistreController {
 	}
 	
 	
-	@GetMapping("/liste/nonTraite/{iduser}")
+	@GetMapping("/listee/nonTraite")
 	@ResponseBody
-	public List<ReclamationSinistre> afficheRecNonTraiteUserController(@PathVariable("iduser")  int iduser){
-		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinNonTraiteUser(iduser);
+	public List<ReclamationSinistre> afficheRecNonTraiteUserController(Authentication auth){
+		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinNonTraiteUser( userService.getcode(auth.getName()).getUser_ID());
 		return list;		
 	}
 	
-	@GetMapping("/liste/traite/{iduser}")
+	@GetMapping("/listee/traite")
 	@ResponseBody
-	public List<ReclamationSinistre> afficheRecTraiteUserController(@PathVariable("iduser")  int iduser){
-		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinTraiteUser(iduser);
+	public List<ReclamationSinistre> afficheRecTraiteUserController(Authentication auth){
+		List<ReclamationSinistre> list = reclamationSinistreService.afficheRecSinTraiteUser(userService.getcode(auth.getName()).getUser_ID());
 		return list;			
 	}
 

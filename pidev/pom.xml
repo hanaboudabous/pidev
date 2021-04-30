@@ -391,7 +391,11 @@
         <artifactId>javase</artifactId>
         <version>3.3.0</version>
     </dependency>
-
+	<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+			<version>3.4.1.Final</version>
+		</dependency>
 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
@@ -404,6 +408,29 @@
   <groupId>com.fasterxml.jackson.datatype</groupId>
   <artifactId>jackson-datatype-joda</artifactId>
 </dependency>
+
+		
+		<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+		<!-- https://mvnrepository.com/artifact/org.richfaces/richfaces -->
+<dependency>
+    <groupId>org.richfaces</groupId>
+    <artifactId>richfaces</artifactId>
+    <version>5.0.0.Alpha3</version>
+</dependency>
+
+	<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-impl</artifactId>
+			<version>2.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-api</artifactId>
+			<version>2.2.12</version>
+		</dependency>
 	</dependencies>
 
 

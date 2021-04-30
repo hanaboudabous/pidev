@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+
+
+
+	<ui:define name="content">
+	<div class="content">
+		<div class="content_resize">
+		<div class="mainbar">
+				<div class="article">
+				<span>&nbsp;&bull;&nbsp;</span>
+				<span>&nbsp;&bull;&nbsp;</span>
+				
+    </div>
+			
+	
+	
+<!--BEGIN : TP1 JSF Introduction Login -->
+
+
+
+ 
+        <div class="article">
+          <h2><span>We offer you the best</span> Contract</h2>
+          <p class="infopost"><a href="#" class="com"><span>1</span></a> Posted <span class="date">on 	<h:outputText value="#{contratControllerJSF.date_debut}" /></span> by <a href="#">Our support</a> &nbsp;&nbsp;|&nbsp;&nbsp; </p>
+          <div class="clr"></div>
+          <div class="img"><img src="images/img1.jpg" width="624" height="134" alt="" class="fl" /></div>
+          <div class="post_content">
+          <span>&nbsp;&bull;&nbsp;</span>
+          <p><strong> Date debut : </strong> <h:outputText value="#{contratControllerJSF.date_debut}" /></p>          
+          <p><strong> Date fin : </strong> <h:outputText value="#{contratControllerJSF.date_fin}" /></p>
+     	  <p><strong> Prime : </strong> <h:outputText value="#{contratControllerJSF.primeCommerciale}" /></p>          
+          <p><strong> Remboursement : </strong> <h:outputText value="#{contratControllerJSF.remboursement}" /></p>
+  </div>
+          <div class="clr"></div>
+        </div>
+       
+			
+			</div>
+		
+      <div class="sidebar">
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">TemplateInfo</a></li>
+            <li><a href="#">Style Demo</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Archives</a></li>
+            <li><a href="#">Web Templates</a></li>
+          </ul>
+        </div>
+        <div class="gadget">
+          <h2 class="star"><span>Sponsors</span></h2>
+          <div class="clr"></div>
+          <ul class="ex_menu">
+            <li><a href="http://www.dreamtemplate.com/">DreamTemplate</a><br />
+              Over 6,000+ Premium Web Templates</li>
+            <li><a href="http://www.templatesold.com/">TemplateSOLD</a><br />
+              Premium WordPress &amp; Joomla Themes</li>
+            <li><a href="http://www.imhosted.com/">ImHosted.com</a><br />
+              Affordable Web Hosting Provider</li>
+            <li><a href="http://www.megastockphotos.com/">MegaStockPhotos</a><br />
+              Unlimited Amazing Stock Photos</li>
+            <li><a href="http://www.evrsoft.com/">Evrsoft</a><br />
+              Website Builder Software &amp; Tools</li>
+            <li><a href="http://www.csshub.com/">CSS Hub</a><br />
+              Premium CSS Templates</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+		</div>
+	
+		
+</div>
+	</ui:define>
+	
+</ui:composition>

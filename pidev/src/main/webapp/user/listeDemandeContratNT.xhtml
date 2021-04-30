@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+
+
+
+	<ui:define name="content">
+	<div class="content">
+		<div class="content_resize">
+			<div class="mainbar">
+				<div class="article">
+    
+    
+<!--BEGIN : TP1 JSF Introduction Login -->
+
+
+<h:panelGroup >
+	<h:form>
+		<h:dataTable value="#{demandeContratControllerJSF.listeDemandeNTUser}" var="l"
+			>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="capital Assure" />
+				</f:facet>
+				<h:outputText value="#{l.capitalAssure}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="type Contrat" />
+				</f:facet>
+				<h:outputText value="#{l.typeContrat}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="nom Contrat" />
+				</f:facet>
+				<h:outputText value="#{l.nomContrat}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="nombre Annee" />
+				</f:facet>
+				<h:outputText value="#{l.nombreAnnee}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="fumeur" />
+				</f:facet>
+				<h:outputText value="#{l.fumeur}" />
+			</h:column>
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="sportif" />
+				</f:facet>
+				<h:outputText value="#{l.sportif}" />
+			</h:column>
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="maladie" />
+				</f:facet>
+				<h:outputText value="#{l.maladie}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Action" />
+				</f:facet>
+				<h:commandButton action="#{demandeContratControllerJSF.deleteDemandeNontraite(l.numDemande)}" value="Supprimer" />
+
+			</h:column>
+			
+		</h:dataTable>
+	</h:form>
+</h:panelGroup>
+
+
+			</div>
+			
+			</div>
+		
+      <div class="sidebar">
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">TemplateInfo</a></li>
+            <li><a href="#">Style Demo</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Archives</a></li>
+            <li><a href="#">Web Templates</a></li>
+          </ul>
+        </div>
+        <div class="gadget">
+          <h2 class="star"><span>Sponsors</span></h2>
+          <div class="clr"></div>
+          <ul class="ex_menu">
+            <li><a href="http://www.dreamtemplate.com/">DreamTemplate</a><br />
+              Over 6,000+ Premium Web Templates</li>
+            <li><a href="http://www.templatesold.com/">TemplateSOLD</a><br />
+              Premium WordPress &amp; Joomla Themes</li>
+            <li><a href="http://www.imhosted.com/">ImHosted.com</a><br />
+              Affordable Web Hosting Provider</li>
+            <li><a href="http://www.megastockphotos.com/">MegaStockPhotos</a><br />
+              Unlimited Amazing Stock Photos</li>
+            <li><a href="http://www.evrsoft.com/">Evrsoft</a><br />
+              Website Builder Software &amp; Tools</li>
+            <li><a href="http://www.csshub.com/">CSS Hub</a><br />
+              Premium CSS Templates</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>

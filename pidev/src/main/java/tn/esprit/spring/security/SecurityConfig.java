@@ -27,14 +27,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
 
-		auth.userDetailsService(userDetailsService).passwordEncoder(encodePWD());
+		//auth.userDetailsService(userDetailsService).passwordEncoder(encodePWD());
 	}
 	
     @Override
 	protected void configure(HttpSecurity http) throws Exception
 	{    
-    	http.csrf().disable().authorizeRequests().anyRequest().authenticated()
-		.and().httpBasic();
+    	http.csrf().disable();
+    	/*authorizeRequests().anyRequest().authenticated()
+		.and().httpBasic();*/
 	}
 	
 	public PasswordEncoder getencodePWD()

@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<head>
+<title>SignIn/SignUp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-titillium-250.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+	</head>
+
+
+	<body>
+
+		<div class="header">
+			<div class="header_resize">
+				<div class="logo">
+					<h1>
+						<a href=""><span>Micro-Lift</span>. <small>Insurance</small></a>
+					</h1>
+				</div>
+				<div class="clr"></div>
+				<br />
+								<div align="center">
+					<h1><a href="">Sign In</a></h1>
+				</div>
+				<br />
+				<br />
+				<div align="center">
+					<h:form id="form">
+						<h:panelGrid columns="2">
+							<h:outputText value="Login (Email)" />
+							<h:inputText value="#{UserController.email}" />
+							<h:outputText value="Mot de passe" />
+							<h:inputSecret value="#{UserController.password}" />
+							<br />
+							<div align="center">
+							<h:commandButton id="btn" value="Connexion" action="#{UserController.doLogin()}"/>
+								</div>
+							<h:message for="btn" />
+						</h:panelGrid>
+					</h:form>
+					<div align="center">
+						<h3>
+							<a href="">Forgot password !</a>
+						</h3>
+					</div>
+					<div align="center">
+						<h3>
+							<a href="">Create an account </a>
+						</h3>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+</ui:composition>

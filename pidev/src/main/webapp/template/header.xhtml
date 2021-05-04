@@ -20,7 +20,23 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <script type="text/javascript" src="js/coin-slider.min.js"></script>
 </head>
 
+<div align="right">
+					<h:form id="form">
+						<h:panelGrid columns="2">
+							<h:commandButton id="btn" value="logout" action="#{UserController.doLogout()}"/>
+					
+							<h:message for="btn" />
+						</h:panelGrid>
+					</h:form>
+					</div>
+					<div align="center">
+					<table><tr>
+						<td><h:graphicImage value="http://localhost:8082/template/images/#{UserController.im}" /></td></tr>
+														<tr>
+									<td><h:outputText value="#{UserController.email}"></h:outputText></td></tr>
 
+									</table>
+						</div>
 <body>
 
   <div class="header">

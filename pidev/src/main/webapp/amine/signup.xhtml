@@ -1,0 +1,246 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<head>
+<title>SignIn/SignUp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-titillium-250.js"></script>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/coin-slider.min.js"></script>
+	</head>
+
+
+	<body>
+
+		<div class="header">
+			<div class="header_resize">
+				<div class="logo">
+					<h1>
+						<a href=""><span>Micro-Lift</span>. <small>Insurance</small></a>
+					</h1>
+				</div>
+				<div class="clr"></div>
+				<br />
+				<div align="center">
+					<h1>
+						<a href="">Sign Up</a>
+					</h1>
+				</div>
+				<div align="center">
+					<h:panelGroup columns="2">
+						<h:form id="form">
+							<table>
+								<tr>
+									<td><h:outputText value="Email"></h:outputText></td>
+									<td><h:inputText id="em" required="true" validatorMessage="the form of th email must be like : amine@dada.com"
+											requiredMessage="enter an email" value="#{UserController.email}">
+											<f:validateRegex for="em" pattern=".+\@.+\..+" /></h:inputText>
+												<table>
+											<tr>
+												<td><h:message for="em" style="color:red" /></td>
+											</tr>
+										</table>
+											</td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Password"></h:outputText></td>
+									<td><h:inputSecret id="pa" required="true"
+											requiredMessage="enter a password" value="#{UserController.password}">
+											<f:validateLength for="pa" minimum="8" /></h:inputSecret>
+											<table>
+											<tr>
+												<td><h:message for="pa" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Confirm password"></h:outputText></td>
+									<td><h:inputSecret id="pas" required="true"
+											requiredMessage="enter a confirm_pass"
+											value="#{UserController.confirm_password}">
+											<f:validateLength for="pas" minimum="8" /></h:inputSecret>
+											<table>
+											<tr>
+												<td><h:message for="pas" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="First_name" ></h:outputText></td>
+									<td><h:inputText id="a" required="true"
+											requiredMessage="enter your First_name" value="#{UserController.first_name}"></h:inputText>
+													<table>
+											<tr>
+												<td><h:message for="a" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Last_name"></h:outputText></td>
+									<td><h:inputText id="b" required="true"
+											requiredMessage="enter your Last_name" value="#{UserController.last_name}"></h:inputText>
+													<table>
+											<tr>
+												<td><h:message for="b" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Phone number"></h:outputText></td>
+									<td><h:inputText id="num" required="true"
+											requiredMessage="enter your phone number" value="#{UserController.number}">
+											<f:validateLength for="num" minimum="8" maximum="8" /></h:inputText>
+																					<table>
+											<tr>
+												<td><h:message for="num" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Postal_code"></h:outputText></td>
+									<td><h:inputText id="postal" required="true"
+											requiredMessage="enter your postal_code"
+											value="#{UserController.postal_code}">
+
+											<f:validateLength for="postal" minimum="4" maximum="4" />
+										</h:inputText>
+										<table>
+											<tr>
+												<td><h:message for="postal" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+
+								<tr>
+									<td><h:outputText value="Birth_date"></h:outputText></td>
+									<td><h:inputText id="birth" required="true"
+											requiredMessage="enter your birth_date"
+											value="#{UserController.birth_date}">
+											<f:convertDateTime pattern="yyyy-mm-dd" />
+										</h:inputText>
+										<table>
+											<tr>
+												<td><h:message for="birth" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Geographical_area"></h:outputText></td>
+									<td><h:selectOneMenu id="geo" required="true"
+											requiredMessage="choose your geographical_area"
+											value="#{UserController.geographical_area}">
+											<f:selectItem itemLabel="Select geographical_area"
+												itemValue="#{null}" />
+											<f:selectItems value="#{UserController.geographical_areas}" />
+										</h:selectOneMenu>
+										<table>
+											<tr>
+												<td><h:message for="geo" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Status"></h:outputText></td>
+									<td><h:selectOneMenu id="ge" required="true"
+											requiredMessage="choose your status" value="#{UserController.status}">
+											<f:selectItem itemLabel="Select status" itemValue="#{null}" />
+											<f:selectItems value="#{UserController.statuss}" />
+										</h:selectOneMenu>
+										<table>
+											<tr>
+												<td><h:message for="ge" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Cin"></h:outputText></td>
+									<td><h:inputText id="cin" required="true"
+											requiredMessage="enter your cin"
+											value="#{UserController.cin}">
+											<f:validateLength for="cin" minimum="8" maximum="8" />
+										</h:inputText>
+										<table>
+											<tr>
+												<td><h:message for="cin" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Gender"></h:outputText></td>
+									<td><h:inputText id="cn" required="true"
+											requiredMessage="enter your gender" value="#{UserController.sexe}"></h:inputText>
+											<table>
+											<tr>
+												<td><h:message for="cn" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Address"></h:outputText></td>
+									<td><h:inputText id="ci" required="true"
+											requiredMessage="enter your address" value="#{UserController.address}"></h:inputText>
+											<table>
+											<tr>
+												<td><h:message for="ci" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Job"></h:outputText></td>
+									<td><h:inputText id="c" required="true"
+											requiredMessage="enter your job" value="#{UserController.job}"></h:inputText>
+											<table>
+											<tr>
+												<td><h:message for="c" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Motorised / Not motorised"></h:outputText></td>
+									<td><h:selectBooleanCheckbox id="k" required="true"
+											requiredMessage="Are you motorisation ?"
+											value="#{UserController.motorisation}"></h:selectBooleanCheckbox>
+											<table>
+											<tr>
+												<td><h:message for="k" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td><h:outputText id="ct" required="true"
+											requiredMessage="Are you shifting ?" value="Shifting / Not shifting"></h:outputText></td>
+									<td><h:selectBooleanCheckbox
+											value="#{UserController.shifting}"></h:selectBooleanCheckbox>
+											<table>
+											<tr>
+												<td><h:message for="ct" style="color:red" /></td>
+											</tr>
+										</table></td>
+								</tr>
+								<!--  	<tr>
+
+									<td><h:inputFile value="#{UserController.im1}"></h:inputFile></td>
+								</tr>-->
+								<tr>
+									<td colspan="2"><h:commandButton id="btn" value="Click"
+											action="#{UserController.addUser()}" />
+											<h:message for="btn" style="color:green" /></td>
+								</tr>
+							</table>
+						</h:form>
+					</h:panelGroup>
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+</ui:composition>

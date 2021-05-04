@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<head>
-<title>SignIn/SignUp</title>
+<title>MicroLift</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
@@ -26,35 +26,27 @@
 				</div>
 				<div class="clr"></div>
 				<br />
-								<div align="center">
-					<h1><a href="">Sign In</a></h1>
+				<div align="center">
+					<h1>
+						<a href="">Find your account</a>
+					</h1>
 				</div>
-				<br />
-				<br />
+				<br /> <br />
 				<div align="center">
 					<h:form id="form">
 						<h:panelGrid columns="2">
-							<h:outputText value="Login (Email)" />
-							<h:inputText value="#{UserController.email}" />
-							<h:outputText value="Mot de passe" />
-							<h:inputSecret value="#{UserController.password}" />
+							<h:outputText value="Enter your random code " />
+							<h:inputText value="#{UserController.random}" />
+							<h:outputText value="Enter your new password " />
+							<h:inputText value="#{UserController.password}" />
 							<br />
 							<div align="center">
-							<h:commandButton id="btn" value="Connexion" action="#{UserController.doLogin()}"/>
-								</div>
+								<h:commandButton id="btn" value="send"
+									action="#{UserController.forgot()}" />
+							</div>
 							<h:message for="btn" />
 						</h:panelGrid>
 					</h:form>
-					<div align="center">
-						<h3>
-							<a href="sendmail.jsf">Forgot password !</a>
-						</h3>
-					</div>
-					<div align="center">
-						<h3>
-							<a href="signup.jsf">Create an account </a>
-						</h3>
-					</div>
 
 				</div>
 

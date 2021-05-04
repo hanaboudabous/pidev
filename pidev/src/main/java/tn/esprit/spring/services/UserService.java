@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.Part;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,24 +114,14 @@ public class UserService implements IUserService {
 	public User getcode(String email)
 	{
 		User u=userRepository.getcode(email);
-		if(u!=null)
-		{
-       return u;}
-		else{
-			return null;
-		}
+        return u;
 		
 		
 	}
 	public User getRandom(String random)
 	{
 		User u=userRepository.getRandom(Integer.parseInt(random));
-		if(u!=null)
-		{
-       return u;}
-		else{
-			return null;
-		}
+        return u;
 		
 		
 	}
@@ -144,9 +136,9 @@ public class UserService implements IUserService {
 
 	}
 	
-	public void uploadFile(MultipartFile file) throws IllegalStateException, IOException
+	public void uploadFile(Part file) throws IllegalStateException, IOException
 	{
-    file.transferTo(new File("C:\\wamp\\www\\images\\"+file.getOriginalFilename()));
+    ((MultipartFile) file).transferTo(new File("C:Users\\ASUS\\git\\pidev\\pidev\\src\\main\\webapp\\template\\images"+file.getName()));
 
 	}
 	
@@ -154,4 +146,5 @@ public class UserService implements IUserService {
 	public void del(int id){
 		userRepository.deleteById(id);
 	}
+
 }

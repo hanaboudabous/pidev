@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.servlet.http.Part;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import tn.esprit.spring.entity.User;
@@ -26,5 +28,5 @@ public interface IUserService {
 	 void upRandom(Integer random,String random1);
 	 List<Object> getUserbydate();
 	 List<Object> getUserbyarea();
-	 void uploadFile(MultipartFile file)throws IllegalStateException, IOException;
+	 void uploadFile(Part file)throws IllegalStateException, IOException;
 }

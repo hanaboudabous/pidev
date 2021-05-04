@@ -385,6 +385,63 @@ public class User  {
 		Role_User = role_User;
 		Payment = payment;
 	}
+	
+	public User(int user_ID, String first_name, String last_name, int number, long cIN,
+			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
+			String address, int postal_code, String job, tn.esprit.spring.entity.Status status, String sexe,
+			int shifting, String email, String password, String confirm_password, String image, int random,
+			Date hiring_date, tn.esprit.spring.entity.Role_User role_User) {
+		super();
+		User_ID = user_ID;
+		First_name = first_name;
+		Last_name = last_name;
+		Number = number;
+		CIN = cIN;
+		Geographical_area = geographical_area;
+		Motorisation = motorisation;
+		Birth_date = birth_date;
+		Address = address;
+		Postal_code = postal_code;
+		Job = job;
+		Status = status;
+		this.sexe = sexe;
+		this.shifting = shifting;
+		Email = email;
+		Password = password;
+		Confirm_password = confirm_password;
+		Image = image;
+		this.random = random;
+		Hiring_date = hiring_date;
+		Role_User = role_User;
+	}
+	public User(String first_name, String last_name, int number, long cIN,
+			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
+			String address, int postal_code, String job, tn.esprit.spring.entity.Status status, String sexe,
+			int shifting, String email, String password, String confirm_password, String image, int random,
+			Date hiring_date, tn.esprit.spring.entity.Role_User role_User) {
+		super();
+
+		First_name = first_name;
+		Last_name = last_name;
+		Number = number;
+		CIN = cIN;
+		Geographical_area = geographical_area;
+		Motorisation = motorisation;
+		Birth_date = birth_date;
+		Address = address;
+		Postal_code = postal_code;
+		Job = job;
+		Status = status;
+		this.sexe = sexe;
+		this.shifting = shifting;
+		Email = email;
+		Password = password;
+		Confirm_password = confirm_password;
+		Image = image;
+		this.random = random;
+		Hiring_date = hiring_date;
+		Role_User = role_User;
+	}
 	public Set<Payment> getPayment() {
 		return Payment;
 	}

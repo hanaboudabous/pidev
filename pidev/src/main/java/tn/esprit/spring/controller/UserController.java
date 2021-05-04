@@ -7,11 +7,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.mail.MessagingException;
+import javax.servlet.http.Part;
 
 import org.ocpsoft.rewrite.el.ELBeanName;
+import org.richfaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.mail.MailException;
@@ -33,7 +38,8 @@ import tn.esprit.spring.entity.User;
 import tn.esprit.spring.services.IUserService;
 import tn.esprit.spring.services.MailService;
 
-
+@ViewScoped
+@ManagedBean
 @Scope(value = "session")
 @Controller(value = "UserController") // Name of the bean in Spring IoC
 @ELBeanName(value = "UserController") // Name of the bean used by JSF
@@ -46,50 +52,52 @@ public class UserController {
 	
 	@Autowired
 	BCryptPasswordEncoder passcrypt;
+	private Part im1;
 	String im;
 	private int User_ID;
-	private String First_name;
-	private String Last_name;
-	private int Number;
-	private long CIN;
-	Geographical_area Geographical_area;
-	private int Motorisation;
-	private Date Birth_date;
-	private String Address;
-	private int Postal_code;
-	private String Job;
-	Status Status;
+	private String first_name;
+	private String last_name;
+	private int number;
+	private long cin;
+	private Geographical_area geographical_area;
+	private boolean motorisation;
+	private Date birth_date;
+	private String address;
+	private int postal_code;
+	private String job;
+	Status status;
     private String sexe;
-	private int shifting;
+	private boolean shifting;
 	private String email;
 	private String password;
-	private String Confirm_password;
-	private int Scoring;
-	private int random;
+	private String confirm_password;
+	private int scoring;
+	private String random;
 	private Date Hiring_date;
 	Role_User Role_User;
 	private Boolean loggedIn;
 	private User user;
 
 
-	
-	
-	@GetMapping("/register/users")
-	@ResponseBody
-	public List<User> getUsers() {
-	List<User> list = userService.retrieveAllUsers();
-	return list;
-	}
-	
 	public String doLogin(){
 		String navigateTo = "null";
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); 
 		User u=userService.getcode(email);
-		encoder.matches(password, u.getPassword());
-		if (u != null && u.getRole_User() == tn.esprit.spring.entity.Role_User.Client && encoder.matches(password, u.getPassword()))
+		if (email.length()>=8 && password.length()>=8)
 		{
-		navigateTo = "/template/index.xhtml?faces-redirect=true";
-		loggedIn = true; }
+			this.setIm(u.getImage());
+			encoder.matches(password, u.getPassword());
+			if(u.getRole_User() == tn.esprit.spring.entity.Role_User.Client && encoder.matches(password, u.getPassword()))
+			{
+		
+		navigateTo = "/template/template.jsf?faces-redirect=true";
+		loggedIn = true; 
+		}
+			else{FacesMessage facesMessage =
+
+					new FacesMessage("Login Failed: please check your username/password and try again.");
+
+					FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);}}
 		else {
 		FacesMessage facesMessage =
 
@@ -99,6 +107,253 @@ public class UserController {
 		}
 		return navigateTo;
 		}
+	
+	
+	public String sendmail() throws MessagingException{
+		String navigateTo = "null";
+
+		User u=userService.getcode(email);
+			if(u!=null)
+			{
+			notificationService.sendEmailForgot(u);
+		navigateTo = "forgot.jsf?faces-redirect=true";
+			}
+		else {
+		FacesMessage facesMessage =
+
+		new FacesMessage("Sending email Failed: please check your email and try again.");
+
+		FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+		}
+		return navigateTo;
+		}
+	
+	
+	public String forgot() throws MessagingException{
+		String navigateTo = "null";
+
+		if (random!=null && password.length()>=8)
+		{if(userService.getRandom(random)!=null)
+		{
+			String crypt=passcrypt.encode(password);
+			userService.upMdp(random, crypt);
+			Random rand = new Random();
+	        userService.upRandom(rand.nextInt(9999999)+1111111, random);
+	        navigateTo = "login.jsf?faces-redirect=true";
+		}
+		else{
+			FacesMessage facesMessage =
+
+					new FacesMessage("Changing password Failed: please check your random code and try again.");
+
+					FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+		}
+		}
+		else {
+		FacesMessage facesMessage =
+
+		new FacesMessage("Changing password Failed: please check your random code and try again.");
+
+		FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+		}
+		return navigateTo;
+		}
+	
+	public String doLogout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/amine/login.jsf?faces-redirect=true";
+		}
+	
+	    public String addUser() throws MessagingException{
+	  System.out.println(password+"  "+confirm_password);
+	    	if(password.equals(confirm_password))
+	    	{
+	    	  	User u=userService.getcode(email);
+		    	Date currentUtilDate = new Date();
+		    	Random rand = new Random();
+		    	String crypt=passcrypt.encode(password);
+	    	if(u==null)
+	    	{
+	    	if(motorisation==true)
+	    	{
+	    		if(shifting==true)
+	    		{
+	    			if(sexe.equals("homme"))
+	    			{
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,1,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+	    			else {
+	    				
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,1,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));	
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+
+	    		}
+	    		else{
+	    			if(sexe.equals("homme"))
+	    			{
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,1,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			0,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+	    			else {
+	    				
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,1,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			0,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));	
+	    		    	
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+	    			
+
+	    		}
+	    	}
+	    	else{
+	    		if(shifting==true)
+	    		{
+	    			if(sexe.equals("homme"))
+	    			{
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+	    			else {
+	    				
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));	
+	    		    	
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+	    		}
+	    		else{
+	    			if(sexe.equals("homme"))
+	    			{
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			0,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"1.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+	    			else {
+	    				
+	    		    	userService.addUser(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			0,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));	
+	    		    	
+	    		    	notificationService.sendEmailVerify(new User(first_name,last_name,number,cin,
+	    		    			geographical_area,0,birth_date,
+	    		    			address,postal_code,job,status,sexe,
+	    		    			1,email,crypt,confirm_password,"2.png",rand.nextInt(9999999)+1111111,
+	    		    			currentUtilDate,tn.esprit.spring.entity.Role_User.Client));
+	    		    	return "login.jsf?faces-redirect=true";
+	    			}
+	    		}
+	    		
+	    	}
+	    	}
+	    	else{
+	    		FacesMessage facesMessage =
+
+						new FacesMessage("Sign up Failed: the acount does exist !");
+
+						FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+						return "null";
+	    		
+	    	}
+	    	}
+	    	else{
+	    		FacesMessage facesMessage =
+
+						new FacesMessage("Sign up Failed: password must be same to confirm_password !");
+
+						FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);	
+						return "null";
+	    	}
+	
+
+		}
+	    
+	    public void upload() throws IllegalStateException, IOException {
+	    	System.out.println(im1+"");
+	    	//userService.uploadFile(im1);
+	    	im=im1.getName();
+		}
+
+	
+	
+	
+	
+	/*****************************************************/
+	
+	
+	@GetMapping("/register/users")
+	@ResponseBody
+	public List<User> getUsers() {
+	List<User> list = userService.retrieveAllUsers();
+	return list;
+	}
+	
 	
 	@GetMapping("/register/userstats")
 	@ResponseBody
@@ -138,7 +393,7 @@ public class UserController {
     public void upload(@RequestParam("file") MultipartFile file) throws MessagingException, IllegalStateException, IOException 
 	{
 		
-	userService.uploadFile(file);
+	//userService.uploadFile(file);
 	im=file.getOriginalFilename();
 		
 	} 
@@ -272,91 +527,91 @@ public class UserController {
 	}
 
 	public String getFirst_name() {
-		return First_name;
+		return first_name;
 	}
 
-	public void setFirst_name(String first_name) {
-		First_name = first_name;
+	public void setFirst_name(String first_name1) {
+		first_name = first_name1;
 	}
 
 	public String getLast_name() {
-		return Last_name;
+		return last_name;
 	}
 
-	public void setLast_name(String last_name) {
-		Last_name = last_name;
+	public void setLast_name(String last_name1) {
+		last_name = last_name1;
 	}
 
 	public int getNumber() {
-		return Number;
+		return number;
 	}
 
-	public void setNumber(int number) {
-		Number = number;
+	public void setNumber(int number1) {
+		number = number1;
 	}
 
-	public long getCIN() {
-		return CIN;
+	public long getCin() {
+		return cin;
 	}
 
-	public void setCIN(long cIN) {
-		CIN = cIN;
+	public void setCin(long cIN1) {
+		cin = cIN1;
 	}
 
-	public Geographical_area getGeographical_area() {
-		return Geographical_area;
+	public Geographical_area[] getGeographical_areas() {
+		return Geographical_area.values();
 	}
 
-	public void setGeographical_area(Geographical_area geographical_area) {
-		Geographical_area = geographical_area;
+	public void setGeographical_areas(Geographical_area geographical_area1) {
+		geographical_area = geographical_area1;
 	}
 
-	public int getMotorisation() {
-		return Motorisation;
+	public boolean getMotorisation() {
+		return motorisation;
 	}
 
-	public void setMotorisation(int motorisation) {
-		Motorisation = motorisation;
+	public void setMotorisation(boolean motorisation1) {
+		motorisation = motorisation1;
 	}
 
 	public Date getBirth_date() {
-		return Birth_date;
+		return birth_date;
 	}
 
-	public void setBirth_date(Date birth_date) {
-		Birth_date = birth_date;
+	public void setBirth_date(Date birth_date1) {
+		birth_date = birth_date1;
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
-	public void setAddress(String address) {
-		Address = address;
+	public void setaddress(String address1) {
+		address = address1;
 	}
 
 	public int getPostal_code() {
-		return Postal_code;
+		return postal_code;
 	}
 
-	public void setPostal_code(int postal_code) {
-		Postal_code = postal_code;
+	public void setPostal_code(int postal_code1) {
+		postal_code = postal_code1;
 	}
 
 	public String getJob() {
-		return Job;
+		return job;
 	}
 
-	public void setJob(String job) {
-		Job = job;
+	public void setJob(String job1) {
+		job = job1;
 	}
 
-	public Status getStatus() {
-		return Status;
+	public Status[] getStatuss() {
+		return Status.values();
 	}
 
-	public void setStatus(Status status) {
-		Status = status;
+	public void setStatuss(Status status1) {
+		status = status1;
 	}
 
 	public String getSexe() {
@@ -367,11 +622,11 @@ public class UserController {
 		this.sexe = sexe;
 	}
 
-	public int getShifting() {
+	public boolean getShifting() {
 		return shifting;
 	}
 
-	public void setShifting(int shifting) {
+	public void setShifting(boolean shifting) {
 		this.shifting = shifting;
 	}
 
@@ -392,26 +647,26 @@ public class UserController {
 	}
 
 	public String getConfirm_password() {
-		return Confirm_password;
+		return confirm_password;
 	}
 
-	public void setConfirm_password(String confirm_password) {
-		Confirm_password = confirm_password;
+	public void setConfirm_password(String confirm_password1) {
+		confirm_password = confirm_password1;
 	}
 
 	public int getScoring() {
-		return Scoring;
+		return scoring;
 	}
 
-	public void setScoring(int scoring) {
-		Scoring = scoring;
+	public void setScoring(int scoring1) {
+		scoring = scoring1;
 	}
 
-	public int getRandom() {
+	public String getRandom() {
 		return random;
 	}
 
-	public void setRandom(int random) {
+	public void setRandom(String random) {
 		this.random = random;
 	}
 
@@ -445,6 +700,41 @@ public class UserController {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	public Part getIm1() {
+		return im1;
+	}
+
+
+	public void setIm1(Part im1) {
+		this.im1 = im1;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public Geographical_area getGeographical_area() {
+		return geographical_area;
+	}
+
+
+	public void setGeographical_area(Geographical_area geographical_area) {
+		this.geographical_area = geographical_area;
+	}
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	
 	

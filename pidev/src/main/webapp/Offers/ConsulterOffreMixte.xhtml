@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+
+
+
+	<ui:define name="content">
+		
+
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 hidden-xs column-left" id="column-left">
+                <div class="Categories left-sidebar-widget">
+                    <div class="columnblock-title" style="color: #FFA500 ; font-size: 30px;">Your Contract Mixte</div>
+                    
+                </div>
+            </div>
+            <div class="zn-iosSl-item" ><img width="900" height="300" src="images/close.jpg" class="zn-iosSl-img cover-fit-img zn-iosSl-img--center" alt=""  />
+        <h2 style="margin-bottom: 30px"></h2>
+         </div>
+         <div class="category_block">
+                        <ul class="box-category">
+                            <li style="color: red ; font-family:Arial Black, Gadget, sans-serif ;"><a href="offers.jsf">Recapitulatif</a></li>
+                             <h2 style="margin-bottom: 10px"></h2>
+                        </ul>
+                    </div>
+            <div class="table table-bordered">
+                <div class="col-12">
+                    <h:panelGroup columns="2">
+								<h:form>
+									<h:dataTable value="#{offerContratController.listContractOffers}" var="c"
+										border="1">
+					
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="date debut" />
+											</f:facet>
+											<h:outputText value="#{c.date_debut}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="date fin" />
+											</f:facet>
+											<h:outputText value="#{c.date_debut}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Tarification" />
+											</f:facet>
+											<h:outputText value="#{c.tarification}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Montant en cas de vie" />
+											</f:facet>
+											<h:outputText value="#{c.vie_mixte}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Montant en cas de deces" />
+											</f:facet>
+											<h:outputText value="#{c.dèces_mixte}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="duree" />
+											</f:facet>
+											<h:outputText value="#{c.duree}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Etat Du Contrat" />
+											</f:facet>
+											<h:outputText value="#{c.state_offers}" />
+										</h:column>
+										
+                                       
+									</h:dataTable>
+									<div>
+                                            <a href="#{offerContratController.resilience()}"> <button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" >Resillier contrat</button></a>
+                                            
+                                        </div>
+									
+									<h2 style="margin-bottom: 8px"></h2>
+								</h:form>
+							</h:panelGroup>
+
+        </div>
+        <div class="category_block">
+                        <ul class="box-category">
+                            <li style="color: red ; font-family:Arial Black, Gadget, sans-serif ;"><a href="offers.jsf">Etat Paiement</a></li>
+                             <h2 style="margin-bottom: 10px"></h2>
+                        </ul>
+                    </div>
+                    
+                    <p><h:outputText value="#{offerContratController.nbtranche()}"></h:outputText></p>
+        
+    </div>
+      </div>
+    </div>
+
+
+         
+	</ui:define>
+</ui:composition>

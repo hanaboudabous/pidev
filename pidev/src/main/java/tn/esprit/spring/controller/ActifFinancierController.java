@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.esprit.spring.entity.ActifFinancier;
@@ -27,7 +28,8 @@ import tn.esprit.spring.services.UserService;
 @Scope(value = "session")
 
 @Controller(value = "actifFinancierController") // Name of the bean in Spring IoC
-
+@ELBeanName(value = "actifFinancierController")
+@RequestMapping("/jsf")
 public class ActifFinancierController {
 	
 	@Autowired
@@ -46,8 +48,21 @@ public class ActifFinancierController {
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);
 	}
 	
-	
+	private int va = UserController.getIdpublic();
 
+
+	public int getVa() {
+		return va;
+	}
+
+	public void setVa(int va) {
+		this.va = va;
+	}
+
+	public String yalla(){
+		System.out.println("----------------------- " + this.getVa());
+		return "/template/template.xhtml?faces-redirect=true";
+	}
 	
 	@GetMapping("/listeActifactuel")  /*** emp  : all  */
 	@ResponseBody

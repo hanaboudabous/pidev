@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+
+
+
+	<ui:define name="content">
+	<div class="content">
+		<div class="content_resize">
+			<div class="mainbar">
+				<div class="article">
+    
+
+<!--BEGIN : TP1 JSF Introduction Login -->
+
+<h:form>
+<tr>
+		vous avez choisir comme versement  : 	<td><h:outputText value="#{simulateurController.versement}"></h:outputText></td><p>&nbsp;</p>
+		</tr>
+		<tr>
+	comme Prime :		<td><h:outputText value="#{simulateurController.prime}"></h:outputText></td><p>&nbsp;</p>
+	</tr>
+		<tr>
+		Duree de votre contrat : 	<td><h:outputText value="#{simulateurController.maturite}"></h:outputText></td><p>&nbsp;</p>
+		</tr>
+		<tr>
+		et finalement le type de votre contrat : 	<td><h:outputText value="#{simulateurController.fond}"></h:outputText></td>
+		<p>&nbsp;</p>
+		</tr>
+
+
+
+	<h:panelGroup columns="2">
+	<h:form>
+		<h:dataTable value="#{simulateurController.listes}" var="l"
+			border="1">
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="annee" />
+				</f:facet>
+				<h:outputText value="#{l.annee}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="rachat" />
+				</f:facet>
+				<h:outputText value="#{l.rachat}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="capital" />
+				</f:facet>
+				<h:outputText value="#{l.capital}" />
+			</h:column>
+			
+		</h:dataTable>
+	</h:form>
+</h:panelGroup>
+		
+	
+			
+</h:form>
+
+
+
+
+
+			</div>
+			
+			</div>
+		
+      <div class="sidebar">
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">TemplateInfo</a></li>
+            <li><a href="#">Style Demo</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Archives</a></li>
+            <li><a href="#">Web Templates</a></li>
+          </ul>
+        </div>
+        <div class="gadget">
+          <h2 class="star"><span>Sponsors</span></h2>
+          <div class="clr"></div>
+          <ul class="ex_menu">
+            <li><a href="http://www.dreamtemplate.com/">DreamTemplate</a><br />
+              Over 6,000+ Premium Web Templates</li>
+            <li><a href="http://www.templatesold.com/">TemplateSOLD</a><br />
+              Premium WordPress &amp; Joomla Themes</li>
+            <li><a href="http://www.imhosted.com/">ImHosted.com</a><br />
+              Affordable Web Hosting Provider</li>
+            <li><a href="http://www.megastockphotos.com/">MegaStockPhotos</a><br />
+              Unlimited Amazing Stock Photos</li>
+            <li><a href="http://www.evrsoft.com/">Evrsoft</a><br />
+              Website Builder Software &amp; Tools</li>
+            <li><a href="http://www.csshub.com/">CSS Hub</a><br />
+              Premium CSS Templates</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+
+
+
+
+	<ui:define name="content">
+	<div class="content">
+		<div class="content_resize">
+			<div class="mainbar">
+				<div class="article">
+
+
+					<h:form>
+						<table>
+
+
+							<tr>
+								<td><h:outputText
+										value="ija nas2louk chwaya 5antal3ou type l contrat !"></h:outputText></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="t7eb contrat mta3  deces ?"></h:outputText></td>
+								<td><h:selectBooleanCheckbox
+										value="#{demandeContratControllerJSF.deces_b}"></h:selectBooleanCheckbox></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="t7eb contrat vie  ?"></h:outputText></td>
+								<td><h:selectBooleanCheckbox
+										value="#{demandeContratControllerJSF.vie_b}"></h:selectBooleanCheckbox></td>
+							</tr>
+							<tr>
+								<td><h:outputText
+										value="behi ken vie : t7eb capital wela rente  ?"></h:outputText></td>
+								<td><h:selectBooleanCheckbox
+										value="#{demandeContratControllerJSF.capitalOuRente_b}"></h:selectBooleanCheckbox></td>
+							</tr>
+							<tr>
+								<td><h:outputText
+										value="behi mele5er ? sa7tik  themek barcha ! theb contrat w na7kiw !"></h:outputText></td>
+								<td><h:selectBooleanCheckbox
+										value="#{demandeContratControllerJSF.sante_b}"></h:selectBooleanCheckbox></td>
+							</tr>
+							<!--            kamalna fazet type l contrat       -->
+							<tr>
+								<td><h:outputText value="  "></h:outputText></td>
+							</tr>
+
+
+
+
+						</table>
+					|<h:commandButton value="Next"
+							action="#{demandeContratControllerJSF.ajoutDemandeContratController()}"    />
+
+					</h:form>
+				</div>
+			
+			</div>
+		
+      <div class="sidebar">
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="user/listeDemandeContratNT.jsf">liste demande contrat non traite </a></li>
+            <li><a href="user/listeDemandeContratT.jsf">liste demande contrat traite</a></li>
+            <li><a href="user/listContratAccpeter.jsf">My contracts</a></li>
+            <li><a href="#">Archives</a></li>
+            <li><a href="#">Web Templates</a></li>
+          </ul>
+        </div>
+        <div class="gadget">
+          <h2 class="star"><span>Sponsors</span></h2>
+          <div class="clr"></div>
+          <ul class="ex_menu">
+            <li><a href="simulateur/ajoutsimu.jsf">Calculator</a><br />
+              calculator , fond euro , euro croissance</li>
+            <li><a href="user/actifF.jsf">Add actif</a><br />
+              make a new actif  &amp; contract</li>
+            <li><a href="user/listeactifFE.jsf">Liste fond euro</a><br />
+              check your contrats</li>
+            <li><a href="user/listeactifEC.jsf">Liste fond Euro croissance</a><br />
+             check your contrats</li>
+            <li><a href="http://www.evrsoft.com/">Evrsoft</a><br />
+              Website Builder Software &amp; Tools</li>
+            <li><a href="http://www.csshub.com/">CSS Hub</a><br />
+              Premium CSS Templates</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>

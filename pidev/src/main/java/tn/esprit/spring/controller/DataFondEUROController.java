@@ -2,7 +2,7 @@ package tn.esprit.spring.controller;
 
 import java.util.List;
 
-
+import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -20,10 +20,8 @@ import tn.esprit.spring.entity.Rendement;
 import tn.esprit.spring.entity.Simulateur;
 import tn.esprit.spring.services.DataFondEUROService;
 
-@Scope(value = "session")
-
 @Controller(value = "dataFondEUROController") // Name of the bean in Spring IoC
-
+@ELBeanName(value = "dataFondEUROController")
 public class DataFondEUROController {
 	
 	@Autowired

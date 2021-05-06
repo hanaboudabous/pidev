@@ -20,6 +20,10 @@ public interface IContratRepo extends JpaRepository<Contrat, Integer>{
 	@Query(value = "SELECT * FROM contrat INNER JOIN demande_contrat ON contrat.demande_contrat_id=demande_contrat.id WHERE acceptation=0 and demande_contrat.users_user_id=:w", nativeQuery = true)
 	public List<Contrat> ProposeContrat(@Param("w") int w);
 	
+	
+	@Query(value = "SELECT * FROM contrat INNER JOIN demande_contrat ON contrat.demande_contrat_id=demande_contrat.id WHERE acceptation=1 and demande_contrat.users_user_id=:w", nativeQuery = true)
+	public List<Contrat> Contrataccepter(@Param("w") int w);
+	
 	@Query(value = "SELECT * FROM contrat INNER JOIN demande_contrat ON contrat.demande_contrat_id=demande_contrat.id WHERE acceptation=1 and demande_contrat.users_user_id=:w ORDER BY date_debut ASC", nativeQuery = true)
 	public List<Contrat> LesContratsClient(@Param("w") int w);
 
@@ -27,5 +31,6 @@ public interface IContratRepo extends JpaRepository<Contrat, Integer>{
 	@Query(value = "SELECT * FROM sinistre INNER JOIN reclamation_sinistre ON sinistre.demande_contrat_id=demande_contrat.id WHERE acceptation=1 and demande_contrat.users_user_id=:w ORDER BY date_debut ASC", nativeQuery = true)
 	public List<Contrat> LesSinistresClient(@Param("w") int w);
 	
-	
+
+
 }

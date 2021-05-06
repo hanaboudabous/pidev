@@ -20,6 +20,7 @@ import tn.esprit.spring.repository.ISinistreRepos;
 @Service
 public class BlanchimentSerive {
 
+
 	@Autowired
 	IActifFinancier actifs ;
 	
@@ -69,7 +70,18 @@ public class BlanchimentSerive {
 					b.setCause("le montant de la prime est un peu grand par rapport au salire " + c.getDemandeContrat().getUsers().getCIN()  );
 				}
 			}
-			
+			if ( c.getPrimeCommerciale() > 3 * c.getDemandeContrat().getUsers().getSalary()){
+				b.setCause("le montant de la prime est un peu grand par rapport au salire " + c.getDemandeContrat().getUsers().getCIN()  );
+			}
+			if ( c.getRemboursement() > 20 * c.getDemandeContrat().getUsers().getSalary()){
+				b.setCause("le montant de remboursement est un peu grand par rapport au salire " + c.getDemandeContrat().getUsers().getCIN()  );
+			}
+			if ( c.getRemboursement() > 20 * c.getDemandeContrat().getUsers().getSalary()){
+				b.setCause("le montant de remboursement est un peu grand par rapport au salire " + c.getDemandeContrat().getUsers().getCIN()  );
+			}
+			if ( c.getRemboursement() > 20 * c.getDemandeContrat().getUsers().getSalary()){
+				b.setCause("le montant de remboursement est un peu grand par rapport au salire " + c.getDemandeContrat().getUsers().getCIN()  );
+			}
 		}	
 	}
 	
@@ -152,5 +164,4 @@ public class BlanchimentSerive {
 		}
 		blan.save(b);		
 	}
-	
 }

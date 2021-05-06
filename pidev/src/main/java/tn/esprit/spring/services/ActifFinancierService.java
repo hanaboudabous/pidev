@@ -15,6 +15,7 @@ import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.entity.Rendement;
 import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.IActifFinancier;
+import tn.esprit.spring.repository.IDataFondEURORepo;
 import tn.esprit.spring.repository.IRendement;
 import tn.esprit.spring.repository.IUserRepo;
 
@@ -22,19 +23,23 @@ import tn.esprit.spring.repository.IUserRepo;
 
 public class ActifFinancierService {
 	
-	 @Autowired
-     IActifFinancier actifFinancierRepo ;
-     
- 	@Autowired
- 	IUserRepo userRepo;
- 	
- 	@Autowired
+	
+    @Autowired
+    IActifFinancier actifFinancierRepo ;
+    
+	@Autowired
+	IUserRepo userRepo;
+	
+	@Autowired
 	IRendement rendement ;
- 	
- 	
-     public void addActifFinancier( ActifFinancier actif , int idUser){
- 		User u = userRepo.findById(idUser).get();		
- 		Date currentUtilDate = new Date();
+	
+	@Autowired
+	IDataFondEURORepo dataFondEURORepo ;
+	
+	
+    public void addActifFinancier( ActifFinancier actif , int idUser){
+		User u = userRepo.findById(idUser).get();		
+		Date currentUtilDate = new Date();
 		int a = currentUtilDate.getYear() + actif.getMaturite() ;
 		Date currentUtilDate2 = new Date();
 		currentUtilDate2.setYear(a);	  		
@@ -43,38 +48,37 @@ public class ActifFinancierService {
 		actif.setEtat("En cours");
 		actif.setAccepte_rachat(0);
 		actif.setUserActif(u);
- 		actifFinancierRepo.save(actif);
-     }
+		actifFinancierRepo.save(actif);
+    }
 
-     @Transactional
- 	public List<ActifFinancier> listetouslesfond(){ /*** emp  : all  */
- 		return actifFinancierRepo.findAll();
- 	}
+    @Transactional
+	public List<ActifFinancier> listetouslesfond(){ /*** emp  : all  */
+		return actifFinancierRepo.findAll();
+	}
 
-     public List<ActifFinancier> listemontant_actuelFond(Fond f){ /*** emp  : all par fond */
-   	  List<ActifFinancier> l = new ArrayList<>();
-   	  if(f == Fond.Fond_Euro){
-   		  l =  actifFinancierRepo.findByNomFond(Fond.Fond_Euro);
-   	  }
-   	  else{
-   		  l =  actifFinancierRepo.findByNomFond(Fond.Euro_Croissance);
-   	  }
-   	  return l;
-     }
+    public List<ActifFinancier> listemontant_actuelFond(Fond f){ /*** emp  : all par fond */
+  	  List<ActifFinancier> l = new ArrayList<>();
+  	  if(f == Fond.Fond_Euro){
+  		  l =  actifFinancierRepo.findByNomFond(Fond.Fond_Euro);
+  	  }
+  	  else{
+  		  l =  actifFinancierRepo.findByNomFond(Fond.Euro_Croissance);
+  	  }
+  	  return l;
+    }
 
-     public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,int idUser){ /*** user  : all par fond */
-   	  User u = userRepo.findById(idUser).get();
-   	  List<ActifFinancier> l2 = new ArrayList<>();
-   	  List<ActifFinancier> l = actifFinancierRepo.findByUserActif(u);
-   	 for(ActifFinancier actif : l){
-   	  if( actif.getNomFond() == f){
-   		  l2.add(actif);
-   	  }	  
-   	 }
-   	  return l2;
-     }
-   
-		public  void montant_actuelFondEuro(int id){		
+    public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,int idUser){ /*** user  : all par fond */
+   	  List<ActifFinancier> l ;
+  	  if(f == Fond.Fond_Euro){
+  	  l = actifFinancierRepo.listemontant_actuelFondEuroparUser(idUser) ;
+  	  }
+  	  else {
+  		  l = actifFinancierRepo.listemontant_actuelEuroCroissanceparUser(idUser) ;
+  	  }
+  	  return l;
+    }
+  
+		public ActifFinancier montant_actuelFondEuro(int id){		
 			double frais_gestion = 0.03 ;
 			ActifFinancier a = actifFinancierRepo.findById(id).get();
 			float primerelle = (float) (a.getMontant_investi() - (a.getMontant_investi()*frais_gestion)) ;
@@ -187,11 +191,12 @@ public class ActifFinancierService {
 			a.setMontant_cumule(primefinale);
 			a.setDate_actuel(d1);
 			actifFinancierRepo.save(a);	
+			return a ;
 		}
 		
-     public void FondEuro_to_EuroCroissance(int id){
-   	  	montant_actuelFondEuro(id);
-   	  	ActifFinancier a_croissance = new ActifFinancier() ;
+    public void FondEuro_to_EuroCroissance(int id){
+  	  	montant_actuelFondEuro(id);
+  	  	ActifFinancier a_croissance = new ActifFinancier() ;
 			ActifFinancier a = actifFinancierRepo.findById(id).get();
 			a.setEtat("Résilié");
 			actifFinancierRepo.save(a);
@@ -202,11 +207,13 @@ public class ActifFinancierService {
 			a_croissance.setDate_debut(new Date());
 			a_croissance.setNomFond(Fond.Euro_Croissance);
 			a_croissance.setMaturite(8);
+			a_croissance.setEtat("En cours");
+			
 			actifFinancierRepo.save(a_croissance); 
-   	   
-     }
-     
- 	public  void montant_actuelEuroCroissance(int id){		
+  	   
+    }
+    
+	public ActifFinancier montant_actuelEuroCroissance(int id){		
 		double frais_gestion = 0.03 ;
 		ActifFinancier a = actifFinancierRepo.findById(id).get();
 		float primerelle = (float) (a.getMontant_investi() - (a.getMontant_investi()*frais_gestion)) ;
@@ -317,8 +324,23 @@ public class ActifFinancierService {
 		a.setMontant_cumule(primefinale);
 		a.setDate_actuel(d1);
 		actifFinancierRepo.save(a);	
+		return a ;
+
 	}
 	
+	public int sommeBta(){	
+		return dataFondEURORepo.listBTA() ; 
+	}
+	public int sommenonBta(){	
+		return dataFondEURORepo.listNonBTA(); 
+	}	
+	
+	public int sommeFond_Euro(){	
+		return actifFinancierRepo.listFond_Euro() ;
+	}
+	public int sommenonEuro_Croissance(){	
+		return actifFinancierRepo.listEuro_Croissance(); 
+	}
 		
 	
 		

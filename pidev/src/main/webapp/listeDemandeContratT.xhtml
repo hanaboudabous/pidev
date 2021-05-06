@@ -25,33 +25,94 @@
     </div>
 			
 	
-	
+				<div class="article">
+     <div class="comment">
 <!--BEGIN : TP1 JSF Introduction Login -->
 
 
+<h:panelGroup >
+<style type="text/css">
+.order-table{   
+    border-collapse:collapse;
+}
 
+.order-table-header{
+    text-align:center;
+    background:none repeat scroll 0 0 #E5E5E5;
+    border-bottom:1px solid #BBBBBB;
+    padding:16px;
+}
+
+.order-table-odd-row{
+    text-align:center;
+    background:none repeat scroll 0 0 #FFFFFFF;
+    border-top:1px solid #BBBBBB;
+}
+
+.order-table-even-row{
+    text-align:center;
+    background:none repeat scroll 0 0 #F9F9F9;
+    border-top:1px solid #BBBBBB;
+}
+    }
+</style>
  
-        <div class="article">
-        	<h:form>
-          <h2><span>We offer you the best</span> Contract</h2>
-          <p class="infopost"><a href="#" class="com"><span>1</span></a> Posted <span class="date">on 	<h:outputText value="#{contratControllerJSF.date_debut}" /></span> by <a href="#">Our support</a> &nbsp;&nbsp;|&nbsp;&nbsp; </p>
-          <div class="clr"></div>
-          <div class="img"><img src="images/img1.jpg" width="624" height="134" alt="" class="fl" /></div>
-          <div class="post_content">
-          <span>&nbsp;&bull;&nbsp;</span>
-          <p><strong> Date debut : </strong> <h:outputText value="#{contratControllerJSF.date_debut}" /></p>          
-          <p><strong> Date fin : </strong> <h:outputText value="#{contratControllerJSF.date_fin}" /></p>
-     	  <p><strong> Prime : </strong> <h:outputText value="#{contratControllerJSF.primeCommerciale}" /></p>          
-          <p><strong> Remboursement : </strong> <h:outputText value="#{contratControllerJSF.remboursement}" /></p>
-          
-          <p:commandButton action="#{contratControllerJSF.refusContrat(contratControllerJSF.idContrat)}" value="Refus contrat " />
+	<h:form>
 
-				<p:commandButton action="#{contratControllerJSF.accepteContrat(contratControllerJSF.idContrat)}" value="Accept Contrat" />
-  </div>
-  	</h:form>
-          <div class="clr"></div>
-        </div>
-       
+	 <div class="card">
+	 
+		<p:dataTable value="#{demandeContratControllerJSF.listeDemandeT}" var="l" size="large"  >
+
+<p:column  headerText="type Contrat" >			 
+				<h:outputText value="#{l.typeContrat}"  width="40" height="40"  class="userpic"  />
+			</p:column >
+		
+			<p:column headerText="capital Assure" >
+			
+				<h:outputText value="#{l.capitalAssure}" width="40" height="40"  class="userpic"  />
+			</p:column>
+	<!-- 		<p:column  headerText="type Contrat" >
+			 
+				<h:outputText value="#{l.typeContrat}" />
+			</p:column >
+	 -->
+	
+			<p:column  headerText="nom Contrat"  >
+			 
+				<h:outputText value="#{l.nomContrat}"  width="40" height="40"  class="userpic" />
+			</p:column>
+				<p:column  headerText="nombre Annee" >
+				 
+				<h:outputText value="#{l.nombreAnnee}"  width="40" height="40"  class="userpic" />
+			</p:column>
+	
+			<p:column  headerText="fumeur"  >
+			 
+				<h:outputText value="#{l.fumeur}"  width="40" height="40"  class="userpic" />
+			</p:column>
+
+				<p:column  headerText="sportif"  >
+				 
+				<h:outputText value="#{l.sportif}"  width="40" height="40"  class="userpic" />
+			</p:column >
+	
+				<p:column  headerText="maladie" >
+			 
+				<h:outputText value="#{l.maladie}"  width="40" height="40"  class="userpic" />
+			</p:column>
+			
+			<p:column  headerText="Action" >
+			 
+				<p:commandButton action="#{demandeContratControllerJSF.deleteDemandeNontraite(l.numDemande)}" value="Supprimer" />
+
+			</p:column>
+			
+		</p:dataTable>
+		</div>
+	</h:form>
+</h:panelGroup>
+</div>
+			</div>
 			
 			</div>
 		
@@ -89,9 +150,9 @@
       </div>
       <div class="clr"></div>
 		</div>
-	
+		</div>
 		
-</div>
+
 	</ui:define>
 	
 </ui:composition>

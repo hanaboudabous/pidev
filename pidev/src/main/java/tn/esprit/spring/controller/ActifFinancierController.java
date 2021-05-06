@@ -24,45 +24,29 @@ import tn.esprit.spring.entity.Fond;
 import tn.esprit.spring.services.ActifFinancierService;
 import tn.esprit.spring.services.UserService;
 
-
 @Scope(value = "session")
 
 @Controller(value = "actifFinancierController") // Name of the bean in Spring IoC
 @ELBeanName(value = "actifFinancierController")
-@RequestMapping("/jsf")
 public class ActifFinancierController {
 	
 	@Autowired
 	ActifFinancierService actifFinancierService ;
 	
 	
-	@Autowired
-	UserService userService;
+	public static String s ;
 
 	
-	@PostMapping("/addactif")
+	@PostMapping("/addactif/{iduser}")
 	@ResponseBody
-	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a ,Authentication auth	){
+	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a , @PathVariable("iduser") int    iduser	){
 		
-		actifFinancierService.addActifFinancier(a, userService.getcode(auth.getName()).getUser_ID());
+		actifFinancierService.addActifFinancier(a, iduser);
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);
 	}
 	
-	private int va = UserController.getIdpublic();
+	
 
-
-	public int getVa() {
-		return va;
-	}
-
-	public void setVa(int va) {
-		this.va = va;
-	}
-
-	public String yalla(){
-		System.out.println("----------------------- " + this.getVa());
-		return "/template/template.xhtml?faces-redirect=true";
-	}
 	
 	@GetMapping("/listeActifactuel")  /*** emp  : all  */
 	@ResponseBody
@@ -75,10 +59,10 @@ public class ActifFinancierController {
 	public List<ActifFinancier>listemontant_actuelFond(@PathVariable("fond") Fond    fond){
 		return actifFinancierService.listemontant_actuelFond(fond);
 	}
-	@GetMapping("/listeActifactuelparfondUser/{fond}")  /*** user  : all par fond  */
+	@GetMapping("/listeActifactuelparfondUser/{fond}/{id}")  /*** user  : all par fond  */
 	@ResponseBody
-	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,Authentication auth){
-		return actifFinancierService.listemontant_actuelFondparUser(fond,userService.getcode(auth.getName()).getUser_ID());
+	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,@PathVariable("id") int    iduser){
+		return actifFinancierService.listemontant_actuelFondparUser(fond,iduser);
 	}	
 	
 	@GetMapping("/change/{id}")
@@ -102,7 +86,25 @@ public class ActifFinancierController {
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);		
 	}
 	
-	
+	@GetMapping("/displayPieCharts")
+	public String pieChart(Model model) {
+		int b = actifFinancierService.sommeBta();
+		int bn = actifFinancierService.sommenonBta();
+		int s = b + bn ;
+		model.addAttribute("pass", 100*b/s);
+		model.addAttribute("fail", 100*bn/s);
+		
+		
+		int fe = actifFinancierService.sommeFond_Euro();
+		int ec = actifFinancierService.sommenonEuro_Croissance() ;
+		int s1 = fe + ec ;
+		
+		System.out.println(s1 +"  " +  fe+ "   " + ec );
+		model.addAttribute("fond_Euro", 100*fe/s1);
+		model.addAttribute("euro_Croissance", 100*ec/s1);
+		      
+		return "pieChart";
+	}
 	
 
 }

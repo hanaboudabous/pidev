@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+
+
+
+
+	<ui:define name="content">
+	<div class="content">
+		<div class="content_resize">
+			<div class="mainbar">
+				<div class="article">
+
+
+<!--BEGIN : TP1 JSF Introduction Login -->
+	
+<h:form>
+	<table>
+		<tr>
+			<td><h:outputText value="libelle"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.libelle}"></h:inputText></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="typBonde"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.typBonde}"></h:inputText></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="montantSouscription"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.montantSouscription}"></h:inputText></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="dateSouscription"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.dateSouscription}">
+			<f:convertDateTime pattern="dd-MM-yyyy" />
+			</h:inputText></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="maturite"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.maturite}"></h:inputText></td>
+		</tr>
+			<tr>
+			<td><h:outputText value="tauxCoupon"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.tauxCoupon}"></h:inputText></td>
+		</tr>
+			<tr>
+			<td><h:outputText value="typeTaux"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.typeTaux}"></h:inputText></td>
+		</tr>	<tr>
+			<td><h:outputText value="nominal"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.nominal}"></h:inputText></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="remunerationPrincipale"></h:outputText></td>
+			<td><h:inputText value="#{dataFondEUROControllerJSF.remunerationPrincipale}"></h:inputText></td>
+		</tr>
+	</table>
+					|<h:commandButton value="ajout"
+		action="#{dataFondEUROControllerJSF.ajoutDataFondEUROControllerJSF()}" />
+
+</h:form>
+
+</div>
+			
+			</div>
+		
+      <div class="sidebar">
+        <div class="gadget">
+          <h2 class="star"><span>Sidebar</span> Menu</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="user/listeDemandeContratNT.jsf">liste demande contrat non traite </a></li>
+            <li><a href="user/listeDemandeContratT.jsf">liste demande contrat traite</a></li>
+            <li><a href="user/listContratAccpeter.jsf">My contracts</a></li>
+            <li><a href="#">Archives</a></li>
+            <li><a href="#">Web Templates</a></li>
+          </ul>
+        </div>
+        <div class="gadget">
+          <h2 class="star"><span>Sponsors</span></h2>
+          <div class="clr"></div>
+          <ul class="ex_menu">
+            <li><a href="simulateur/ajoutsimu.jsf">Calculator</a><br />
+              calculator , fond euro , euro croissance</li>
+            <li><a href="user/actifF.jsf">Add actif</a><br />
+              make a new actif  &amp; contract</li>
+            <li><a href="user/listeactifFE.jsf">Liste fond euro</a><br />
+              check your contrats</li>
+            <li><a href="user/listeactifEC.jsf">Liste fond Euro croissance</a><br />
+             check your contrats</li>
+            <li><a href="http://www.evrsoft.com/">Evrsoft</a><br />
+              Website Builder Software &amp; Tools</li>
+            <li><a href="http://www.csshub.com/">CSS Hub</a><br />
+              Premium CSS Templates</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>

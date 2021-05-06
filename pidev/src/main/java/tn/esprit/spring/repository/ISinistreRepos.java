@@ -14,6 +14,7 @@ import tn.esprit.spring.entity.Sinistre;
 
 @Repository
 public interface ISinistreRepos extends JpaRepository<Sinistre, Integer> {
+
 	@Query(value = "SELECT * FROM Sinistre WHERE extract(year from date_reglement)=:s ", nativeQuery = true)
 	public List<Sinistre> findbyDateReglement(@Param("s") int s );
 	

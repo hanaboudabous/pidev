@@ -70,8 +70,15 @@ public class User  {
 	Role_User Role_User;
 	
 
+private float salary ;
 
 
+	public float getSalary() {
+	return salary;
+}
+public void setSalary(float salary) {
+	this.salary = salary;
+}
 	public String getSexe() {
 		return sexe;
 	}

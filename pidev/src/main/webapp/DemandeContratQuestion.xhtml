@@ -1,12 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/template/template.xhtml">
 
@@ -17,41 +15,68 @@
 	<ui:define name="content">
 	<div class="content">
 		<div class="content_resize">
-		<div class="mainbar">
+			<div class="mainbar">
 				<div class="article">
-				<span>&nbsp;&bull;&nbsp;</span>
-				<span>&nbsp;&bull;&nbsp;</span>
-				
-    </div>
+
+
+<h:panelGroup>
+<table>
+
+		
+			<tr>
+			<td><h:outputText value=" Vote type de contrat est : "></h:outputText></td>
+						<td><h:outputText value="#{demandeContratControllerJSF.typeContrat}"></h:outputText></td>
 			
-	
-	
-<!--BEGIN : TP1 JSF Introduction Login -->
+		</tr>
+		
+			<tr>
+			<td><h:outputText value=" Vote Nom de contrat est : "></h:outputText></td>
+						<td><h:outputText value="#{demandeContratControllerJSF.nomContrat}"></h:outputText></td>
+			
+		</tr>
+		</table>
+		
+		
+<h:form>
+	<table>
 
+		
+			<tr>
+			<td><h:outputText value="ija taw nas2louk 7ajet 3la sa7tek w kethe  !"></h:outputText></td>
+		</tr>
+			<tr>
+			<td><h:outputText value="    "></h:outputText></td>
+		</tr>
+			<tr>
+			<td><h:outputText value="  "></h:outputText></td>
+		</tr>
+		
+				<tr>
+			<td><h:outputText value=" ye5i tetkayef enti !"></h:outputText></td>
+		<td><h:selectBooleanCheckbox value="#{demandeContratControllerJSF.fumeur_b}"></h:selectBooleanCheckbox></td>
+		</tr>
+				<tr>
+			<td><h:outputText value=" behi tochrob wela la  !  ma t5afech rahou confidentiel les données m3ana !"></h:outputText></td>
+		<td><h:selectBooleanCheckbox value="#{demandeContratControllerJSF.alcool_b}"></h:selectBooleanCheckbox></td>
+		</tr>
+					<tr>
+			<td><h:outputText value=" tejri chwaya sa3at  ! sportif ! "></h:outputText></td>
+		<td><h:selectBooleanCheckbox value="#{demandeContratControllerJSF.sportif_b}"></h:selectBooleanCheckbox></td>
+		</tr>
+					<tr>
+			<td><h:outputText value=" ya weldi tetla3chi mrith enti !! "></h:outputText></td>
+		<td><h:selectBooleanCheckbox value="#{demandeContratControllerJSF.maladie_b}"></h:selectBooleanCheckbox></td>
+		</tr>
+		
+		
+	</table>
+					<h:commandButton value="Next"
+		action="#{demandeContratControllerJSF.updateDemandeContratController()}" />
 
+</h:form>
 
- 
-        <div class="article">
-        	<h:form>
-          <h2><span>We offer you the best</span> Contract</h2>
-          <p class="infopost"><a href="#" class="com"><span>1</span></a> Posted <span class="date">on 	<h:outputText value="#{contratControllerJSF.date_debut}" /></span> by <a href="#">Our support</a> &nbsp;&nbsp;|&nbsp;&nbsp; </p>
-          <div class="clr"></div>
-          <div class="img"><img src="images/img1.jpg" width="624" height="134" alt="" class="fl" /></div>
-          <div class="post_content">
-          <span>&nbsp;&bull;&nbsp;</span>
-          <p><strong> Date debut : </strong> <h:outputText value="#{contratControllerJSF.date_debut}" /></p>          
-          <p><strong> Date fin : </strong> <h:outputText value="#{contratControllerJSF.date_fin}" /></p>
-     	  <p><strong> Prime : </strong> <h:outputText value="#{contratControllerJSF.primeCommerciale}" /></p>          
-          <p><strong> Remboursement : </strong> <h:outputText value="#{contratControllerJSF.remboursement}" /></p>
-          
-          <p:commandButton action="#{contratControllerJSF.refusContrat(contratControllerJSF.idContrat)}" value="Refus contrat " />
-
-				<p:commandButton action="#{contratControllerJSF.accepteContrat(contratControllerJSF.idContrat)}" value="Accept Contrat" />
-  </div>
-  	</h:form>
-          <div class="clr"></div>
-        </div>
-       
+</h:panelGroup>
+			</div>
 			
 			</div>
 		
@@ -89,9 +114,6 @@
       </div>
       <div class="clr"></div>
 		</div>
-	
-		
-</div>
+		</div>
 	</ui:define>
-	
 </ui:composition>

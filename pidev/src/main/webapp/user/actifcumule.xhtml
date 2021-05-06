@@ -34,21 +34,25 @@
         <div class="article">
         	<h:form>
           <h2><span>We offer you the best</span> Contract</h2>
-          <p class="infopost"><a href="#" class="com"><span>1</span></a> Posted <span class="date">on 	<h:outputText value="#{contratControllerJSF.date_debut}" /></span> by <a href="#">Our support</a> &nbsp;&nbsp;|&nbsp;&nbsp; </p>
-          <div class="clr"></div>
-          <div class="img"><img src="images/img1.jpg" width="624" height="134" alt="" class="fl" /></div>
-          <div class="post_content">
-          <span>&nbsp;&bull;&nbsp;</span>
-          <p><strong> Date debut : </strong> <h:outputText value="#{contratControllerJSF.date_debut}" /></p>          
-          <p><strong> Date fin : </strong> <h:outputText value="#{contratControllerJSF.date_fin}" /></p>
-     	  <p><strong> Prime : </strong> <h:outputText value="#{contratControllerJSF.primeCommerciale}" /></p>          
-          <p><strong> Remboursement : </strong> <h:outputText value="#{contratControllerJSF.remboursement}" /></p>
-          
-          <p:commandButton action="#{contratControllerJSF.refusContrat(contratControllerJSF.idContrat)}" value="Refus contrat " />
 
-				<p:commandButton action="#{contratControllerJSF.accepteContrat(contratControllerJSF.idContrat)}" value="Accept Contrat" />
+
+	<table>
+		<tr>
+			<td><h:outputText value="Votre montant cumule est !  : "></h:outputText></td>
+			<td><h:outputText value="#{actifFinancierControllerJSF.montant_cumule}"></h:outputText></td>
+		</tr>
+
+<tr>
+			<td><h:outputText value="Si vous voulez resilié ! voila :   "></h:outputText></td>
+			<td><h:outputText value="#{actifFinancierControllerJSF.rachat}"></h:outputText></td>
+		</tr>
+						
+	</table>
+					
+
+	</h:form>
   </div>
-  	</h:form>
+  
           <div class="clr"></div>
         </div>
        
@@ -91,7 +95,7 @@
 		</div>
 	
 		
-</div>
+
 	</ui:define>
 	
 </ui:composition>

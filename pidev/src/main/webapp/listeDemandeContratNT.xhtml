@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -17,41 +16,74 @@
 	<ui:define name="content">
 	<div class="content">
 		<div class="content_resize">
-		<div class="mainbar">
+			<div class="mainbar">
 				<div class="article">
-				<span>&nbsp;&bull;&nbsp;</span>
-				<span>&nbsp;&bull;&nbsp;</span>
-				
-    </div>
-			
-	
-	
+    
+    
 <!--BEGIN : TP1 JSF Introduction Login -->
 
 
+<h:panelGroup columns="2">
+	<h:form>
+		<h:dataTable value="#{demandeContratControllerJSF.listeDemandeNT}" var="l"
+			border="1">
 
- 
-        <div class="article">
-        	<h:form>
-          <h2><span>We offer you the best</span> Contract</h2>
-          <p class="infopost"><a href="#" class="com"><span>1</span></a> Posted <span class="date">on 	<h:outputText value="#{contratControllerJSF.date_debut}" /></span> by <a href="#">Our support</a> &nbsp;&nbsp;|&nbsp;&nbsp; </p>
-          <div class="clr"></div>
-          <div class="img"><img src="images/img1.jpg" width="624" height="134" alt="" class="fl" /></div>
-          <div class="post_content">
-          <span>&nbsp;&bull;&nbsp;</span>
-          <p><strong> Date debut : </strong> <h:outputText value="#{contratControllerJSF.date_debut}" /></p>          
-          <p><strong> Date fin : </strong> <h:outputText value="#{contratControllerJSF.date_fin}" /></p>
-     	  <p><strong> Prime : </strong> <h:outputText value="#{contratControllerJSF.primeCommerciale}" /></p>          
-          <p><strong> Remboursement : </strong> <h:outputText value="#{contratControllerJSF.remboursement}" /></p>
-          
-          <p:commandButton action="#{contratControllerJSF.refusContrat(contratControllerJSF.idContrat)}" value="Refus contrat " />
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="capital Assure" />
+				</f:facet>
+				<h:outputText value="#{l.capitalAssure}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="type Contrat" />
+				</f:facet>
+				<h:outputText value="#{l.typeContrat}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="nom Contrat" />
+				</f:facet>
+				<h:outputText value="#{l.nomContrat}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="nombre Annee" />
+				</f:facet>
+				<h:outputText value="#{l.nombreAnnee}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="fumeur" />
+				</f:facet>
+				<h:outputText value="#{l.fumeur}" />
+			</h:column>
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="sportif" />
+				</f:facet>
+				<h:outputText value="#{l.sportif}" />
+			</h:column>
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="maladie" />
+				</f:facet>
+				<h:outputText value="#{l.maladie}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Action" />
+				</f:facet>
+				<h:commandButton action="#{demandeContratControllerJSF.deleteDemandeNontraite(l.numDemande)}" value="Supprimer" />
 
-				<p:commandButton action="#{contratControllerJSF.accepteContrat(contratControllerJSF.idContrat)}" value="Accept Contrat" />
-  </div>
-  	</h:form>
-          <div class="clr"></div>
-        </div>
-       
+			</h:column>
+			
+		</h:dataTable>
+	</h:form>
+</h:panelGroup>
+
+
+			</div>
 			
 			</div>
 		
@@ -89,9 +121,6 @@
       </div>
       <div class="clr"></div>
 		</div>
-	
-		
-</div>
+		</div>
 	</ui:define>
-	
 </ui:composition>

@@ -28,5 +28,7 @@ public interface IReclamationSinistreRepos extends JpaRepository<ReclamationSini
 	public List<ReclamationSinistre> IafficheRecSinTraiteUser(@Param("us") int us);
 	
 	 List<ReclamationSinistre> findByTraiteReclamation(int traiteReclamation);
+	 
+	 
 
 }

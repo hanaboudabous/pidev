@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import java.util.List;
 
+import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import tn.esprit.spring.services.SimulateurService;
 @Scope(value = "session")
 
 @Controller(value = "simulateurController") // Name of the bean in Spring IoC
-
+@ELBeanName(value = "simulateurController")
 public class SimulateurController {
 
 	
@@ -54,7 +55,7 @@ public class SimulateurController {
 	////////// jsf
 	
 	private Fond fond ;
-	private Prime prime ;
+	private Prime prime ;     
 	private float versement ;
 	private int maturite ;
 	
@@ -108,7 +109,8 @@ public class SimulateurController {
 		else if(fond == Fond.Euro_Croissance){
 		listes =  simulateurService.montant_actuelEuroCroissance(versement , prime , fond , maturite);
 		}
-		
+		System.out.println(versement+"   " + prime + "   "+ fond + "   "+ maturite);
+
 		 return listes ;
 			}
 	

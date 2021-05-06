@@ -28,25 +28,45 @@
 	
 <!--BEGIN : TP1 JSF Introduction Login -->
 
-
-
+	
  
         <div class="article">
         	<h:form>
           <h2><span>We offer you the best</span> Contract</h2>
-          <p class="infopost"><a href="#" class="com"><span>1</span></a> Posted <span class="date">on 	<h:outputText value="#{contratControllerJSF.date_debut}" /></span> by <a href="#">Our support</a> &nbsp;&nbsp;|&nbsp;&nbsp; </p>
+            
+          <p class="infopost"><a href="#" class="com"><span>1</span></a> Posted <span class="date">on 	<h:outputText value="#{demandeContratControllerJSF.datedemande}" /></span> by <a href="#">Our support</a> &nbsp;&nbsp;|&nbsp;&nbsp; </p>
           <div class="clr"></div>
           <div class="img"><img src="images/img1.jpg" width="624" height="134" alt="" class="fl" /></div>
+          <p><strong> nomContrat : </strong> <h:outputText value="#{demandeContratControllerJSF.nomContrat}" /></p> 
+     	  <p><strong> typeContrat : </strong> <h:outputText value="#{demandeContratControllerJSF.typeContrat}" /></p> 
+     
           <div class="post_content">
           <span>&nbsp;&bull;&nbsp;</span>
-          <p><strong> Date debut : </strong> <h:outputText value="#{contratControllerJSF.date_debut}" /></p>          
-          <p><strong> Date fin : </strong> <h:outputText value="#{contratControllerJSF.date_fin}" /></p>
-     	  <p><strong> Prime : </strong> <h:outputText value="#{contratControllerJSF.primeCommerciale}" /></p>          
-          <p><strong> Remboursement : </strong> <h:outputText value="#{contratControllerJSF.remboursement}" /></p>
-          
-          <p:commandButton action="#{contratControllerJSF.refusContrat(contratControllerJSF.idContrat)}" value="Refus contrat " />
-
-				<p:commandButton action="#{contratControllerJSF.accepteContrat(contratControllerJSF.idContrat)}" value="Accept Contrat" />
+          <p><strong> First name : </strong> <h:outputText value="#{demandeContratControllerJSF.firstname}" /></p>          
+          <p><strong> Last name : </strong> <h:outputText value="#{demandeContratControllerJSF.lastname}" /></p>
+     	  <p><strong> capital Assure : </strong> <h:outputText value="#{demandeContratControllerJSF.datebirth}" /></p> 
+     	  <p><strong> Email : </strong> <h:outputText value="#{demandeContratControllerJSF.email}" /></p> 
+     	  
+     	    <span>&nbsp;&bull;&nbsp;</span>
+     
+     
+     	  <p><strong> capital Assure : </strong> <h:outputText value="#{demandeContratControllerJSF.capitalAssure}" /></p>  	           
+     	  <p><strong> Nombre Annee : </strong> <h:outputText value="#{demandeContratControllerJSF.nombreAnnee}" /></p>          
+     	  <p><strong> choixPrime : </strong> <h:outputText value="#{demandeContratControllerJSF.choixPrime}" /></p> 
+     	  <p><strong> val_prime : </strong> <h:outputText value="#{demandeContratControllerJSF.val_prime}" /></p> 
+     	  <span>&nbsp;&bull;&nbsp;</span> 
+     <table>	
+        
+     	  <tr>
+			<td>  <span>&nbsp;&bull;&nbsp;</span> <h:outputText value="Cause de refus" /></td>
+			<td><h:inputText value="#{demandeContratControllerJSF.cause}" ></h:inputText></td>
+		</tr>
+	</table>
+     	   <span>&nbsp;&bull;&nbsp;</span> 
+					<h:commandButton value="Refuse" action="#{demandeContratControllerJSF.verifedemande()}" />					
+					<h:commandButton value="Accept" action="#{demandeContratControllerJSF.acceptedemande()}" />
+     	  
+      
   </div>
   	</h:form>
           <div class="clr"></div>

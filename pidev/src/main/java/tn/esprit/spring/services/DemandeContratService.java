@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import tn.esprit.spring.repository.*;
 @Service
 public class DemandeContratService {
 
-	
 	@Autowired
 	IDemandeContratRepo demandeContrat;
 	
@@ -86,7 +86,7 @@ public class DemandeContratService {
 	// lister les demande  Contrat en cours ( non traite )
 	@Transactional
 	public List<DemandeContrat> afficheDemandeContratNonTraite(){
-		return demandeContrat.findByTraite(0);
+		return demandeContrat.IafficheDemandeContratNonTraite();
 	}
 
 	// lister les demande  Contrat  ( traite )
@@ -111,15 +111,8 @@ public class DemandeContratService {
 	// lister les demande  Contrat  ( traite )
 	@Transactional
 	public List<DemandeContrat> afficheDemandeContratTraiteUSER(int idUser){
-		User u = userRepo.findById(idUser).get();
-		List<DemandeContrat> list = new ArrayList<>();
-		
-		for(DemandeContrat l : demandeContrat.findByUsers(u)){
-			if (l.getTraite() == 1){
-				list.add(l);
-			}
-		}
-		return list ;
+
+		return demandeContrat.afficheDemandeContratTraiteUSERRepo(idUser) ;
 			
 
 	}
@@ -201,7 +194,11 @@ public class DemandeContratService {
 						System.out.println(s);
 					}	
 					else{
-					
+						System.out.println("hello");
+						FacesMessage facesMessage =
+
+								new FacesMessage("Login Failed: please check your username/password and try again.");
+
 					}
 		}
 		else{
@@ -210,6 +207,8 @@ public class DemandeContratService {
 		}
 	
 	}
+	
+	
 	
 	
 }

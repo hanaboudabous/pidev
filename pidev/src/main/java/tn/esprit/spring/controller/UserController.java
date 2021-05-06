@@ -78,26 +78,53 @@ public class UserController {
 	private Boolean loggedIn;
 	private User user;
 
+private static int idpublic ;
+private  int var = UserController.idpublic ;
+
+
+
+
+	public static int getIdpublic() {
+	return idpublic;
+}
+public static void setIdpublic(int idpublic) {
+	UserController.idpublic = idpublic;
+}
+
+
+public int getVar() {
+	return var;
+}
+
+
+public void setVar(int var) {
+	this.var = var;
+}
+
 
 	public String doLogin(){
 		String navigateTo = "null";
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); 
 		User u=userService.getcode(email);
-		if (email.length()>=8 && password.length()>=8)
-		{
+		//if (email.length()>=8 && password.length()>=8)
+		//{
 			this.setIm(u.getImage());
 			encoder.matches(password, u.getPassword());
 			if(u.getRole_User() == tn.esprit.spring.entity.Role_User.Client && encoder.matches(password, u.getPassword()))
 			{
 		
-		navigateTo = "/template/template.jsf?faces-redirect=true";
-		loggedIn = true; 
+		navigateTo ="/DemandeContrat.xhtml?faces-redirect=true";
+     
+		loggedIn = true;     
+		idpublic = u.getUser_ID() ;
+		
 		}
 			else{FacesMessage facesMessage =
 
 					new FacesMessage("Login Failed: please check your username/password and try again.");
 
-					FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);}}
+					FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);}
+		/*	}
 		else {
 		FacesMessage facesMessage =
 
@@ -105,6 +132,8 @@ public class UserController {
 
 		FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
 		}
+
+	*/
 		return navigateTo;
 		}
 	

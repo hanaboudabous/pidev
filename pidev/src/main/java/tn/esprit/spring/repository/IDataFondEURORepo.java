@@ -14,8 +14,7 @@ import tn.esprit.spring.entity.DataFondEURO;
 
 public interface IDataFondEURORepo  extends JpaRepository<DataFondEURO, Integer>{
 
-	
-	List<DataFondEURO> findByTypBonde(String typBonde);
+List<DataFondEURO> findByTypBonde(String typBonde);
 	
 	List<DataFondEURO> findByTypBondeAndDateSouscriptionLessThanEqualAndDateEcheanceGreaterThanEqual(String typBonde , Date DateSouscription , Date ateEcheance);
 	List<DataFondEURO> findByTypBondeAndDateSouscriptionGreaterThanEqualAndDateEcheanceGreaterThanEqual(String typBonde , Date DateSouscription , Date ateEcheance);
@@ -33,9 +32,14 @@ public interface IDataFondEURORepo  extends JpaRepository<DataFondEURO, Integer>
 	List<DataFondEURO> findAllByOrderByDateEcheanceAsc();
 	List<DataFondEURO> findAllByOrderByDateSouscriptionDesc();
 	
+
+	@Query(value = "SELECT count(*) FROM data_fondeuro WHERE typ_bonde='BTA' ", nativeQuery = true)
+	public int listBTA( );
+
+	@Query(value = "SELECT count(*) FROM data_fondeuro WHERE typ_bonde='non BTA' ", nativeQuery = true)
+	public int listNonBTA( );
 /*
 	List<DataFondEURO> findByTypBondeByOrderByDateEcheanceAsc(String typBonde);
 	List<DataFondEURO> findByTypBondeByOrderByDateEcheanceDesc(String typBonde);*/
 
-	
 }

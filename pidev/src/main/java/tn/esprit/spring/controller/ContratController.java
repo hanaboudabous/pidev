@@ -27,9 +27,8 @@ import tn.esprit.spring.services.UserService;
 
 public class ContratController {
 
+
 	
-	@Autowired
-	UserService userService;
 	@Autowired
 	ContratService contratService ;
 	
@@ -62,16 +61,16 @@ public class ContratController {
 			
 	}
 	
-	@GetMapping("/liste/propose")
+	@GetMapping("/liste/propose/{idUser}")
 	@ResponseBody
-	public List<Contrat> ProposeContratController(Authentication auth){
-		List<Contrat> list = contratService.ProposeContrat(userService.getcode(auth.getName()).getUser_ID());
+	public List<Contrat> ProposeContratController(@PathVariable("idUser") int idUser){
+		List<Contrat> list = contratService.ProposeContrat(idUser);
 		return list;			
 	}
 
 	@RequestMapping("/deleteC/{id}")
 	@PostMapping
-	public ResponseEntity<Contrat> deleteContratController(@PathVariable("id") int    id){
+	public ResponseEntity<Contrat> deleteContratController(@PathVariable("id")  int id){
 		
 		contratService.deleteContrat(id);
 		return new ResponseEntity<Contrat>(HttpStatus.OK);
@@ -80,10 +79,11 @@ public class ContratController {
 	
 	@PostMapping("/acceptContrat/{rep}/{idContrat}")
 	@ResponseBody
-	public void acceptContratController(@PathVariable("rep") int rep,@PathVariable("idContrat") int idContrat){
+	public void acceptContratController(@PathVariable("rep") int rep,@PathVariable("idContrat") int idContrat) throws Exception{
 		 contratService.acceptContrat(rep,idContrat);
 	
 			
 	}
+	
 	
 }

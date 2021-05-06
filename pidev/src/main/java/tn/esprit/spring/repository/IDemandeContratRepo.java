@@ -23,6 +23,12 @@ public interface IDemandeContratRepo  extends JpaRepository<DemandeContrat, Inte
 	@Query(value = "SELECT * FROM demande_contrat WHERE traite=0", nativeQuery = true)
 	public List<DemandeContrat> IafficheDemandeContratNonTraite();
 	
+	
 	 List<DemandeContrat> findByTraite(int traite);
 	 List<DemandeContrat> findByUsers( User user);
+
+		@Query(value = "SELECT * FROM demande_contrat INNER JOIN contrat ON demande_contrat.id=contrat.demande_contrat_id WHERE traite=1 and contrat.acceptation=0 and demande_contrat.users_user_id=:w", nativeQuery = true)
+		public List<DemandeContrat> afficheDemandeContratTraiteUSERRepo(@Param("w") int w);
+
+	
 }

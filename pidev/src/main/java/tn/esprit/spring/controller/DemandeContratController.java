@@ -3,6 +3,7 @@ package tn.esprit.spring.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,8 @@ import tn.esprit.spring.services.DemandeContratService;
 import tn.esprit.spring.services.Type_santeService;
 import tn.esprit.spring.services.UserService;
 
-@Scope(value = "session")
-
 @RestController(value = "demandeContratController") // Name of the bean in Spring IoC
-
+@ELBeanName(value = "demandeContratController")
 public class DemandeContratController {
 	
 	@Autowired
@@ -33,13 +32,13 @@ public class DemandeContratController {
 	
 	@Autowired
 	Type_santeService type_santeService ;
-	@Autowired
-	UserService userService;
-	
+
+	private int    iduser = UserController.getIdpublic();
+
 	
 	@PostMapping("/add")
 	@ResponseBody
-	public ResponseEntity<DemandeContrat> ajoutDemandeContratController(@RequestBody DemandeContrat  d 	, Authentication auth){
+	public ResponseEntity<DemandeContrat> ajoutDemandeContratController(@RequestBody DemandeContrat  d 	){
 		//int iduser = d.getUsers().getUser_ID();
 		String s ;
 		String type1 = "Assurance vie";
@@ -51,14 +50,15 @@ public class DemandeContratController {
 		if(d.getSante() == 0 ){
 			
 			if(d.getVie()==1 && d.getDeces() == 0){
-						if(d.getCapitalOuRente()== 0){s =" rente viag";System.out.println(s);demandeContratService.ajoutDemandeContrat(d ,6,type1,nomvie1);}
-						else{s = "capital diff";System.out.println(s);demandeContratService.ajoutDemandeContrat(d ,6, type1,nomvie2);}
+						if(d.getCapitalOuRente()== 0){s =" rente viag";System.out.println(s);demandeContratService.ajoutDemandeContrat(d ,iduser,type1,nomvie1);}
+						else{s = "capital diff";System.out.println(s);demandeContratService.ajoutDemandeContrat(d ,iduser, type1,nomvie2);}
 			}
-			else if (d.getVie()==0 && d.getDeces() == 1){   s="vie entiere";System.out.println();demandeContratService.ajoutDemandeContrat(d ,6, type1,nomdeces);}
+			else if (d.getVie()==0 && d.getDeces() == 1){   s="vie entiere";System.out.println();demandeContratService.ajoutDemandeContrat(d ,iduser, type1,nomdeces);}
 			else if (d.getVie()==1 && d.getDeces() == 1){  s="on peut pas vie et deces"; System.out.println(s);}	
 			else{System.out.println("hello");}
 }
-		else{s="sante";System.out.println(s);demandeContratService.ajoutDemandeContrat(d ,userService.getcode(auth.getName()).getUser_ID(), type2,sante);
+		else{s="sante";System.out.println(s);demandeContratService.ajoutDemandeContrat(d ,iduser, type2,sante);
+		
 		}
 
 		return new ResponseEntity<DemandeContrat>(HttpStatus.OK);
@@ -85,36 +85,36 @@ public class DemandeContratController {
 		return list;			
 	}
 	/// employee !!! lkoll ma3neha ..
-		@GetMapping("/liste/nonTraiteUser")
+		@GetMapping("/liste/nonTraite/{id}")
 		@ResponseBody
-		public List<DemandeContrat> afficheDemandeContratTraiteNoUsernController( Authentication auth ){
-			List<DemandeContrat> list = demandeContratService.afficheDemandeContratNonTraiteUSER(userService.getcode(auth.getName()).getUser_ID());
+		public List<DemandeContrat> afficheDemandeContratTraiteNoUsernController(@PathVariable("id")  int iduser){
+			List<DemandeContrat> list = demandeContratService.afficheDemandeContratNonTraiteUSER(iduser);
 			return list;		
 		}
-		@GetMapping("/liste/traiteUser")
+		@GetMapping("/liste/traite/{id}")
 		@ResponseBody
-		public List<DemandeContrat> afficheDemandeContratTraiteUserController( Authentication auth){
-			List<DemandeContrat> list = demandeContratService.afficheDemandeContratTraiteUSER(userService.getcode(auth.getName()).getUser_ID());
+		public List<DemandeContrat> afficheDemandeContratTraiteUserController(@PathVariable("id")  int iduser){
+			List<DemandeContrat> list = demandeContratService.afficheDemandeContratTraiteUSER(iduser);
 			return list;			
 		}
-	@RequestMapping("/delete")
+	@RequestMapping("/delete/{id}")
 	@PostMapping
-	public ResponseEntity<DemandeContrat> deleteDemandeContratController( Authentication auth){
+	public ResponseEntity<DemandeContrat> deleteDemandeContratController(@PathVariable("id")  int id){
 		
-		demandeContratService.deleteDemandeContrat(userService.getcode(auth.getName()).getUser_ID());
+		demandeContratService.deleteDemandeContrat(id);
 		return new ResponseEntity<DemandeContrat>(HttpStatus.OK);
 	}
-	@GetMapping("/verifContrat")
+	@GetMapping("/verifContrat/{id}")
 	@ResponseBody
-	public ResponseEntity<DemandeContrat> verifieTypeContratController( Authentication auth){
-		demandeContratService.verifieTypeContrat(userService.getcode(auth.getName()).getUser_ID());
+	public ResponseEntity<DemandeContrat> verifieTypeContratController(@PathVariable("id")  int id){
+		demandeContratService.verifieTypeContrat(id);
 		return new ResponseEntity<DemandeContrat>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/verifEtat")
+	@GetMapping("/verifEtat/{id}")
 	@ResponseBody
-	public ResponseEntity<DemandeContrat>verifeEtatDemandeContratController( Authentication auth){
-		demandeContratService.verifeEtatDemandeContrat(userService.getcode(auth.getName()).getUser_ID());
+	public ResponseEntity<DemandeContrat>verifeEtatDemandeContratController(@PathVariable("id")  int id){
+		demandeContratService.verifeEtatDemandeContrat(id);
 		return new ResponseEntity<DemandeContrat>(HttpStatus.OK);
 			
 	}

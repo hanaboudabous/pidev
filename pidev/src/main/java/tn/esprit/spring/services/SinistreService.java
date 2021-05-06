@@ -1023,7 +1023,19 @@ public class SinistreService {
 	        }
 	    }
 
-	 
+	 /******************************************************************************/
+	  	public List<Sinistre> afficheSinUser(int iduser){
+	  		List<Sinistre> sin= sinistre.IafficheSinUser(iduser);
+			return sinistre.IafficheSinUser(iduser);
+
+		}
+	  	
+	  	public Sinistre Getsinbyid(int idsin) 
+		{   Sinistre s= sinistre.findById(idsin).get();
+		    
+			return s;
+
+		}
 			
 
   			

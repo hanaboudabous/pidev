@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import tn.esprit.spring.controller.ReclamationSinistreControllerJSF;
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.DemandeContrat;
 import tn.esprit.spring.entity.Prime;
@@ -34,7 +35,8 @@ public class ContratControllerJSF {
 	
 	@Autowired
 	ContratService contratService ;
-		
+	@Autowired	
+	ReclamationSinistreControllerJSF reclamationSinistreControllerJSF ;
 	
 	
 	private int    idUser = UserController.getIdpublic();
@@ -372,6 +374,22 @@ public void setIdContrat(int idContrat) {
 		this.typeContrat = typeContrat;
 	}
 
+	/**********************************************************/
+	public String doRedirection(int idcon){
+		reclamationSinistreControllerJSF.test(idcon);
+		System.out.println("idcon"+idcon);
+		return "/recsinistre/formrecquestions.xhtml?faces-redirect=true";
+		
+	}
+	
+	List<Contrat> listeContrat;
+
+	public List<Contrat> getListeContrat() {  
+		
+		
+		return contratService.listeContratdeUser(1);                                        //Changer id user de statique -> automatique
+	}
+/*************************************************************/
 	
 	
 }

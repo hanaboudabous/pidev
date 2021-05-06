@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -27,7 +29,8 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import tn.esprit.spring.entity.Cagnotte;
+import tn.esprit.spring.repository.ICagnotteRepo;
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.DemandeContrat;
 import tn.esprit.spring.entity.Prime;
@@ -42,7 +45,9 @@ import tn.esprit.spring.repository.Type_santeRepo;
 @Service
 public class ContratService {
 	
-
+	/*******************************************/
+	@Autowired	
+	ICagnotteRepo  cag ;
 	
 	@Autowired
 	IContratRepo contrat ;
@@ -859,4 +864,30 @@ public class ContratService {
 	         /*********************************************** Page 2  ******************************************************/
 	    
 	     }
+	     /************************************** JSF  **********************/
+			// liste les contrats par id client qui peuvent entrer en cagnotte
+			@Transactional
+			public List<Contrat> listeContratPossiblesDansCagnotte(int iduser){
+
+				List<Contrat> list = new ArrayList<>();
+				for(Contrat l : contrat.IafficheContratUser(iduser))
+				{
+					Optional<Cagnotte> c= cag.findByContrat(l); // mouch mawjoud fel cagnotte
+					System.out.println("ccc  "+c);
+					if(!c.isPresent())
+					{System.out.println("mouch mawjouuuuuud");
+					list.add(l);
+					}
+
+				}
+				return list ;
+
+			}
+			
+			//liste des contrats d'un certain user
+			public List<Contrat> listeContratdeUser(int iduser){
+
+				return contrat.LesContratsClient(iduser);
+
+			}
 }

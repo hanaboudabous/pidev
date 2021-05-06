@@ -317,6 +317,27 @@ public class ReclamationSinistreService {
 
 
 	}
+	
+/******************* JSF ************************************************/
+	
+	public Type_sante typesante(int idcontrat) 
+	{  
+		Contrat c= contrat.findById(idcontrat).get();
+		 Type_sante t= sante.findByDemandeContrat(c.getDemandeContrat());
+		return t;
+
+	}
+	
+	public User usercon(int idcontrat) 
+	{   System.out.println("ruuun1" + idcontrat);
+		Contrat c= contrat.findById(idcontrat).get();
+		System.out.println("ruuun2"+c.getNumContrat());
+		 User u= c.getDemandeContrat().getUsers();
+		 System.out.println("ruuun3");
+		 System.out.println("user"+u);
+		return u;
+
+	}
 
 
 

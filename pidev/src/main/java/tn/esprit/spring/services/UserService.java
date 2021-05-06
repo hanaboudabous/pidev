@@ -146,5 +146,9 @@ public class UserService implements IUserService {
 	public void del(int id){
 		userRepository.deleteById(id);
 	}
+	
+	public List<User> afficheUsers(){
+		return (List<User>) userRepository.findAll();
+	}
 
 }

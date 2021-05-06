@@ -16,6 +16,7 @@ import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.entity.Sinistre;
 import tn.esprit.spring.repository.ICagnotteRepo;
 import tn.esprit.spring.repository.IContratRepo;
+
 @Service
 public class CagnotteService {
 	@Autowired
@@ -74,7 +75,7 @@ public class CagnotteService {
 			Date dateFin=cagnotte.getDateEcheance();
 			int result = currentDate.compareTo(dateFin);
 		
-		    System.out.println("result"+result);
+		    
 			if((cagnotte.getMontantactuel()<cagnotte.getMontantfinal())&&result>0){ // echeance fetet
 				cagnotte.setEtat("suspendu"); //La somme n'a pas pu être récoltée à temps, le contrat sera résilié
 				System.out.println(cagnotte.getEtat());
@@ -128,10 +129,12 @@ public class CagnotteService {
 		return x;
 	}
 	
-	
+
 		
+	public List<Cagnotte> afficheCagnotteuser(int iduser){
 		
-		
+		return cag.Cagnottesduuser(iduser);
+	}
 		
 	
 	
@@ -139,3 +142,4 @@ public class CagnotteService {
 
 
 }
+

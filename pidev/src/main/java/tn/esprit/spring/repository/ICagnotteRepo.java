@@ -1,7 +1,7 @@
 package tn.esprit.spring.repository;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entity.Cagnotte;
+import tn.esprit.spring.entity.Contrat;
+
+
 
 
 
@@ -26,4 +29,11 @@ public interface ICagnotteRepo extends JpaRepository<Cagnotte, Integer>{
 
 	 List<Cagnotte> findByEtatOrderByDateAjout(String etat);// eli etat=en cours
 	 List<Cagnotte> findAllByEtat(String etat);
+	 
+	 /*****************************************************************/
+	 Optional<Cagnotte> findByContrat(Contrat l);
+	 
+	 @Query(value = "SELECT * FROM cagnotte ca JOIN  contrat c on ca.contrat_id=c.id JOIN demande_contrat d on c.demande_contrat_id=d.id JOIN user u on d.users_user_id=u.user_id WHERE u.user_id=:us ", nativeQuery = true)
+		public List<Cagnotte> Cagnottesduuser(@Param("us") int us);
+
 }

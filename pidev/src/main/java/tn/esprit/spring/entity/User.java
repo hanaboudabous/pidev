@@ -29,6 +29,7 @@ public class User  {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	
 	
+	
 	private int User_ID;
 	private String First_name;
 	private String Last_name;
@@ -223,20 +224,7 @@ public void setSalary(float salary) {
 	
 
 
-	
-	
-	@Override
-	public String toString() {
-		return "User [User_ID=" + User_ID + ", First_name=" + First_name + ", Last_name=" + Last_name + ", Number="
-				+ Number + ", CIN=" + CIN + ", Geographical_area=" + Geographical_area + ", Motorisation="
-				+ Motorisation + ", Birth_date=" + Birth_date + ", Address=" + Address + ", Postal_code=" + Postal_code
-				+ ", Job=" + Job + ", Status=" + Status + ", sexe=" + sexe + ", shifting=" + shifting + ", Email="
-				+ Email + ", Password=" + Password + ", Confirm_password=" + Confirm_password + ", Image=" + Image
-				+ ", Verified_account=" + Verified_account + ", Scoring=" + Scoring + ", random=" + random
-				+ ", Hiring_date=" + Hiring_date + ", Role_User=" + Role_User + ", Payment=" + Payment
-				+ ", actifFinancier=" + actifFinancier + ", demandeContrats=" + demandeContrats + ", contributions="
-				+ contributions + "]";
-	}
+
 	
 	public User(int user_ID, String first_name, String last_name, int number, long cIN,
 			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
@@ -362,8 +350,7 @@ public void setSalary(float salary) {
 	}
 	public User()
 	{}
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="User")
-	private Set<Payment> Payment;
+
 	public User(int user_ID, String first_name, String last_name, int number, long cIN,
 			tn.esprit.spring.entity.Geographical_area geographical_area, int motorisation, Date birth_date,
 			String address, int postal_code, String job, tn.esprit.spring.entity.Status status, int shifting,
@@ -390,7 +377,7 @@ public void setSalary(float salary) {
 		this.random = random;
 		Hiring_date = hiring_date;
 		Role_User = role_User;
-		Payment = payment;
+		
 	}
 	
 	public User(int user_ID, String first_name, String last_name, int number, long cIN,
@@ -449,13 +436,7 @@ public void setSalary(float salary) {
 		Hiring_date = hiring_date;
 		Role_User = role_User;
 	}
-	public Set<Payment> getPayment() {
-		return Payment;
-	}
-	public void setPayment(Set<Payment> payment) {
-		Payment = payment;
-	}
-
+	
 
 /**********************************************************/
 	@JsonIgnore
